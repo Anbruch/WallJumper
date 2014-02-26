@@ -295,12 +295,14 @@ public class ManipulatableObject extends AbstractGameObject {
 		//in the Y AXIS ONLY, set velocity to 0
 		}else{
 			velocity.y = 0;	
-			deltay = 0;
+			if(position.y > collidingPlatformY.position.y)
+				deltay = 0;
 		}
 		
 		//If you're in the air, set state to jumping
 		if(deltay != 0){
 			collidingPlatformY = null;
+			
 			
 		//else you've either hit the top of the top of the platform
 		//or one of the other 3 sides.
@@ -310,7 +312,7 @@ public class ManipulatableObject extends AbstractGameObject {
 			//and position to the top of the platform
 			if (position.y > collidingPlatformY.position.y
 					+ collidingPlatformY.bounds.height) {
-				if(left || right)
+				if((left || right) && xCollision == false)
 					setAnimation(aniRunning);
 				else
 					setAnimation(aniNormal);
@@ -393,9 +395,9 @@ public class ManipulatableObject extends AbstractGameObject {
 					collidingPlatformX = platform;
 					deltax = 0;
 				}
-				if(deltaY != 0)
+				if(deltaY != 0){
 					collidingPlatformY = platform;
-				
+				}
 				return true;
 			}
 		}

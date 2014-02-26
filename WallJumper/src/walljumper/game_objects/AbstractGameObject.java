@@ -84,7 +84,6 @@ public abstract class AbstractGameObject{
 		
 	}
 	public void render(SpriteBatch batch){
-		batch.draw(image.getTexture(), position.x, position.y, 0, 0, dimension.x, dimension.y, 1, 1, rotation, image.getRegionX(), image.getRegionY(), image.getRegionWidth(), image.getRegionHeight(),
-				false, false);
+		
 	}
 }

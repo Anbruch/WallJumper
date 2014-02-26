@@ -17,6 +17,7 @@ public class Assets implements Disposable, AssetErrorListener{
 	public Platform platform;
 	public Background nightSky;
 	public Rogue rogue;
+	public Portal portal;
 	
 	
 	private Assets(){
@@ -37,6 +38,7 @@ public class Assets implements Disposable, AssetErrorListener{
 		scytheMan = new ScytheMan(atlas);
 		nightSky = new Background(atlas);
 		rogue = new Rogue(atlas);
+		portal = new Portal(atlas);
 	}
 
 	@Override
@@ -70,6 +72,15 @@ public class Assets implements Disposable, AssetErrorListener{
 			platMap.put("grass_topcorner", atlas.findRegion("grass_topcorner"));
 			platMap.put("grass_bottomcorner", atlas.findRegion("grass_bottomcorner"));
 			
+		}
+	}
+	public class Portal{
+		public final Array<AtlasRegion> portal;
+		public final Animation aniPortal;
+		
+		public Portal(TextureAtlas atlas){
+			portal = atlas.findRegions("portal");
+			aniPortal = new Animation(1 / 10f, portal, Animation.NORMAL);
 		}
 	}
 	
