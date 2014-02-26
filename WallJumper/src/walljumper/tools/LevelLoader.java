@@ -3,6 +3,7 @@ package walljumper.tools;
 import walljumper.game_objects.AbstractGameObject;
 import walljumper.game_objects.classes.Rogue;
 import walljumper.game_objects.terrain.Platform;
+import walljumper.game_objects.terrain.Portal;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -15,7 +16,7 @@ public class LevelLoader {
 
 	public enum BLOCK_TYPE {
 		EMPTY(0, 0, 0), PLAYER_SPAWNPOINT(255, 255, 255), ENEMY_SPAWNPOINT(255,
-				0, 0), GRASS_PLAT_LONG(0, 255, 0), GRASS_PLAT_BLOCK_LONG(0,
+				0, 0), GOAL(255, 255, 0), PLATFORM(0, 255, 0), GRASS_PLAT_BLOCK_LONG(0,
 				200, 0), GRASS_PLAT_SHORT(0, 150, 0), GRASS_PLAT_TINY(0, 100, 0);
 		private int color;
 
@@ -76,7 +77,7 @@ public class LevelLoader {
 					// IF GRASS_PLAT_LONG
 				
 				} else */
-				if (BLOCK_TYPE.GRASS_PLAT_LONG.sameColor(currentPixel)) {
+				if (BLOCK_TYPE.PLATFORM.sameColor(currentPixel)) {
 					if (isStartOfNewObject(pixelX, pixelY, currentPixel)) {
 						Vector2 newPixelXY = extendPlatform(pixelX, pixelY, currentPixel);
 						int lengthX = (int) (newPixelXY.x - pixelX) + 1;
@@ -130,7 +131,11 @@ public class LevelLoader {
 						LevelStage.player = rogue;
 						InputManager.inputManager.addObject(rogue);
 					}
-				} /*else if (BLOCK_TYPE.ENEMY_SPAWNPOINT.sameColor(currentPixel)) {
+				} else if(BLOCK_TYPE.GOAL.sameColor(currentPixel)){
+					LevelStage.interactables.add(new Portal(pixelX, baseHeight));
+				}
+					/*else if (BLOCK_TYPE.ENEMY_SPAWNPOINT.sameColor(currentPixel)) {
+				
 
 					
 					if (isStartOfNewObject(pixelX, pixelY, currentPixel)) {
