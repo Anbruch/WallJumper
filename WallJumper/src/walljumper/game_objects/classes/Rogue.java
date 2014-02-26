@@ -30,8 +30,7 @@ public class Rogue extends ManipulatableObject {
 		setAnimation(aniNormal);
 		terminalVelocity.set(400, 600);
 		dimension.set(width, height);
-		bounds.set(0, 0, width - 52, height - 21);
-		boundsOffsetX = 3;
+		bounds.set(0, 0, width - 47, height - 21);
 		
 		moveRight();
 	}
@@ -39,7 +38,7 @@ public class Rogue extends ManipulatableObject {
 	@Override
 	protected void ensureCorrectCollisionBounds() {
 		bounds.y = position.y;
-		bounds.x = position.x + boundsOffsetX;
+		bounds.x = position.x + 7f;
 		
 	
 	}
