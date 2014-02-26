@@ -1,5 +1,0 @@
-package walljumper.game_objects.classes;
-
-public class Rogue extends ManipulatableObject {
-
-}
