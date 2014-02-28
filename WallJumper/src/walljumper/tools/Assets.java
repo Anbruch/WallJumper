@@ -80,7 +80,7 @@ public class Assets implements Disposable, AssetErrorListener{
 		
 		public Portal(TextureAtlas atlas){
 			portal = atlas.findRegions("portal");
-			aniPortal = new Animation(1 / 10f, portal, Animation.NORMAL);
+			aniPortal = new Animation(1 / 10f, portal, Animation.LOOP);
 		}
 	}
 	
