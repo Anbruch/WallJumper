@@ -49,6 +49,7 @@ public class Platform extends AbstractGameObject{
 	
 	private void init(String platType, float x, float y, int width, int height){
 		String endFileName;
+		dimension.set(1, 1);
 		topCornerImage = Assets.instance.platform.platMap.get(topCornerFileName);
 		bottomCornerImage = Assets.instance.platform.platMap.get(bottomCornerFileName);
 		midImage = Assets.instance.platform.platMap.get(midFileName);
@@ -57,10 +58,9 @@ public class Platform extends AbstractGameObject{
 		endDimension = new Vector2(topCornerImage.getRegionWidth(), topCornerImage.getRegionHeight());
 		midDimension = new Vector2(midImage.getRegionWidth(), midImage.getRegionHeight());
 		
-		lengthX = (int) (Math.ceil((width - 2 * midDimension.x) / midDimension.x));
+		lengthX = width;
+		lengthY = height;
 		
-		lengthX = (lengthX > 0) ? lengthX : 0;
-		lengthY = (int) (height / midDimension.y);
 		
 		
 		//Pick between end images of the platform
@@ -93,16 +93,16 @@ public class Platform extends AbstractGameObject{
 		
 		//EndBottomBody's
 		String specificEndBottomBody;
-		for(int l = 0; l < lengthX; l++){
+		for(int l = 0; l < lengthX - 2; l++){
 			specificEndBottomBody = endBodyFileName.concat("" + (int)(Math.random() * numEndBottomBodyImages + 1));
 			endBottomBodyImages.add(Assets.instance.platform.platMap.get(specificEndBottomBody));
 		}
 		
 		//set basic vectors of position, dimension and bounds for collision
-		position.set(x, y - height);
-		dimension.set(width, height);
-		bounds.set(position.x, position.y, endDimension.x * 2 + midDimension.x * lengthX,
-				midDimension.y * lengthY - 5);
+		position.set(x, y - dimension.y * lengthY);
+
+		bounds.set(position.x, position.y, dimension.x * lengthX ,
+				dimension.y * lengthY - .3f);
 		
 	}
 	
@@ -119,41 +119,41 @@ public class Platform extends AbstractGameObject{
 		}
 		float relX = 0;
 		//TopCorner Left
-		batch.draw(topCornerImage.getTexture(), position.x, position.y + lengthY * midDimension.y - midDimension.y, endDimension.x, 
-				endDimension.y, topCornerImage.getRegionX(), topCornerImage.getRegionY(),
+		batch.draw(topCornerImage.getTexture(), position.x, position.y + lengthY * dimension.y - dimension.y, dimension.x, 
+				dimension.y, topCornerImage.getRegionX(), topCornerImage.getRegionY(),
 				topCornerImage.getRegionWidth(), topCornerImage.getRegionHeight(), false, false);
-		relX += endDimension.x;
+		relX += dimension.x;
 		//Top Row
-		for(int i = 0; i < lengthX; i++){
-			batch.draw(midImage.getTexture(), position.x + i * midDimension.x + endDimension.x,
-					position.y + lengthY * midDimension.y - midDimension.y, midDimension.x, 
-					midDimension.y,  midImage.getRegionX(), midImage.getRegionY(),
+		for(int i = 0; i < lengthX - 2; i++){
+			batch.draw(midImage.getTexture(), position.x + i * dimension.x + dimension.x,
+					position.y + lengthY * dimension.y - dimension.y, dimension.x, 
+					dimension.y,  midImage.getRegionX(), midImage.getRegionY(),
 					midImage.getRegionWidth(), midImage.getRegionHeight(), false, false);
-			relX += midDimension.x;
+			relX += dimension.x;
 		}
 		
 		//TopCorner Right
-		batch.draw(topCornerImage.getTexture(), position.x + relX, position.y + lengthY * midDimension.y - midDimension.y, endDimension.x, 
-				endDimension.y, topCornerImage.getRegionX(), topCornerImage.getRegionY(),
+		batch.draw(topCornerImage.getTexture(), position.x + relX, position.y + lengthY * dimension.y - dimension.y, dimension.x, 
+				dimension.y, topCornerImage.getRegionX(), topCornerImage.getRegionY(),
 				topCornerImage.getRegionWidth(), topCornerImage.getRegionHeight(), true, false);
 		
 		//Left and right Column
 		TextureRegion endBodyImage;
 		for(int p = 0; p < lengthY - 2; p++){
 			endBodyImage = endBodyImages.get(p);
-			batch.draw(endBodyImage.getTexture(), position.x, position.y + p * midDimension.y + midDimension.y, endDimension.x, 
-					endDimension.y, endBodyImage.getRegionX(), endBodyImage.getRegionY(),
+			batch.draw(endBodyImage.getTexture(), position.x, position.y + p * dimension.y + dimension.y, dimension.x, 
+					dimension.y, endBodyImage.getRegionX(), endBodyImage.getRegionY(),
 					endBodyImage.getRegionWidth(), endBodyImage.getRegionHeight(), false, false);
 			
 			endBodyImage = endBodyImages.get(p + endBodyImages.size/2 - 1);
-			batch.draw(endBodyImage.getTexture(), position.x + relX, position.y + p * midDimension.y + midDimension.y, endDimension.x, 
-					endDimension.y, endBodyImage.getRegionX(), endBodyImage.getRegionY(),
+			batch.draw(endBodyImage.getTexture(), position.x + relX, position.y + p * dimension.y + dimension.y, dimension.x, 
+					dimension.y, endBodyImage.getRegionX(), endBodyImage.getRegionY(),
 					endBodyImage.getRegionWidth(), endBodyImage.getRegionHeight(), true, false);
 		}
 		
 		//Bottom Left Corner
-		batch.draw(bottomCornerImage.getTexture(), position.x, position.y, endDimension.x, 
-				endDimension.y, bottomCornerImage.getRegionX(), bottomCornerImage.getRegionY(),
+		batch.draw(bottomCornerImage.getTexture(), position.x, position.y, dimension.x, 
+				dimension.y, bottomCornerImage.getRegionX(), bottomCornerImage.getRegionY(),
 				bottomCornerImage.getRegionWidth(), bottomCornerImage.getRegionHeight(), false, false);
 		
 		//Bottom Row
@@ -162,24 +162,24 @@ public class Platform extends AbstractGameObject{
 			
 			endBottomBodyImage = endBottomBodyImages.get(q);
 			
-			batch.draw(endBottomBodyImage, position.x + q * midDimension.x + endDimension.x * 2,
-					position.y, 0, 0, midDimension.y, 
-					midDimension.x, 1, 1, 90);
+			batch.draw(endBottomBodyImage, position.x + q * dimension.x + dimension.x * 2,
+					position.y, 0, 0, dimension.y, 
+					dimension.x, 1, 1, 90);
 		}
 		//Bottom Right Corner
-				batch.draw(bottomCornerImage.getTexture(), position.x + relX, position.y, endDimension.x, 
-						endDimension.y, bottomCornerImage.getRegionX(), bottomCornerImage.getRegionY(),
+				batch.draw(bottomCornerImage.getTexture(), position.x + relX, position.y, dimension.x, 
+						dimension.y, bottomCornerImage.getRegionX(), bottomCornerImage.getRegionY(),
 						bottomCornerImage.getRegionWidth(), bottomCornerImage.getRegionHeight(), true, false);
 		
 		
 		//Body
 		int index = 0;
 		for(int j = 0; j < lengthY - 2; j++){
-			for(int i = 0; i < lengthX; i ++){
+			for(int i = 0; i < lengthX - 2; i ++){
 				
 				bodyImage = bodyImages.get(index);
-				batch.draw(bodyImage.getTexture(), position.x + i * midDimension.x + midDimension.x, position.y + midDimension.y * j + midDimension.y, endDimension.x, 
-						endDimension.y, bodyImage.getRegionX(), bodyImage.getRegionY(),
+				batch.draw(bodyImage.getTexture(), position.x + i * dimension.x + dimension.x, position.y + dimension.y * j + dimension.y, dimension.x, 
+						dimension.y, bodyImage.getRegionX(), bodyImage.getRegionY(),
 						bodyImage.getRegionWidth(), bodyImage.getRegionHeight(), false, false);
 				index++;
 			}
@@ -191,22 +191,22 @@ public class Platform extends AbstractGameObject{
 	private void renderSingleRowPlat(SpriteBatch batch) {
 		float relX = 0;
 		//TopCorner Left
-		batch.draw(endImage.getTexture(), position.x, position.y + lengthY * midDimension.y - midDimension.y, endDimension.x, 
-				endDimension.y, endImage.getRegionX(), endImage.getRegionY(),
+		batch.draw(endImage.getTexture(), position.x, position.y + lengthY * dimension.y - dimension.y, dimension.x, 
+				dimension.y, endImage.getRegionX(), endImage.getRegionY(),
 				endImage.getRegionWidth(), endImage.getRegionHeight(), false, false);
-		relX += endDimension.x;
+		relX += dimension.x;
 		//Top Row
-		for(int i = 0; i < lengthX; i++){
-			batch.draw(midImage.getTexture(), position.x + i * midDimension.x + endDimension.x,
-					position.y + lengthY * midDimension.y - midDimension.y, midDimension.x, 
-					midDimension.y,  midImage.getRegionX(), midImage.getRegionY(),
+		for(int i = 0; i < lengthX - 2; i++){
+			batch.draw(midImage.getTexture(), position.x + i * dimension.x + dimension.x,
+					position.y + lengthY * dimension.y - dimension.y, dimension.x, 
+					dimension.y,  midImage.getRegionX(), midImage.getRegionY(),
 					midImage.getRegionWidth(), midImage.getRegionHeight(), false, false);
-			relX += midDimension.x;
+			relX += dimension.x;
 		}
 		
 		//TopCorner Right
-		batch.draw(endImage.getTexture(), position.x + relX, position.y + lengthY * midDimension.y - midDimension.y, endDimension.x, 
-				endDimension.y, endImage.getRegionX(), endImage.getRegionY(),
+		batch.draw(endImage.getTexture(), position.x + relX, position.y + lengthY * dimension.y - dimension.y, dimension.x, 
+				dimension.y, endImage.getRegionX(), endImage.getRegionY(),
 				endImage.getRegionWidth(), endImage.getRegionHeight(), true, false);
 		
 	}

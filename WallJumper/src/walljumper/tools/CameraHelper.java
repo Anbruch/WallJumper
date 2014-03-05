@@ -69,6 +69,10 @@ public class CameraHelper {
 		camera.update();
 		
 	}
+	public void destroy() {
+		target = null;
+		position = null;
+	}
 
 	
 }

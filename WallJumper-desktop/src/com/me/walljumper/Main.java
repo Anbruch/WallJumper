@@ -21,7 +21,7 @@ public class Main {
 		cfg.useGL20 = false;
 		cfg.width = 1280;
 		cfg.height = 720;
-		cfg.fullscreen = true;
+		cfg.fullscreen = false;
 		
 		
 		new LwjglApplication(new WallJumper(), cfg);

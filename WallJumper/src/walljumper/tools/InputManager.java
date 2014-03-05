@@ -12,7 +12,7 @@ public class InputManager extends InputAdapter {
 	
 	public static InputManager inputManager = new InputManager();
 	
-	private Array<ManipulatableObject> controllableObjects;
+	public Array<ManipulatableObject> controllableObjects;
 	
 	private InputManager(){
 		

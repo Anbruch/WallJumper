@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 
 public class World implements Screen{
 	public static World controller = new World();
@@ -73,6 +74,16 @@ public class World implements Screen{
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
+		
+	}
+	public Rectangle getPlayerRect() {
+		// TODO Auto-generated method stub
+		return player.bounds;
+	}
+	public void destroy() {
+		cameraHelper.destroy();
+		levelStage.destroy();
+		player = null;
 		
 	}
 	

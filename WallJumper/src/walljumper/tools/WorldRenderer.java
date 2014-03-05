@@ -1,5 +1,6 @@
 package walljumper.tools;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -54,10 +55,18 @@ public class WorldRenderer implements Disposable{
 				background_image.getRegionWidth(), background_image.getRegionHeight(), false, false);
 		batch.end();
 	}
+	public void resize(int width, int height){
+		camera.viewportHeight = Constants.viewportHeight;
+		camera.viewportWidth = (Constants.viewportHeight / height) * width;
+		System.out.println(width + " " + camera.viewportHeight + " " + camera.viewportWidth);
+
+		camera.update();
+		
+		
+	}
 	public void render(){
 		
 		renderWorld();
-		camera.update();
 	}
 	@Override
 	public void dispose() {

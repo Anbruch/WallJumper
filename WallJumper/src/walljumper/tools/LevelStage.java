@@ -30,12 +30,11 @@ public class LevelStage {
 	}
 	public void render(SpriteBatch batch){
 		
-		
-		
 		//Render all of the manipulatable objects
 		for(ManipulatableObject object: LevelStage.playerControlledObjects){
 			object.render(batch);
 		}
+		
 		//Render all of the enemy controlled objects
 		for(ManipulatableObject object: LevelStage.enemyControlledObjects){
 			object.render(batch);
@@ -49,7 +48,18 @@ public class LevelStage {
 			interactableObject.render(batch);
 		}
 		
+	}
+	public void destroy(){
+		//Clear all the arrays
+		playerControlledObjects.clear();
+		enemyControlledObjects.clear();
+		interactables.clear();
+		platforms.clear();
 		
+		InputManager.inputManager.controllableObjects.clear();
+		
+		//set current level to null
+		levelLoader.destroy();
 	}
 	public void update(float deltaTime){
 		

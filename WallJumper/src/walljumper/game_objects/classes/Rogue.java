@@ -8,29 +8,31 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.me.walljumper.Constants;
 
 public class Rogue extends ManipulatableObject {
 	
 	public Rogue(){
 		
 	}
-	public Rogue(float x, float y, float width, float  height){
-		init(x, y, width, height);
+	public Rogue(float x, float y, float width, float  height, int scale){
+		init(x, y, width, height, scale);
 		
 	}
-	private void init(float x, float y, float width, float  height){
+	private void init(float x, float y, float width, float  height, int scale){
+		this.scale = scale;
 		aniRunning = Assets.instance.rogue.aniRunning;
 		aniNormal = Assets.instance.rogue.aniNormal;
 		aniJumping = Assets.instance.rogue.aniJumping;
 		aniWalling = Assets.instance.rogue.aniWalling;
 		
 		position.set(x, y);
-		acceleration.set(0, -900);
-		moveSpeed = new Vector2(300, 500);
+		acceleration.set(0, -25f);
+		moveSpeed = new Vector2(10, 15);
 		setAnimation(aniNormal);
-		terminalVelocity.set(400, 600);
-		dimension.set(width, height);
-		bounds.set(0, 0, width - 47, height - 21);
+		terminalVelocity.set(10, 20);
+		dimension.set(width * scale, height * scale);
+		bounds.set(0, 0, dimension.x, dimension.y);
 		
 		moveRight();
 	}
@@ -38,7 +40,7 @@ public class Rogue extends ManipulatableObject {
 	@Override
 	protected void ensureCorrectCollisionBounds() {
 		bounds.y = position.y;
-		bounds.x = position.x + 7f;
+		bounds.x = position.x;
 		
 	
 	}
@@ -66,8 +68,8 @@ public class Rogue extends ManipulatableObject {
 		// get correct image and draw the current proportions
 		image = null;
 		image = animation.getKeyFrame(stateTime, looping);
-		currentFrameDimension.set(image.getRegionWidth(),
-				image.getRegionHeight());
+		currentFrameDimension.set((image.getRegionWidth() / 100.0f) * scale,
+				 (image.getRegionHeight()/100.0f) * scale);
 		
 		if(state == STATE.GROUNDED && animation.getPlayMode() == Animation.NORMAL){
 			// Draw

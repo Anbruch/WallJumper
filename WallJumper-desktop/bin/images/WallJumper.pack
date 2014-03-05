@@ -5,393 +5,365 @@ filter: Nearest,Nearest
 repeat: none
 NightSky
   rotate: false
-  xy: 1, 518
+  xy: 1, 375
   size: 1920, 1080
   orig: 1920, 1080
   offset: 0, 0
   index: -1
 stone_platform
   rotate: false
-  xy: 1, 396
+  xy: 1, 253
   size: 500, 120
   orig: 500, 120
   offset: 0, 0
   index: -1
-grass_plat_block_long
-  rotate: false
-  xy: 1, 275
-  size: 172, 119
-  orig: 172, 119
-  offset: 0, 0
-  index: -1
-grass_plat_long
-  rotate: false
-  xy: 503, 506
-  size: 172, 10
-  orig: 172, 10
-  offset: 0, 0
-  index: -1
 portal
   rotate: false
-  xy: 1923, 1508
+  xy: 1923, 1365
   size: 66, 90
   orig: 66, 90
   offset: 0, 0
   index: 0
 Scythe_running
   rotate: false
-  xy: 1, 245
+  xy: 1, 223
   size: 47, 28
   orig: 47, 28
   offset: 0, 0
   index: 1
 Scythe_running
   rotate: false
-  xy: 175, 367
+  xy: 503, 346
   size: 48, 27
   orig: 48, 27
   offset: 0, 0
   index: 2
 Scythe_running
   rotate: false
-  xy: 503, 476
+  xy: 1923, 1335
   size: 47, 28
   orig: 47, 28
   offset: 0, 0
   index: 3
 Scythe_running
   rotate: false
-  xy: 1923, 1479
+  xy: 1991, 1428
   size: 47, 27
   orig: 47, 27
   offset: 0, 0
   index: 0
 rogue_jumping
   rotate: false
-  xy: 1991, 1570
+  xy: 1, 193
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 1
 rogue_jumping
   rotate: false
-  xy: 1, 215
+  xy: 50, 223
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 2
 rogue_jumping
   rotate: false
-  xy: 50, 245
+  xy: 503, 316
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 3
 rogue_jumping
   rotate: false
-  xy: 175, 337
+  xy: 1923, 1305
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 4
 rogue_jumping
   rotate: false
-  xy: 503, 446
+  xy: 1991, 1398
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 5
+rogue_walling
+  rotate: false
+  xy: 2032, 1394
+  size: 15, 32
+  orig: 15, 32
+  offset: 0, 0
+  index: -1
 rogue_jumping
   rotate: false
-  xy: 552, 476
+  xy: 1991, 1368
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 6
 rogue_jumping
   rotate: false
-  xy: 1923, 1449
+  xy: 1, 163
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 7
 rogue_jumping
   rotate: false
-  xy: 1991, 1540
+  xy: 42, 193
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 8
 Scythe_jumping
   rotate: false
-  xy: 1, 183
+  xy: 503, 284
   size: 37, 30
   orig: 37, 30
   offset: 0, 0
   index: 4
 Scythe_jumping
   rotate: false
-  xy: 175, 305
+  xy: 1923, 1273
   size: 33, 30
   orig: 33, 30
   offset: 0, 0
   index: 3
 rogue_running
   rotate: false
-  xy: 503, 414
+  xy: 1, 131
   size: 31, 30
   orig: 31, 30
   offset: 0, 0
   index: 2
 rogue_running
   rotate: false
-  xy: 1923, 1418
+  xy: 503, 253
   size: 32, 29
   orig: 32, 29
   offset: 0, 0
   index: 6
 Scythe_jumping
   rotate: false
-  xy: 1991, 1508
+  xy: 1923, 1241
   size: 31, 30
   orig: 31, 30
   offset: 0, 0
   index: 2
 Scythe_jumping
   rotate: false
-  xy: 1, 151
+  xy: 1, 99
   size: 31, 30
   orig: 31, 30
   offset: 0, 0
   index: 5
 rogue_running
   rotate: false
-  xy: 1923, 1387
+  xy: 1923, 1210
   size: 31, 29
   orig: 31, 29
   offset: 0, 0
   index: 3
 rogue_running
   rotate: false
-  xy: 42, 215
+  xy: 91, 223
   size: 31, 28
   orig: 31, 28
   offset: 0, 0
   index: 1
 rogue_running
   rotate: false
-  xy: 40, 184
+  xy: 1, 68
   size: 30, 29
   orig: 30, 29
   offset: 0, 0
   index: 5
 Scythe_jumping
   rotate: false
-  xy: 1, 119
+  xy: 1923, 1178
   size: 29, 30
   orig: 29, 30
   offset: 0, 0
   index: 0
 Scythe_jumping
   rotate: false
-  xy: 1923, 1355
+  xy: 1, 36
   size: 29, 30
   orig: 29, 30
   offset: 0, 0
   index: 1
 rogue_running
   rotate: false
-  xy: 225, 367
+  xy: 553, 346
   size: 30, 27
   orig: 30, 27
   offset: 0, 0
   index: 4
 Scythe_normal_0.png
   rotate: false
-  xy: 1, 85
+  xy: 1923, 1144
   size: 22, 32
   orig: 22, 32
   offset: 0, 0
   index: -1
 Scythe_standing
   rotate: false
-  xy: 1, 85
+  xy: 1923, 1144
   size: 22, 32
   orig: 22, 32
   offset: 0, 0
   index: -1
-grass_plat_short
-  rotate: false
-  xy: 677, 506
-  size: 39, 10
-  orig: 39, 10
-  offset: 0, 0
-  index: -1
 rogue_normal
   rotate: false
-  xy: 2032, 1565
+  xy: 1, 1
   size: 13, 33
   orig: 13, 33
   offset: 0, 0
   index: 0
-rogue_walling
-  rotate: false
-  xy: 1923, 1321
-  size: 13, 32
-  orig: 13, 32
-  offset: 0, 0
-  index: -1
 scythe_walling
   rotate: false
-  xy: 1972, 1481
+  xy: 544, 319
   size: 20, 25
   orig: 20, 25
   offset: 0, 0
   index: -1
 grass_body1
   rotate: false
-  xy: 91, 254
+  xy: 42, 172
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_body2
   rotate: false
-  xy: 216, 346
+  xy: 83, 202
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_body3
   rotate: false
-  xy: 544, 455
+  xy: 124, 232
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_body4
   rotate: false
-  xy: 593, 485
+  xy: 585, 354
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_body5
   rotate: false
-  xy: 175, 284
+  xy: 1923, 1123
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_body6
   rotate: false
-  xy: 257, 375
+  xy: 146, 232
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_bottomcorner
   rotate: false
-  xy: 1, 64
+  xy: 607, 354
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_end
   rotate: false
-  xy: 1994, 1487
+  xy: 1923, 1102
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbody1
   rotate: false
-  xy: 113, 254
+  xy: 168, 232
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbody2
   rotate: false
-  xy: 566, 455
+  xy: 629, 354
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbody3
   rotate: false
-  xy: 615, 485
+  xy: 1923, 1081
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbody4
   rotate: false
-  xy: 279, 375
+  xy: 190, 232
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbody5
   rotate: false
-  xy: 1, 43
+  xy: 651, 354
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbottombody1
   rotate: false
-  xy: 135, 254
+  xy: 1923, 1060
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbottombody2
   rotate: false
-  xy: 637, 485
+  xy: 212, 232
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbottombody3
   rotate: false
-  xy: 301, 375
+  xy: 673, 354
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbottombody4
   rotate: false
-  xy: 1, 22
+  xy: 1923, 1039
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbottombody5
   rotate: false
-  xy: 659, 485
+  xy: 234, 232
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_mid
   rotate: false
-  xy: 323, 375
+  xy: 695, 354
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_topcorner
   rotate: false
-  xy: 1, 1
+  xy: 1923, 1018
   size: 20, 19
   orig: 20, 19
-  offset: 0, 0
-  index: -1
-grass_plat_tiny
-  rotate: false
-  xy: 503, 402
-  size: 21, 10
-  orig: 21, 10
   offset: 0, 0
   index: -1
