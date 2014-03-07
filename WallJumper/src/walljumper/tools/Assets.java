@@ -1,5 +1,6 @@
 package walljumper.tools;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
@@ -32,6 +33,7 @@ public class Assets implements Disposable, AssetErrorListener{
 		assetManager.setErrorListener(this);
 		assetManager.load("images/WallJumper.pack", TextureAtlas.class);
 		assetManager.finishLoading();
+		
 		
 		TextureAtlas atlas = assetManager.get("images/WallJumper.pack");
 		platform = new Platform(atlas);
@@ -80,7 +82,7 @@ public class Assets implements Disposable, AssetErrorListener{
 		
 		public Portal(TextureAtlas atlas){
 			portal = atlas.findRegions("portal");
-			aniPortal = new Animation(1 / 10f, portal, Animation.LOOP);
+			aniPortal = new Animation(1 / 7.0f, portal, Animation.LOOP);
 		}
 	}
 	
@@ -139,7 +141,7 @@ public class Assets implements Disposable, AssetErrorListener{
 			
 			rogueNormal = atlas.findRegions("rogue_normal");
 			
-			aniRunning = new Animation(1 / 10.0f, rogueRunning, Animation.LOOP_PINGPONG);
+			aniRunning = new Animation(1 / 10.0f, rogueRunning, Animation.LOOP);
 			aniNormal = new Animation(1 / 10.0f, rogueNormal, Animation.NORMAL);
 			aniJumping = new Animation(1 / 10.0f, rogueJumping, Animation.LOOP);
 			aniWalling = new Animation(1/10.0f, rogueWalling, Animation.NORMAL);
@@ -148,7 +150,7 @@ public class Assets implements Disposable, AssetErrorListener{
 	public class Background{
 		public final AtlasRegion nightSky;
 		public Background(TextureAtlas atlas){
-			nightSky = atlas.findRegion("NightSky");
+			nightSky = atlas.findRegion("NightSkyNewMoon");
 		}
 	}
 

@@ -83,7 +83,7 @@ public class LevelLoader {
 						int lengthX = (int) (newPixelXY.x - pixelX) + 1;
 						int lengthY = (int)(newPixelXY.y - pixelY) + 1;
 						
-						LevelStage.platforms.add(new Platform(
+						LevelStage.platforms. add(new Platform(
 								"grass", pixelX * 1, baseHeight * 1,
 							 lengthX, lengthY));
 						pixelX += lengthX;
@@ -125,7 +125,8 @@ public class LevelLoader {
 						ScytheMan scytheMan = new ScytheMan(pixelX * 1,
 								baseHeight * 1, 63, 48);*/
 						Rogue rogue = new Rogue(pixelX * 1,
-								baseHeight * 1, 63, 48);
+								baseHeight * 1, .15f, .31f, 5);
+						
 						// Track him in these arrays
 						LevelStage.playerControlledObjects.add(rogue);
 						LevelStage.player = rogue;
@@ -181,5 +182,9 @@ public class LevelLoader {
 			return false;
 
 		return true;
+	}
+
+	public void destroy() {
+		
 	}
 }

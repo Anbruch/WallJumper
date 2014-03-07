@@ -51,6 +51,7 @@ public class WallJumper extends Game {
 	*/
 	@Override
 	public void resize(int width, int height) {
+		WorldRenderer.renderer.resize(width, height);
 	}
 
 	@Override
