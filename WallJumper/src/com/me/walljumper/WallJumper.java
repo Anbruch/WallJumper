@@ -1,8 +1,8 @@
 package com.me.walljumper;
 
+import walljumper.screens.World;
 import walljumper.tools.Assets;
 import walljumper.tools.InputManager;
-import walljumper.tools.World;
 import walljumper.tools.WorldRenderer;
 
 import com.badlogic.gdx.Game;

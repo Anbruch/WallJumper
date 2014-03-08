@@ -16,8 +16,7 @@ public class LevelLoader {
 
 	public enum BLOCK_TYPE {
 		EMPTY(0, 0, 0), PLAYER_SPAWNPOINT(255, 255, 255), ENEMY_SPAWNPOINT(255,
-				0, 0), GOAL(255, 255, 0), PLATFORM(0, 255, 0), GRASS_PLAT_BLOCK_LONG(0,
-				200, 0), GRASS_PLAT_SHORT(0, 150, 0), GRASS_PLAT_TINY(0, 100, 0);
+				0, 0), GOAL(255, 255, 0), PLATFORM(0, 255, 0), PLATFORM_START(0, 254,0);
 		private int color;
 
 		private BLOCK_TYPE(int r, int g, int b) {
@@ -38,7 +37,9 @@ public class LevelLoader {
 	public LevelLoader(String fileName) {
 		init(fileName);
 	}
-
+	public void startLevel(String fileName){
+		init(fileName);
+	}
 	private void init(String fileName) {
 
 		// Load image file that represents level data
@@ -77,15 +78,17 @@ public class LevelLoader {
 					// IF GRASS_PLAT_LONG
 				
 				} else */
-				if (BLOCK_TYPE.PLATFORM.sameColor(currentPixel)) {
-					if (isStartOfNewObject(pixelX, pixelY, currentPixel)) {
-						Vector2 newPixelXY = extendPlatform(pixelX, pixelY, currentPixel);
+				if (BLOCK_TYPE.PLATFORM.sameColor(currentPixel) || BLOCK_TYPE.PLATFORM_START.sameColor(currentPixel)) {
+					if (isStartOfNewObject(pixelX, pixelY, currentPixel) || BLOCK_TYPE.PLATFORM_START.sameColor(currentPixel)) {
+						Vector2 newPixelXY = extendPlatform(pixelX, pixelY, BLOCK_TYPE.PLATFORM.color);
 						int lengthX = (int) (newPixelXY.x - pixelX) + 1;
 						int lengthY = (int)(newPixelXY.y - pixelY) + 1;
 						
 						LevelStage.platforms. add(new Platform(
 								"grass", pixelX * 1, baseHeight * 1,
 							 lengthX, lengthY));
+						pixmap.drawPixel(pixelX, pixelY, BLOCK_TYPE.PLATFORM.color);
+
 						pixelX += lengthX;
 					}else
 						continue;

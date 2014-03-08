@@ -2,6 +2,7 @@ package walljumper.game_objects.classes;
 
 import walljumper.game_objects.AbstractGameObject;
 import walljumper.game_objects.weapons.Weapon;
+import walljumper.screens.World;
 import walljumper.tools.LevelStage;
 
 import com.badlogic.gdx.Input.Keys;
@@ -25,6 +26,7 @@ public class ManipulatableObject extends AbstractGameObject {
 	private MeleeEnemyAI AI;
 	public COMBAT combatState;
 	private boolean wallJumped;
+	private float startFallTime;
 	
 	public enum VIEW_DIRECTION {
 		left, right
@@ -43,6 +45,7 @@ public class ManipulatableObject extends AbstractGameObject {
 		viewDirection = VIEW_DIRECTION.right;
 		state = STATE.JUMPING;
 		combatState = COMBAT.NEUTRAL;
+		startFallTime = 0;
 		
 		
 		wallJumped = false;
@@ -232,15 +235,16 @@ public class ManipulatableObject extends AbstractGameObject {
 			wallJumped = false;
 		}
 		
-		// Collision Check this object once for x, once for y
+		// Collision Check this object once for x only
 		if (!collision(deltax, 0)) {
 			position.x += deltax;
 			if(deltax != 0)
 				collidingPlatformX = null;
+			
+			//Jumping
 			if(deltay != 0){
 				if(state != STATE.JUMPING)
-				setAnimation(aniJumping);
-
+					setAnimation(aniJumping);
 				state = STATE.JUMPING;
 			}
 			xCollision = false;
@@ -255,10 +259,9 @@ public class ManipulatableObject extends AbstractGameObject {
 		//If you're on the wall sliding down
 		}else if(state != STATE.WALLING){
 		
-			
+			//Walling
 			state = STATE.WALLING;
 			positionOnSidePlatform();
-
 			setAnimation(aniWalling);
 			xCollision = true;
 			
@@ -421,5 +424,27 @@ public class ManipulatableObject extends AbstractGameObject {
 				viewDirection == VIEW_DIRECTION.left, false);
 
 	}
+
+	//WALLJUMPER ONLY KINDA IDK
+	public void fallingToDie(float deltaTime) {
+		if(state == STATE.JUMPING){
+			startFallTime += deltaTime;
+			
+			if(startFallTime > 4 ){
+				World.controller.destroy();
+				World.controller.init();
+				return;
+			}
+			
+			if(startFallTime > 2 && World.controller.cameraHelper.hasTarget()){
+				World.controller.cameraHelper.setTarget(null);
+				return;
+			}
+		}else {
+			startFallTime = 0;
+			World.controller.cameraHelper.setTarget(this);
+		}
+		
+	}//End method
 
 }

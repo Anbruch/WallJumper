@@ -14,23 +14,29 @@ public class CameraHelper {
 	private final float MAX_ZOOM_OUT = 10.0f;
 	private Vector2 position;
 	private float zoom;
+	private boolean chasingTarget;
 	private AbstractGameObject target;
 	
 	public CameraHelper(){
 		position = new Vector2();
-		zoom = 1;
+		zoom = .65f;
+		chasingTarget = false;
 	}
 	public void update(float deltaTime){
 		if(!hasTarget()){
 			return;
 		}
 		
+		position.x += (target.position.x - position.x) / 10;
+		position.y += (target.position.y - position.y) / 10;
+	/*
 		position.x = target.position.x + target.origin.x + target.dimension.x / 2;
-		position.y = target.position.y + target.origin.y ;
+		position.y = target.position.y + target.origin.y ;*/
 		
 	}
 	public void setTarget(AbstractGameObject target){
 		this.target = target;
+		chasingTarget = true;
 	}
 	public void setPosition(float x, float y){
 		this.position.set(x, y);

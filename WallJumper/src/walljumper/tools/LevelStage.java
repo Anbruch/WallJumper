@@ -4,6 +4,7 @@ import walljumper.game_objects.AbstractGameObject;
 import walljumper.game_objects.classes.ManipulatableObject;
 import walljumper.game_objects.terrain.Platform;
 import walljumper.game_objects.terrain.Portal;
+import walljumper.screens.World;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
@@ -22,7 +23,7 @@ public class LevelStage {
 	
 	
 	public LevelStage(){
-		levelLoader = new LevelLoader("levels/testLevel.png");
+		levelLoader = new LevelLoader("levels/testLevel" + World.levelNum + ".png");
 		
 	}
 	public static void setPlayer(ManipulatableObject player){
@@ -66,6 +67,7 @@ public class LevelStage {
 		//Iterate and update all enemies, players, controllable objects
 		for(ManipulatableObject object: LevelStage.playerControlledObjects){
 			object.update(deltaTime);
+			object.fallingToDie(deltaTime);
 		}
 		//Render all of the enemy controlled objects
 		for(ManipulatableObject object: LevelStage.enemyControlledObjects){

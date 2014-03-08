@@ -55,7 +55,7 @@ public abstract class AbstractGameObject{
 		
 	}
 	public void setAnimation(Animation animation){
-		if(animation.getPlayMode() == animation.NORMAL){
+		if(animation.getPlayMode() == Animation.NORMAL){
 			looping = false;
 		}else
 			looping = true;

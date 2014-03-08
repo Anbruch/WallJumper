@@ -1,5 +1,7 @@
 package walljumper.tools;
 
+import walljumper.screens.World;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -20,13 +22,14 @@ public class WorldRenderer implements Disposable{
 		
 		batch = new SpriteBatch();
 		background_image = Assets.instance.nightSky.nightSky;
+		
 		//Initialize main camera
 		camera = new OrthographicCamera(Constants.viewportWidth, Constants.viewportHeight);
 		camera.position.set(0, 0, 0);
 		camera.setToOrtho(false);
 		camera.update();
 		
-		background_camera = new OrthographicCamera(Constants.viewportWidth, Constants.viewportHeight);
+		background_camera = new OrthographicCamera(Constants.bgViewportWidth, Constants.bgViewportHeight);
 		background_camera.position.set(0,0,0);
 		background_camera.setToOrtho(false);
 		background_camera.update();
@@ -49,19 +52,22 @@ public class WorldRenderer implements Disposable{
 		batch.setProjectionMatrix(background_camera.combined);
 		batch.begin();
 		
-
-		batch.draw(background_image.getTexture(), 0, 0, 1280,
-				720, background_image.getRegionX(), background_image.getRegionY(),
+		batch.draw(background_image.getTexture(), 0, 0, background_camera.viewportWidth,
+				background_camera.viewportHeight, background_image.getRegionX(), background_image.getRegionY(),
 				background_image.getRegionWidth(), background_image.getRegionHeight(), false, false);
 		batch.end();
 	}
 	public void resize(int width, int height){
-		camera.viewportHeight = Constants.viewportHeight;
-		camera.viewportWidth = (Constants.viewportHeight / height) * width;
-		System.out.println(width + " " + camera.viewportHeight + " " + camera.viewportWidth);
-
+		
+		//Sets our units to be in relation to screen size
+		camera.viewportHeight = (float)Constants.viewportHeight;
+		camera.viewportWidth = (Constants.viewportHeight / (float)height) * (float)width;
 		camera.update();
 		
+		background_camera.viewportHeight = Constants.bgViewportHeight;
+		background_camera.viewportWidth = (Constants.bgViewportHeight / (float) height) * (float)width;
+		background_camera.position.set(background_camera.viewportWidth / 2, background_camera.viewportHeight / 2, 100);
+		background_camera.update();
 		
 	}
 	public void render(){

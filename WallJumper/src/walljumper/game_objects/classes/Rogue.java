@@ -29,7 +29,8 @@ public class Rogue extends ManipulatableObject {
 		position.set(x, y);
 		acceleration.set(0, -25f);
 		moveSpeed = new Vector2(10, 15);
-		setAnimation(aniNormal);
+		state = STATE.JUMPING;
+		setAnimation(aniJumping);
 		terminalVelocity.set(10, 20);
 		dimension.set(width * scale, height * scale);
 		bounds.set(0, 0, dimension.x, dimension.y);

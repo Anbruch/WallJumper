@@ -1,9 +1,9 @@
 
-walljumper.png
+WallJumper.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-NightSkyNewMoon
+NightSky
   rotate: false
   xy: 1, 372
   size: 1920, 1080
@@ -23,28 +23,28 @@ portal
   size: 66, 90
   orig: 66, 90
   offset: 0, 0
-  index: 1
+  index: 0
 portal
   rotate: false
   xy: 1, 158
   size: 66, 90
   orig: 66, 90
   offset: 0, 0
-  index: 2
+  index: 1
 portal
   rotate: false
   xy: 503, 280
   size: 66, 90
   orig: 66, 90
   offset: 0, 0
-  index: 3
+  index: 2
 portal
   rotate: false
   xy: 1923, 1270
   size: 66, 90
   orig: 66, 90
   offset: 0, 0
-  index: 4
+  index: 3
 Scythe_running
   rotate: false
   xy: 1991, 1424

@@ -18,7 +18,6 @@ public class Main {
 		
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.title = "WallJumper";
-		cfg.useGL20 = false;
 		cfg.width = 1280;
 		cfg.height = 720;
 		cfg.fullscreen = false;

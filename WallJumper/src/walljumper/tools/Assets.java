@@ -82,7 +82,7 @@ public class Assets implements Disposable, AssetErrorListener{
 		
 		public Portal(TextureAtlas atlas){
 			portal = atlas.findRegions("portal");
-			aniPortal = new Animation(1 / 7.0f, portal, Animation.LOOP);
+			aniPortal = new Animation(1 / 10f, portal, Animation.LOOP);
 		}
 	}
 	
@@ -150,7 +150,7 @@ public class Assets implements Disposable, AssetErrorListener{
 	public class Background{
 		public final AtlasRegion nightSky;
 		public Background(TextureAtlas atlas){
-			nightSky = atlas.findRegion("NightSkyNewMoon");
+			nightSky = atlas.findRegion("NightSky");
 		}
 	}
 
