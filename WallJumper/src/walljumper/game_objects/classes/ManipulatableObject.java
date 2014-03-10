@@ -388,7 +388,22 @@ public class ManipulatableObject extends AbstractGameObject {
 		// the velocity of this frame to check and see if we are
 		// going to collide with anything
 		bounds.setPosition(position.x + deltaX, position.y + deltaY);
+		
+		// Iterate through platforms
+		for (AbstractGameObject platform : LevelStage.backPlatforms) {
 
+			// If collision
+			if (bounds.overlaps(platform.bounds)) {
+				if(deltaX != 0){
+					collidingPlatformX = platform;
+					deltax = 0;
+				}
+				if(deltaY != 0){
+					collidingPlatformY = platform;
+				}
+				return true;
+			}
+		}
 		// Iterate through platforms
 		for (AbstractGameObject platform : LevelStage.platforms) {
 
@@ -430,7 +445,7 @@ public class ManipulatableObject extends AbstractGameObject {
 		if(state == STATE.JUMPING){
 			startFallTime += deltaTime;
 			
-			if(startFallTime > 4 ){
+			if(startFallTime > 3 ){
 				World.controller.destroy();
 				World.controller.init();
 				return;

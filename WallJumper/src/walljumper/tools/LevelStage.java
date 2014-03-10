@@ -14,6 +14,7 @@ public class LevelStage {
 	private Platform platform;
 	public static Array<ManipulatableObject> playerControlledObjects = new Array<ManipulatableObject>();
 	public static Array<AbstractGameObject> platforms = new Array<AbstractGameObject>();
+	public static Array<AbstractGameObject> backPlatforms = new Array<AbstractGameObject>();
 	public static Array<ManipulatableObject> enemyControlledObjects = new Array<ManipulatableObject>();
 	public static ManipulatableObject player;
 	//For objects like the portal
@@ -40,6 +41,9 @@ public class LevelStage {
 		for(ManipulatableObject object: LevelStage.enemyControlledObjects){
 			object.render(batch);
 		}
+		for(int i = LevelStage.backPlatforms.size - 1; i >= 0; i--){
+			backPlatforms.get(i).render(batch);
+		}
 		//render all of the terrain
 		for(AbstractGameObject platform: LevelStage.platforms){
 			platform.render(batch);
@@ -56,7 +60,8 @@ public class LevelStage {
 		enemyControlledObjects.clear();
 		interactables.clear();
 		platforms.clear();
-		
+		backPlatforms.clear();
+
 		InputManager.inputManager.controllableObjects.clear();
 		
 		//set current level to null

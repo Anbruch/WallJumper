@@ -11,6 +11,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import com.me.walljumper.WallJumper;
 
 public class World implements Screen{
 	public static World controller = new World();
@@ -23,7 +24,6 @@ public class World implements Screen{
 
 	}
 	public void init(){
-		
 		cameraHelper = new CameraHelper();//Essentially makes the camera follow player
 		levelStage = new LevelStage();
 		
@@ -43,8 +43,12 @@ public class World implements Screen{
 	}
 	@Override
 	public void render(float delta) {
-		update(delta);
-		
+		if(!WallJumper.paused){
+			
+			delta = delta < .25f ? delta : .25f;
+			update(delta);
+			
+		}
 		Gdx.gl.glClearColor(255, 255, 255, 0); //Default background color
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
@@ -53,7 +57,6 @@ public class World implements Screen{
 	}
 	@Override
 	public void resize(int width, int height) {
-		// TODO Auto-generated method stub
 		
 	}
 	@Override
@@ -68,13 +71,11 @@ public class World implements Screen{
 	}
 	@Override
 	public void pause() {
-		// TODO Auto-generated method stub
 		
+
 	}
 	@Override
 	public void resume() {
-		// TODO Auto-generated method stub
-		
 	}
 	@Override
 	public void dispose() {

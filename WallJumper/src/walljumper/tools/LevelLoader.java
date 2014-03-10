@@ -16,7 +16,9 @@ public class LevelLoader {
 
 	public enum BLOCK_TYPE {
 		EMPTY(0, 0, 0), PLAYER_SPAWNPOINT(255, 255, 255), ENEMY_SPAWNPOINT(255,
-				0, 0), GOAL(255, 255, 0), PLATFORM(0, 255, 0), PLATFORM_START(0, 100,0);
+				0, 0), GOAL(255, 255, 0), PLATFORM_RIGHT_DOWN(0, 0, 255),
+				PLATFORM_START_RIGHT_DOWN(0, 0, 100),
+				PLATFORM_DOWN_RIGHT(0, 255, 0), PLATFORM_START_DOWN_RIGHT(0, 100,0);
 		private int color;
 
 		private BLOCK_TYPE(int r, int g, int b) {
@@ -79,55 +81,49 @@ public class LevelLoader {
 					// IF GRASS_PLAT_LONG
 				
 				} else */
-				if (BLOCK_TYPE.PLATFORM.sameColor(currentPixel) || BLOCK_TYPE.PLATFORM_START.sameColor(currentPixel)) {
-					if (isStartOfNewObject(pixelX, pixelY, BLOCK_TYPE.PLATFORM.color) || BLOCK_TYPE.PLATFORM_START.sameColor(currentPixel)) {
-						boolean putBehind = nextIsSameColor(pixelX + 1, pixelY, BLOCK_TYPE.PLATFORM.color);
+				if (BLOCK_TYPE.PLATFORM_DOWN_RIGHT.sameColor(currentPixel) || BLOCK_TYPE.PLATFORM_START_DOWN_RIGHT.sameColor(currentPixel)) {
+					if (isStartOfNewObject(pixelX, pixelY, BLOCK_TYPE.PLATFORM_DOWN_RIGHT.color, BLOCK_TYPE.PLATFORM_START_RIGHT_DOWN.color) || BLOCK_TYPE.PLATFORM_START_DOWN_RIGHT.sameColor(currentPixel)) {
+						boolean putInFront = nextIsSameColor(pixelX + 1, pixelY, BLOCK_TYPE.PLATFORM_DOWN_RIGHT.color);
 						
-						Vector2 newPixelXY = extendPlatform(pixelX, pixelY, BLOCK_TYPE.PLATFORM.color);
+						Vector2 newPixelXY = extendPlatformDownRight(pixelX, pixelY, BLOCK_TYPE.PLATFORM_DOWN_RIGHT.color);
 						int lengthX = (int) (newPixelXY.x - pixelX) + 1;
 						int lengthY = (int)(newPixelXY.y - pixelY) + 1;
 						
 						
-						LevelStage.platforms. add(new Platform(
+						if(!putInFront){
+							LevelStage.backPlatforms.add(new Platform(
+									"grass", pixelX * 1, baseHeight * 1,
+								 lengthX, lengthY));
+						}else{
+							LevelStage.platforms.add(new Platform(
+									"grass", pixelX * 1, baseHeight * 1,
+								 lengthX, lengthY));
+						}
+						pixmap.drawPixel(pixelX, pixelY, BLOCK_TYPE.PLATFORM_DOWN_RIGHT.color);
+
+					}
+
+
+					// IF PLAYER SPAWNPOINT
+				}else if (BLOCK_TYPE.PLATFORM_START_RIGHT_DOWN.sameColor(currentPixel)) {
+					boolean putBehind = nextIsSameColor(pixelX, pixelY + 1, BLOCK_TYPE.PLATFORM_DOWN_RIGHT.color);
+					
+					Vector2 newPixelXY = extendPlatformRightDown(pixelX, pixelY, BLOCK_TYPE.PLATFORM_DOWN_RIGHT.color);
+					int lengthX = (int) (newPixelXY.x - pixelX) + 1;
+					int lengthY = (int)(newPixelXY.y - pixelY) + 1;
+					
+					
+					
+					if(!putBehind){
+						LevelStage.backPlatforms.add(new Platform(
 								"grass", pixelX * 1, baseHeight * 1,
 							 lengthX, lengthY));
-						if(!putBehind){
-							LevelStage.platforms.swap(behindTarget, LevelStage.platforms.size - 1);
-							behindTarget++;
-						}
-						pixmap.drawPixel(pixelX, pixelY, BLOCK_TYPE.PLATFORM.color);
-
-					}else
-						continue;
-				/*
-					// IF GRASS_PLAT_SHORT
-				} else if (BLOCK_TYPE.GRASS_PLAT_SHORT.sameColor(currentPixel)) {
-					if (isStartOfNewObject(pixelX, pixelY, currentPixel)) {
-						Vector2 newPixelXY = extendPlatform(pixelX, pixelY, currentPixel);
-						int lengthX = (int) (newPixelXY.x - pixelX);
-						int lengthY = (int)(newPixelXY.y - pixelY);
-						System.out.println(lengthX + " , " + lengthY);
-						
+					}else{
 						LevelStage.platforms.add(new Platform(
-								"grass_plat_short", pixelX * 1, baseHeight * 1,
-								90, 24, lengthX, lengthY));
-						pixelX += lengthX;
-					}else
-						continue;
-					// IF GRASS_PLAT_TINY
-				} else if (BLOCK_TYPE.GRASS_PLAT_TINY.sameColor(currentPixel)) {
-					if (isStartOfNewObject(pixelX, pixelY, currentPixel)) {
-						Vector2 newPixelXY = extendPlatform(pixelX, pixelY, currentPixel);
-						int lengthX = (int) (newPixelXY.x - pixelX);
-						int lengthY = (int)(newPixelXY.y - pixelY);
-						System.out.println(lengthX + " , " + lengthY);
-						LevelStage.platforms.add(new Platform(
-								"grass_plat_tiny", pixelX * 1, baseHeight * 1,
-								54, 24, lengthX, lengthY));
-						pixelX += lengthX;
-					}else
-						continue;*/
-					// IF PLAYER SPAWNPOINT
+								"grass", pixelX * 1, baseHeight * 1,
+							 lengthX, lengthY));
+					}
+					pixmap.drawPixel(pixelX, pixelY, BLOCK_TYPE.PLATFORM_DOWN_RIGHT.color);
 				} else if (BLOCK_TYPE.PLAYER_SPAWNPOINT.sameColor(currentPixel)) {
 					if (isStartOfNewObject(pixelX, pixelY, currentPixel)) {
 /*
@@ -167,7 +163,7 @@ public class LevelLoader {
 		}// outer for loop
 	}// end of method
 
-	private Vector2 extendPlatform(int i, int j, int color) {
+	private Vector2 extendPlatformDownRight(int i, int j, int color) {
 		while(nextIsSameColor(i, j + 1, color)){
 			j++;
 			
@@ -176,7 +172,16 @@ public class LevelLoader {
 			i++;
 		}
 		
-		System.out.println(j);
+		return new Vector2(i, j);
+	}
+	private Vector2 extendPlatformRightDown(int i, int j, int color){
+		while(nextIsSameColor(i + 1, j, color)){
+			i++;
+		}
+		while(nextIsSameColor(i, j + 1, color)){
+			j++;
+		}
+		
 		return new Vector2(i, j);
 	}
 	private boolean nextIsSameColor(int i, int j, int color){
@@ -192,6 +197,17 @@ public class LevelLoader {
 		if (lastPixelX == color)
 			return false;
 		if (lastPixelY == color)
+			return false;
+
+		return true;
+	}
+	private boolean isStartOfNewObject(int i, int j, int color, int color2){
+		int lastPixelX = pixmap.getPixel(i - 1, j);
+		int lastPixelY = pixmap.getPixel(i, j - 1);
+
+		if (lastPixelX == color || lastPixelX == color2)
+			return false;
+		if (lastPixelY == color || lastPixelY == color2)
 			return false;
 
 		return true;

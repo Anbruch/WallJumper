@@ -11,8 +11,9 @@ public class MainActivity extends AndroidApplication {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        AndroidApplicationConfiguration cfg = new AndroidApplicationConfiguration();
         
+        AndroidApplicationConfiguration cfg = new AndroidApplicationConfiguration();
+       
         initialize(new WallJumper(), cfg);
     }
 }

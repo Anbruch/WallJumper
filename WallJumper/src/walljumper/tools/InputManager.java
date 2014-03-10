@@ -1,11 +1,13 @@
 package walljumper.tools;
 
 import walljumper.game_objects.classes.ManipulatableObject;
+import walljumper.screens.World;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.utils.Array;
+import com.me.walljumper.WallJumper;
 
 public class InputManager extends InputAdapter {
 	
@@ -61,10 +63,18 @@ public class InputManager extends InputAdapter {
 	}
 	@Override
 	public boolean touchDown (int screenX, int screenY, int pointer, int button) {
+		if(screenX < Gdx.graphics.getWidth() / 10 && screenY < Gdx.graphics.getHeight() / 10){
+			WallJumper.paused = (WallJumper.paused == true) ? false : true;
+		
+		}
 		//Send input to the controlled objects
 		for(ManipulatableObject target:controllableObjects){
 			target.actOnInputTouch(screenX, screenY, pointer, button);
 		}
+		System.out.println(Gdx.graphics.getWidth() + " " + Gdx.graphics.getHeight());
+		
+		
+		
 		
 		return false;
 	}

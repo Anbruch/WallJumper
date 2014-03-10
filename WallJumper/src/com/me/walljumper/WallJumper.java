@@ -10,7 +10,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 
 public class WallJumper extends Game {
-	boolean paused;//Game being paused handled in main
+	public static boolean paused;//Game being paused handled in main
 	
 	//Variables for the world
 	
@@ -56,9 +56,13 @@ public class WallJumper extends Game {
 
 	@Override
 	public void pause() {
+		WallJumper.paused = true;
 	}
 
 	@Override
 	public void resume() {
+		WallJumper.paused = false;
+		System.out.println("Hiii");
+
 	}
 }
