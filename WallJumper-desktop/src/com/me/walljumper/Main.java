@@ -1,11 +1,10 @@
-package com.me.walljumper;
+  package com.me.walljumper;
 
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.tools.imagepacker.TexturePacker2;
 import com.badlogic.gdx.tools.imagepacker.TexturePacker2.Settings;
-import com.me.walljumper.WallJumper;
 
 public class Main {
 	

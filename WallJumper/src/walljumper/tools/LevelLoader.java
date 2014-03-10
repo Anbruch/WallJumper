@@ -11,12 +11,12 @@ import com.badlogic.gdx.math.Vector2;
 
 public class LevelLoader {
 
-	private int color;
+	private int color, behindTarget;
 	private Pixmap pixmap;
 
 	public enum BLOCK_TYPE {
 		EMPTY(0, 0, 0), PLAYER_SPAWNPOINT(255, 255, 255), ENEMY_SPAWNPOINT(255,
-				0, 0), GOAL(255, 255, 0), PLATFORM(0, 255, 0), PLATFORM_START(0, 254,0);
+				0, 0), GOAL(255, 255, 0), PLATFORM(0, 255, 0), PLATFORM_START(0, 100,0);
 		private int color;
 
 		private BLOCK_TYPE(int r, int g, int b) {
@@ -42,6 +42,7 @@ public class LevelLoader {
 	}
 	private void init(String fileName) {
 
+		behindTarget = 0;
 		// Load image file that represents level data
 		pixmap = new Pixmap(Gdx.files.internal(fileName));
 		// scan pixels from top-left to bottom right
@@ -79,17 +80,23 @@ public class LevelLoader {
 				
 				} else */
 				if (BLOCK_TYPE.PLATFORM.sameColor(currentPixel) || BLOCK_TYPE.PLATFORM_START.sameColor(currentPixel)) {
-					if (isStartOfNewObject(pixelX, pixelY, currentPixel) || BLOCK_TYPE.PLATFORM_START.sameColor(currentPixel)) {
+					if (isStartOfNewObject(pixelX, pixelY, BLOCK_TYPE.PLATFORM.color) || BLOCK_TYPE.PLATFORM_START.sameColor(currentPixel)) {
+						boolean putBehind = nextIsSameColor(pixelX + 1, pixelY, BLOCK_TYPE.PLATFORM.color);
+						
 						Vector2 newPixelXY = extendPlatform(pixelX, pixelY, BLOCK_TYPE.PLATFORM.color);
 						int lengthX = (int) (newPixelXY.x - pixelX) + 1;
 						int lengthY = (int)(newPixelXY.y - pixelY) + 1;
 						
+						
 						LevelStage.platforms. add(new Platform(
 								"grass", pixelX * 1, baseHeight * 1,
 							 lengthX, lengthY));
+						if(!putBehind){
+							LevelStage.platforms.swap(behindTarget, LevelStage.platforms.size - 1);
+							behindTarget++;
+						}
 						pixmap.drawPixel(pixelX, pixelY, BLOCK_TYPE.PLATFORM.color);
 
-						pixelX += lengthX;
 					}else
 						continue;
 				/*
@@ -161,12 +168,15 @@ public class LevelLoader {
 	}// end of method
 
 	private Vector2 extendPlatform(int i, int j, int color) {
+		while(nextIsSameColor(i, j + 1, color)){
+			j++;
+			
+		}
 		while(nextIsSameColor(i + 1, j, color)){
 			i++;
 		}
-		while(nextIsSameColor(i, j + 1, color)){
-			j++;
-		}
+		
+		System.out.println(j);
 		return new Vector2(i, j);
 	}
 	private boolean nextIsSameColor(int i, int j, int color){

@@ -150,7 +150,7 @@ public class Assets implements Disposable, AssetErrorListener{
 	public class Background{
 		public final AtlasRegion nightSky;
 		public Background(TextureAtlas atlas){
-			nightSky = atlas.findRegion("NightSky");
+			nightSky = atlas.findRegion("NightSkyNewMoon");
 		}
 	}
 
