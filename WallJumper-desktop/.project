@@ -18,7 +18,7 @@
 		<link>
 			<name>assets</name>
 			<type>2</type>
-			<location>C:/Users/Joey/Documents/GitHub/WallJumper/WallJumper-android/assets</location>
+			<locationURI>PARENT-1-PROJECT_LOC/WallJumper-android/assets</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

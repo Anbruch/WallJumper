@@ -62,7 +62,6 @@ public class WallJumper extends Game {
 	@Override
 	public void resume() {
 		WallJumper.paused = false;
-		System.out.println("Hiii");
 
 	}
 }

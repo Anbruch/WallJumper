@@ -36,6 +36,9 @@ public class InputManager extends InputAdapter {
 			Gdx.app.exit();
 			return false;
 		}
+		if(WallJumper.paused || World.controller.countDown > 0){
+			return false;
+		}
 		//Send input to the controlled objects
 		for(ManipulatableObject target:controllableObjects){
 			target.actOnInputKeyDown(keycode);
@@ -63,15 +66,20 @@ public class InputManager extends InputAdapter {
 	}
 	@Override
 	public boolean touchDown (int screenX, int screenY, int pointer, int button) {
+		//Top left corner is a pause button
 		if(screenX < Gdx.graphics.getWidth() / 10 && screenY < Gdx.graphics.getHeight() / 10){
 			WallJumper.paused = (WallJumper.paused == true) ? false : true;
+			if(!WallJumper.paused)
+				World.controller.countDown();
+			return false;
+		//If paused, don't send touch inputs	
+		}else if(WallJumper.paused || World.controller.countDown > 0)
+			return false;
 		
-		}
 		//Send input to the controlled objects
 		for(ManipulatableObject target:controllableObjects){
 			target.actOnInputTouch(screenX, screenY, pointer, button);
 		}
-		System.out.println(Gdx.graphics.getWidth() + " " + Gdx.graphics.getHeight());
 		
 		
 		

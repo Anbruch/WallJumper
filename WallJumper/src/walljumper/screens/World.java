@@ -19,17 +19,20 @@ public class World implements Screen{
 	public LevelStage levelStage;
 	private ManipulatableObject player;
 	public static int levelNum = 0;
+	public float countDown;
 	
 	private World(){
 
 	}
 	public void init(){
+		countDown = 0;
 		cameraHelper = new CameraHelper();//Essentially makes the camera follow player
 		levelStage = new LevelStage();
 		
 		//have a player variable here
 		player = InputManager.inputManager.getPlayer();
 		cameraHelper.setTarget(player);	
+		controller.countDown();
 		
 	}
 	
@@ -43,12 +46,16 @@ public class World implements Screen{
 	}
 	@Override
 	public void render(float delta) {
-		if(!WallJumper.paused){
-			
+		if(!WallJumper.paused && countDown <= 0){
 			delta = delta < .25f ? delta : .25f;
 			update(delta);
 			
 		}
+		if(countDown > 0){
+			countDown -= delta;
+			controller.cameraHelper.update(delta);
+		}
+		
 		Gdx.gl.glClearColor(255, 255, 255, 0); //Default background color
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
@@ -91,6 +98,9 @@ public class World implements Screen{
 		levelStage.destroy();
 		player = null;
 		
+	}
+	public void countDown() {
+		countDown = 3;
 	}
 	
 	
