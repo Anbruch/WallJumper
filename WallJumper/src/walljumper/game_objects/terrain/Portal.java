@@ -26,7 +26,7 @@ public class Portal extends AbstractGameObject{
 		image = animation.getKeyFrame(stateTime);
 		scale = 5;
 		dimension.set(image.getRegionWidth() / 100.0f * scale, image.getRegionHeight() / 100.0f * scale);
-		bounds.set(position.x, position.y, dimension.x, dimension.y);
+		bounds.set(position.x, position.y, dimension.x - dimension.x / 3, dimension.y);
 	}
 	@Override
 	public void update(float deltaTime){

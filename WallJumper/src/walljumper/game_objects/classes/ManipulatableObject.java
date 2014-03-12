@@ -1,6 +1,7 @@
 package walljumper.game_objects.classes;
 
 import walljumper.game_objects.AbstractGameObject;
+import walljumper.game_objects.particles.WallJumpParticle;
 import walljumper.game_objects.weapons.Weapon;
 import walljumper.screens.World;
 import walljumper.tools.LevelStage;
@@ -93,6 +94,11 @@ public class ManipulatableObject extends AbstractGameObject {
 		if(state == STATE.WALLING && !wallJumped && collidingPlatformX != null){
 			velocity.y = moveSpeed.y;
 			wallJumped = true;
+			if(viewDirection == VIEW_DIRECTION.right){
+				LevelStage.uncollidableObjects.add(new WallJumpParticle(position.x, position.y - (dimension.y/2), 1, 1, false));
+			} else {
+				LevelStage.uncollidableObjects.add(new WallJumpParticle(position.x - .1f, position.y - (dimension.y/2), 1, 1, true));
+			}
 		}
 		
 		
@@ -451,7 +457,7 @@ public class ManipulatableObject extends AbstractGameObject {
 				return;
 			}
 			
-			if(startFallTime > 2 && World.controller.cameraHelper.hasTarget()){
+			if(startFallTime > 1.5f && World.controller.cameraHelper.hasTarget()){
 				World.controller.cameraHelper.setTarget(null);
 				return;
 			}

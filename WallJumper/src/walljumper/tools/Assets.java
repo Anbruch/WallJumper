@@ -19,6 +19,7 @@ public class Assets implements Disposable, AssetErrorListener{
 	public Background nightSky;
 	public Rogue rogue;
 	public Portal portal;
+	public WallJumpParticle wallJumpParticle;
 	
 	
 	private Assets(){
@@ -41,6 +42,7 @@ public class Assets implements Disposable, AssetErrorListener{
 		nightSky = new Background(atlas);
 		rogue = new Rogue(atlas);
 		portal = new Portal(atlas);
+		wallJumpParticle = new WallJumpParticle(atlas);
 	}
 
 	@Override
@@ -85,7 +87,15 @@ public class Assets implements Disposable, AssetErrorListener{
 			aniPortal = new Animation(1 / 10f, portal, Animation.LOOP);
 		}
 	}
-	
+	public class WallJumpParticle {
+		public final Array<AtlasRegion> wallJump;
+		public final Animation wallJumpParticle;
+		
+		public WallJumpParticle(TextureAtlas atlas){
+			wallJump = atlas.findRegions("wallJump");
+			wallJumpParticle = new Animation(1 / 15f, wallJump, Animation.NORMAL);
+		}
+	}
 	public class ScytheMan{
 		public final Array<AtlasRegion> scytheNormal;
 		public final Array<AtlasRegion> scytheRunning;

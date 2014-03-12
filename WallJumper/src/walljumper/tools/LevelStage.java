@@ -16,6 +16,7 @@ public class LevelStage {
 	public static Array<AbstractGameObject> platforms = new Array<AbstractGameObject>();
 	public static Array<AbstractGameObject> backPlatforms = new Array<AbstractGameObject>();
 	public static Array<ManipulatableObject> enemyControlledObjects = new Array<ManipulatableObject>();
+	public static Array<AbstractGameObject> uncollidableObjects = new Array<AbstractGameObject>();
 	public static ManipulatableObject player;
 	//For objects like the portal
 	public static Array<AbstractGameObject> interactables = new Array<AbstractGameObject>();
@@ -52,7 +53,9 @@ public class LevelStage {
 		for(AbstractGameObject interactableObject: interactables){
 			interactableObject.render(batch);
 		}
-		
+		for(AbstractGameObject uncollidable: LevelStage.uncollidableObjects){
+			uncollidable.render(batch);
+		}
 	}
 	public void destroy(){
 		//Clear all the arrays
@@ -61,7 +64,7 @@ public class LevelStage {
 		interactables.clear();
 		platforms.clear();
 		backPlatforms.clear();
-
+		uncollidableObjects.clear();
 		InputManager.inputManager.controllableObjects.clear();
 		
 		//set current level to null
@@ -81,6 +84,9 @@ public class LevelStage {
 		
 		for(AbstractGameObject interactableObject: interactables){
 			interactableObject.update(deltaTime);
+		}
+		for(AbstractGameObject uncollidable: LevelStage.uncollidableObjects){
+			uncollidable.update(deltaTime);
 		}
 		
 		

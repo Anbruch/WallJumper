@@ -1,5 +1,7 @@
 package walljumper.game_objects;
 
+import walljumper.game_objects.classes.ManipulatableObject.VIEW_DIRECTION;
+
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -40,6 +42,18 @@ public abstract class AbstractGameObject{
 		velocity = new Vector2();
 		terminalVelocity = new Vector2(1, 1);
 		bounds = new Rectangle();
+	}
+	public AbstractGameObject(float x, float y, float width, float height){
+		position = new Vector2(x, y);
+		dimension = new Vector2(width, height);
+		origin = new Vector2();
+		scale = 1;
+		rotation = 0;
+		
+		acceleration = new Vector2();
+		velocity = new Vector2();
+		terminalVelocity = new Vector2(1, 1);
+		bounds = new Rectangle(x, y, width, height);
 	}
 	public void update(float deltaTime){
 		
@@ -84,6 +98,17 @@ public abstract class AbstractGameObject{
 		
 	}
 	public void render(SpriteBatch batch){
-		
+		// get correct image and draw the current proportions
+		image = null;
+		image = animation.getKeyFrame(stateTime, looping);
+		currentFrameDimension.set(image.getRegionWidth(),
+				image.getRegionHeight());
+		// Draw
+		batch.draw(image.getTexture(), position.x, position.y, origin.x, origin.y,
+				currentFrameDimension.x, currentFrameDimension.y, 1, 1,
+				rotation, image.getRegionX(), image.getRegionY(),
+				image.getRegionWidth(), image.getRegionHeight(),
+				false, false);
+
 	}
 }
