@@ -3,6 +3,7 @@ package walljumper.tools;
 import walljumper.game_objects.classes.ManipulatableObject;
 import walljumper.screens.World;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
@@ -66,17 +67,12 @@ public class InputManager extends InputAdapter {
 	}
 	@Override
 	public boolean touchDown (int screenX, int screenY, int pointer, int button) {
-		//Top left corner is a pause button
-		if(screenX < Gdx.graphics.getWidth() / 10 && screenY < Gdx.graphics.getHeight() / 10){
-			WallJumper.paused = (WallJumper.paused == true) ? false : true;
-			if(!WallJumper.paused)
-				World.controller.countDown();
-			return false;
-		//If paused, don't send touch inputs	
-		}else if(WallJumper.paused || World.controller.countDown > 0)
-			return false;
 		
-		//Send input to the controlled objects
+		if(!WallJumper.currentScreen.handleTouchInput(screenX, screenY, pointer, button)){
+			
+			return false;
+		}
+		
 		for(ManipulatableObject target:controllableObjects){
 			target.actOnInputTouch(screenX, screenY, pointer, button);
 		}
@@ -88,6 +84,9 @@ public class InputManager extends InputAdapter {
 	}
 
 
+	private void checkPausePressed() {
+		
+	}
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
 		// TODO Auto-generated method stub

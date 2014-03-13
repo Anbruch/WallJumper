@@ -1,5 +1,6 @@
 package com.me.walljumper;
 
+import walljumper.screens.ScreenHelper;
 import walljumper.screens.World;
 import walljumper.tools.Assets;
 import walljumper.tools.InputManager;
@@ -11,7 +12,7 @@ import com.badlogic.gdx.assets.AssetManager;
 
 public class WallJumper extends Game {
 	public static boolean paused;//Game being paused handled in main
-	
+	public static ScreenHelper currentScreen;
 	//Variables for the world
 	
 	
@@ -23,7 +24,6 @@ public class WallJumper extends Game {
 		Assets.instance.init(new AssetManager());//Make the Spritesheet to be cut from later
 		InputManager.inputManager.init();
 		((Game) Gdx.app.getApplicationListener()).setScreen(World.controller);
-
 		WorldRenderer.renderer.init();
 		paused = false;
 	}
