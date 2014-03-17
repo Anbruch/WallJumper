@@ -5,6 +5,7 @@ import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.utils.Array;
@@ -21,7 +22,7 @@ public class Assets implements Disposable, AssetErrorListener{
 	public Portal portal;
 	public WallJumpParticle wallJumpParticle;
 	public Pause pause;
-	
+	public BitmapFont font;
 	private Assets(){
 		
 	}
@@ -44,6 +45,7 @@ public class Assets implements Disposable, AssetErrorListener{
 		portal = new Portal(atlas);
 		pause = new Pause(atlas);
 		wallJumpParticle = new WallJumpParticle(atlas);
+		
 	}
 
 	@Override

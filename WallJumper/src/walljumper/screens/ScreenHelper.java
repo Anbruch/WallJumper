@@ -43,4 +43,8 @@ public abstract class ScreenHelper implements Screen{
 		return false;
 	}
 
+	public boolean handleKeyInput(int keycode) {
+		return false;
+	}
+
 }

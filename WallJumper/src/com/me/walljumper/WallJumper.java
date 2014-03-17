@@ -1,5 +1,6 @@
 package com.me.walljumper;
 
+import walljumper.screens.MainMenu;
 import walljumper.screens.ScreenHelper;
 import walljumper.screens.World;
 import walljumper.tools.Assets;
@@ -23,7 +24,7 @@ public class WallJumper extends Game {
 		
 		Assets.instance.init(new AssetManager());//Make the Spritesheet to be cut from later
 		InputManager.inputManager.init();
-		((Game) Gdx.app.getApplicationListener()).setScreen(World.controller);
+		((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu());
 		WorldRenderer.renderer.init();
 		paused = false;
 	}
@@ -56,7 +57,7 @@ public class WallJumper extends Game {
 
 	@Override
 	public void pause() {
-		WallJumper.paused = true;
+
 	}
 
 	@Override

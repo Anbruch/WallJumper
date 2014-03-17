@@ -106,7 +106,7 @@ public class LevelLoader {
 
 					// IF PLAYER SPAWNPOINT
 				}else if (BLOCK_TYPE.PLATFORM_START_RIGHT_DOWN.sameColor(currentPixel)) {
-					boolean putBehind = nextIsSameColor(pixelX, pixelY + 1, BLOCK_TYPE.PLATFORM_DOWN_RIGHT.color);
+					boolean putInFront = nextIsSameColor(pixelX, pixelY + 1, BLOCK_TYPE.PLATFORM_DOWN_RIGHT.color);
 					
 					Vector2 newPixelXY = extendPlatformRightDown(pixelX, pixelY, BLOCK_TYPE.PLATFORM_DOWN_RIGHT.color);
 					int lengthX = (int) (newPixelXY.x - pixelX) + 1;
@@ -114,10 +114,11 @@ public class LevelLoader {
 					
 					
 					
-					if(!putBehind){
+					if(!putInFront){
 						LevelStage.backPlatforms.add(new Platform(
 								"grass", pixelX * 1, baseHeight * 1,
 							 lengthX, lengthY));
+						pixmap.drawPixel(pixelX, pixelY + 1, BLOCK_TYPE.PLATFORM_DOWN_RIGHT.color);
 					}else{
 						LevelStage.platforms.add(new Platform(
 								"grass", pixelX * 1, baseHeight * 1,
@@ -131,7 +132,7 @@ public class LevelLoader {
 						ScytheMan scytheMan = new ScytheMan(pixelX * 1,
 								baseHeight * 1, 63, 48);*/
 						Rogue rogue = new Rogue(pixelX * 1,
-								baseHeight * 1, .15f, .31f, 5);
+								baseHeight - 1, .15f, .31f, 5);
 						
 						// Track him in these arrays
 						LevelStage.playerControlledObjects.add(rogue);

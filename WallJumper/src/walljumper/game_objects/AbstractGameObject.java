@@ -58,6 +58,7 @@ public abstract class AbstractGameObject{
 	public void update(float deltaTime){
 		
 		stateTime += deltaTime;
+		stateTime = stateTime > 0 ? stateTime : 0;
 		
 		updateMotionX(deltaTime);
 		updateMotionY(deltaTime);

@@ -41,7 +41,6 @@ public class ManipulatableObject extends AbstractGameObject {
 	}
 
 	public ManipulatableObject() {
-		
 		//Set the Default States
 		viewDirection = VIEW_DIRECTION.right;
 		state = STATE.JUMPING;

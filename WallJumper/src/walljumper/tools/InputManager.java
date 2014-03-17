@@ -3,7 +3,6 @@ package walljumper.tools;
 import walljumper.game_objects.classes.ManipulatableObject;
 import walljumper.screens.World;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
@@ -37,6 +36,11 @@ public class InputManager extends InputAdapter {
 			Gdx.app.exit();
 			return false;
 		}
+		
+		if(!WallJumper.currentScreen.handleKeyInput(keycode))
+			return false;
+
+		
 		if(WallJumper.paused || World.controller.countDown > 0){
 			return false;
 		}

@@ -17,14 +17,15 @@ public class PauseButton extends AbstractGameObject {
 	public PauseButton(){
 		pause = Assets.instance.pause.pause;
 		play = Assets.instance.pause.play;
-		image = pause;
+		image = play;
 		
 		scale = 10;
 		dimension = new Vector2(41,  46);
 		position = new Vector2(20, Constants.bgViewportHeight - Constants.bgViewportHeight / 10);
 	}
 	public void toggle(){
-		image = !WallJumper.paused && World.controller.countDown <= 0 ? pause : play;
+		
+		image = !WallJumper.paused  ? pause : play;
 	}
 	@Override
 	public void render(SpriteBatch batch){

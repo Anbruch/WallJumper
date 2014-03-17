@@ -5,6 +5,7 @@ import walljumper.tools.Assets.Pause;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Disposable;
@@ -19,8 +20,10 @@ public class WorldRenderer implements Disposable{
 	public OrthographicCamera guiCamera;
 	public TextureRegion background_image;
 	public PauseButton pauseButton;
+	public BitmapFont font;
 	
 	private WorldRenderer(){
+		
 	}
 	public void init(){
 		
@@ -44,7 +47,16 @@ public class WorldRenderer implements Disposable{
 		guiCamera.setToOrtho(false);
 		guiCamera.update();
 		
-		pauseButton = new PauseButton();
+		font = new BitmapFont(Gdx.files.internal("Font/white.fnt"));
+
+		
+		
+		
+	}
+	public void writeToWorld(String string, float x, float y){
+		
+		
+		font.draw(batch, string, x, y);
 		
 	}
 	
@@ -73,9 +85,25 @@ public class WorldRenderer implements Disposable{
 		batch.setProjectionMatrix(guiCamera.combined);
 		batch.begin();
 		
+		renderTapToStart();
+		renderTimer();
 		pauseButton.render(batch);
 		
 		batch.end();
+	}
+	private void renderTimer() {
+		if(World.controller.started){
+			float curTime = World.controller.getLevelTime();
+			
+			float afterDecimal = curTime > 1 ? (curTime % (int)(curTime)) * 100 : curTime * 100;
+			String time = "" + (int)(curTime) + "." + (int)(afterDecimal);
+			writeToWorld(time, Constants.bgViewportWidth / 2, Constants.bgViewportHeight - 50);
+		}
+	}
+	private void renderTapToStart() {
+		if(!World.controller.started)
+			writeToWorld("Tap to start!", Constants.bgViewportWidth / 2 - 50, Constants.bgViewportHeight / 2 + 150);
+			
 	}
 	public void resize(int width, int height){
 		
