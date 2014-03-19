@@ -5,22 +5,29 @@ filter: Nearest,Nearest
 repeat: none
 background
   rotate: false
-  xy: 1, 66
+  xy: 1, 819
   size: 1920, 1080
   orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+startscreen
+  rotate: false
+  xy: 1, 97
+  size: 1280, 720
+  orig: 1280, 720
   offset: 0, 0
   index: -1
 button.down
   rotate: false
   xy: 1, 1
-  size: 164, 63
-  orig: 164, 63
+  size: 246, 94
+  orig: 246, 94
   offset: 0, 0
   index: -1
 button.up
   rotate: false
-  xy: 1, 1
-  size: 164, 63
-  orig: 164, 63
+  xy: 1283, 723
+  size: 246, 94
+  orig: 246, 94
   offset: 0, 0
   index: -1

@@ -3,6 +3,7 @@ package walljumper.game_objects.classes;
 import walljumper.game_objects.classes.ManipulatableObject.COMBAT;
 import walljumper.game_objects.classes.ManipulatableObject.VIEW_DIRECTION;
 import walljumper.tools.Assets;
+import walljumper.tools.LevelStage;
 
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -26,16 +27,14 @@ public class Rogue extends ManipulatableObject {
 		aniJumping = Assets.instance.rogue.aniJumping;
 		aniWalling = Assets.instance.rogue.aniWalling;
 		
-		position.set(x, y);
+		position.set(x, y - .3f);
 		acceleration.set(0, -25f);
 		moveSpeed = new Vector2(10, 15);
-		state = STATE.JUMPING;
-		setAnimation(aniJumping);
+		state = STATE.GROUNDED;
+		setAnimation(aniNormal);
 		terminalVelocity.set(10, 20);
 		dimension.set(width * scale, height * scale);
 		bounds.set(0, 0, dimension.x, dimension.y);
-		
-		moveRight();
 	}
 	
 	@Override

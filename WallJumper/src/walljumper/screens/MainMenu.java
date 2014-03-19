@@ -28,7 +28,7 @@ public class MainMenu extends ScreenHelper{
 	    private static final float BUTTON_SPACING = 10f;
 	private Skin skin;// done
 	//private TweenManager tweenManager;
-	private Image imgBackground;
+	private Image imgBackground, startScreen;
 
 	
 	@Override
@@ -67,8 +67,9 @@ public class MainMenu extends ScreenHelper{
 		
 		stack.setSize(Constants.bgViewportWidth, Constants.bgViewportHeight);
 		stack.add(layerBackground);
-		stack.add(layerObjects);
 		stack.add(layerLogos);
+
+		stack.add(layerObjects);
 		stack.add(layerControls);
 		stack.addActor(layerOptionsWindow);
 	}
@@ -89,7 +90,8 @@ public class MainMenu extends ScreenHelper{
 
 	private Table buildLogosLayer() {
 		Table layer = new Table();
-		
+		startScreen = new Image(skin, "startscreen");
+		layer.add(startScreen);
 		return layer;
 	}
 
@@ -99,37 +101,32 @@ public class MainMenu extends ScreenHelper{
 		Table layer = new Table();
 		
 		
-        /*ImageButton imgButton = new ImageButton(new TextureRegionDrawable(Assets.instance.portal.portal.get(0)));
-        layer.top();
-        layer.add(imgButton);*/
+      
  
         
  
         // button "start game"
         TextButton startGameButton = new TextButton( "Play", skin );
-      
+        startGameButton.scaleBy(2);
         startGameButton.addListener(new ChangeListener() {
 			
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				((Game) Gdx.app.getApplicationListener()).setScreen(World.controller);
 
-				/*stage.addAction(sequence(moveTo(0, -stage.getHeight(), .5f), run(new Runnable() {
-	
-					@Override
-					public void run() {
-					}
-				})));*/
+				
 			}
+			
 				
 		});
+
         layer.add(startGameButton);
         layer.row();
  
         // button "options"
-        TextButton optionsButton = new TextButton( "Options", skin );
+       /* TextButton optionsButton = new TextButton( "Options", skin );
        
-        layer.add( optionsButton );
+        layer.add( optionsButton );*/
 		return layer;
 	}
 
@@ -137,6 +134,7 @@ public class MainMenu extends ScreenHelper{
 		Table layer = new Table();
 		imgBackground = new Image(skin, "background");
 		layer.add(imgBackground);
+		
 		
 		return layer;
 	}

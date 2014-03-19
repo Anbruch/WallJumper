@@ -14,12 +14,13 @@
 		"default": { "font": white, "fontColor": white }
 	},
 	com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
-		default: { "up": "button.up", "down": "button.down", "font": black, "pressedOffsetX": 2, "pressedOffsetY": -2 }
+		default: { "up": "button.up", "down": "button.down", "font": black }
 	
 	},
 	com.badlogic.gdx.scenes.scene2d.ui.Image:
 	{
-	background: { drawable: background }
+	background: { drawable: background },
+	startScreen: { drawable: startscreen }
 	}
 		
 }

@@ -3,10 +3,10 @@ package walljumper.tools;
 import walljumper.game_objects.AbstractGameObject;
 import walljumper.game_objects.classes.ManipulatableObject;
 import walljumper.game_objects.terrain.Platform;
-import walljumper.game_objects.terrain.Portal;
 import walljumper.screens.World;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 public class LevelStage {
@@ -30,6 +30,30 @@ public class LevelStage {
 	}
 	public static void setPlayer(ManipulatableObject player){
 		LevelStage.player = player;
+	}
+	//This gets nearest platform in the y-axis
+	public static AbstractGameObject getNearestPlatformY(Vector2 position){
+		AbstractGameObject currentClosest = null;
+		float curLength = 100;
+		
+		//Goes through back platforms
+		for(AbstractGameObject platform: LevelStage.backPlatforms){
+			float yDifference = Math.abs(platform.position.y + platform.bounds.height - position.y);
+			if(yDifference < curLength){
+				curLength = yDifference;
+				currentClosest = platform;
+			}
+		}
+		
+		//Goes through front platforms
+		for(AbstractGameObject platform: LevelStage.platforms){
+			float yDifference = Math.abs(platform.position.y + platform.bounds.height - position.y);
+			if(yDifference < curLength){
+				curLength = yDifference;
+				currentClosest = platform;
+			}
+		}
+		return currentClosest;
 	}
 	public void render(SpriteBatch batch){
 		

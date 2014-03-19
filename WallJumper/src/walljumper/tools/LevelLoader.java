@@ -132,7 +132,7 @@ public class LevelLoader {
 						ScytheMan scytheMan = new ScytheMan(pixelX * 1,
 								baseHeight * 1, 63, 48);*/
 						Rogue rogue = new Rogue(pixelX * 1,
-								baseHeight - 1, .15f, .31f, 5);
+								baseHeight - 1, .15f, .31f, 6);
 						
 						// Track him in these arrays
 						LevelStage.playerControlledObjects.add(rogue);

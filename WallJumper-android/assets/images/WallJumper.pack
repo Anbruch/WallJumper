@@ -5,337 +5,337 @@ filter: Nearest,Nearest
 repeat: none
 NightSkyNewMoon
   rotate: false
-  xy: 1, 382
+  xy: 1, 511
   size: 1920, 1080
   orig: 1920, 1080
   offset: 0, 0
   index: -1
 portal
   rotate: false
-  xy: 1, 290
-  size: 66, 90
-  orig: 66, 90
+  xy: 1, 384
+  size: 125, 125
+  orig: 125, 125
   offset: 0, 0
   index: 1
 portal
   rotate: false
-  xy: 1923, 1372
-  size: 66, 90
-  orig: 66, 90
+  xy: 1, 257
+  size: 125, 125
+  orig: 125, 125
   offset: 0, 0
   index: 2
 portal
   rotate: false
-  xy: 1, 198
-  size: 66, 90
-  orig: 66, 90
+  xy: 128, 384
+  size: 125, 125
+  orig: 125, 125
   offset: 0, 0
   index: 3
-portal
-  rotate: false
-  xy: 69, 290
-  size: 66, 90
-  orig: 66, 90
-  offset: 0, 0
-  index: 4
 PauseButton
   rotate: false
-  xy: 1923, 1324
+  xy: 1923, 1545
   size: 41, 46
   orig: 41, 46
   offset: 0, 0
   index: -1
 PlayButton
   rotate: false
-  xy: 1991, 1416
+  xy: 1, 209
   size: 41, 46
   orig: 41, 46
   offset: 0, 0
   index: -1
-rogue_normal
-  rotate: false
-  xy: 2034, 1429
-  size: 13, 33
-  orig: 13, 33
-  offset: 0, 0
-  index: 0
 rogue_jumping
   rotate: false
-  xy: 1, 168
+  xy: 128, 354
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 1
 rogue_jumping
   rotate: false
-  xy: 69, 260
+  xy: 255, 481
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 2
 rogue_jumping
   rotate: false
-  xy: 137, 352
+  xy: 1923, 1515
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 3
 rogue_jumping
   rotate: false
-  xy: 1923, 1294
+  xy: 1966, 1563
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 4
 rogue_jumping
   rotate: false
-  xy: 1991, 1386
+  xy: 1, 179
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 5
 rogue_jumping
   rotate: false
-  xy: 1, 138
+  xy: 44, 227
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 6
 rogue_jumping
   rotate: false
-  xy: 69, 230
+  xy: 128, 324
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 7
 rogue_jumping
   rotate: false
-  xy: 137, 322
+  xy: 169, 354
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 8
-rogue_walling
-  rotate: false
-  xy: 2032, 1382
-  size: 15, 32
-  orig: 15, 32
-  offset: 0, 0
-  index: -1
 rogue_running
   rotate: false
-  xy: 178, 350
+  xy: 255, 449
   size: 31, 30
   orig: 31, 30
   offset: 0, 0
   index: 2
 rogue_running
   rotate: false
-  xy: 1923, 1263
+  xy: 1923, 1484
   size: 32, 29
   orig: 32, 29
   offset: 0, 0
   index: 6
 rogue_running
   rotate: false
-  xy: 1, 107
+  xy: 1, 148
   size: 31, 29
   orig: 31, 29
   offset: 0, 0
   index: 3
 rogue_running
   rotate: false
-  xy: 69, 200
+  xy: 296, 481
   size: 31, 28
   orig: 31, 28
   offset: 0, 0
   index: 1
 rogue_running
   rotate: false
-  xy: 137, 291
+  xy: 128, 293
   size: 30, 29
   orig: 30, 29
   offset: 0, 0
   index: 5
 rogue_running
   rotate: false
-  xy: 211, 353
+  xy: 2007, 1564
   size: 30, 27
   orig: 30, 27
   offset: 0, 0
   index: 4
+rogue_walling
+  rotate: false
+  xy: 255, 415
+  size: 15, 32
+  orig: 15, 32
+  offset: 0, 0
+  index: -1
+rogue_normal
+  rotate: false
+  xy: 1923, 1449
+  size: 13, 33
+  orig: 13, 33
+  offset: 0, 0
+  index: 0
 grass_body1
   rotate: false
-  xy: 1966, 1351
+  xy: 85, 236
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_body2
   rotate: false
-  xy: 42, 177
+  xy: 169, 333
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_body3
   rotate: false
-  xy: 110, 269
+  xy: 210, 363
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_body4
   rotate: false
-  xy: 178, 329
+  xy: 288, 460
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_body5
   rotate: false
-  xy: 1923, 1242
+  xy: 1, 127
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_body6
   rotate: false
-  xy: 1, 86
+  xy: 329, 490
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_bottomcorner
   rotate: false
-  xy: 243, 361
+  xy: 128, 272
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_end
   rotate: false
-  xy: 1966, 1330
+  xy: 232, 363
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbody1
   rotate: false
-  xy: 42, 156
+  xy: 1, 106
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbody2
   rotate: false
-  xy: 110, 248
+  xy: 351, 490
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbody3
   rotate: false
-  xy: 1923, 1221
+  xy: 1, 85
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbody4
   rotate: false
-  xy: 1, 65
+  xy: 373, 490
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbody5
   rotate: false
-  xy: 265, 361
+  xy: 1, 64
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbottombody1
   rotate: false
-  xy: 1923, 1200
+  xy: 395, 490
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbottombody2
   rotate: false
-  xy: 1, 44
+  xy: 1, 43
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbottombody3
   rotate: false
-  xy: 287, 361
+  xy: 417, 490
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbottombody4
   rotate: false
-  xy: 1923, 1179
+  xy: 1, 22
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbottombody5
   rotate: false
-  xy: 1, 23
+  xy: 439, 490
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_mid
   rotate: false
-  xy: 309, 361
+  xy: 1, 1
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_topcorner
   rotate: false
-  xy: 1923, 1158
+  xy: 461, 490
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 wallJump
   rotate: false
-  xy: 1945, 1241
+  xy: 255, 393
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 0
 wallJump
   rotate: false
-  xy: 23, 85
+  xy: 272, 427
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 1
 wallJump
   rotate: false
-  xy: 1, 1
+  xy: 1923, 1427
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 3
 wallJump
   rotate: false
-  xy: 1923, 1136
+  xy: 1938, 1462
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 4
 walljump
   rotate: false
-  xy: 1945, 1219
+  xy: 23, 126
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 5
+pauseLayer
+  rotate: false
+  xy: 1966, 1552
+  size: 16, 9
+  orig: 16, 9
+  offset: 0, 0
+  index: -1

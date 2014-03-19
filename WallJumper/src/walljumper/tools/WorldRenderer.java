@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Disposable;
 import com.me.walljumper.Constants;
+import com.me.walljumper.WallJumper;
 import com.me.walljumper.gui.PauseButton;
 
 public class WorldRenderer implements Disposable{
@@ -18,7 +19,7 @@ public class WorldRenderer implements Disposable{
 	public OrthographicCamera camera;
 	public OrthographicCamera background_camera;
 	public OrthographicCamera guiCamera;
-	public TextureRegion background_image;
+	public TextureRegion background_image, pauseLayer;
 	public PauseButton pauseButton;
 	public BitmapFont font;
 	
@@ -29,6 +30,8 @@ public class WorldRenderer implements Disposable{
 		
 		batch = new SpriteBatch();
 		background_image = Assets.instance.nightSky.nightSky;
+		pauseLayer = Assets.instance.pause.pauseLayer;
+		
 		
 		
 		//Initialize main camera
@@ -89,6 +92,10 @@ public class WorldRenderer implements Disposable{
 		renderTimer();
 		pauseButton.render(batch);
 		
+		renderTransparency();
+
+			
+		
 		batch.end();
 	}
 	private void renderTimer() {
@@ -127,6 +134,13 @@ public class WorldRenderer implements Disposable{
 		renderBackground();
 		renderWorld();
 		renderGUI();
+	}
+	private void renderTransparency() {
+		if(WallJumper.paused)
+			batch.draw(pauseLayer.getTexture(), 0, 0, Constants.bgViewportWidth,  Constants.bgViewportHeight,
+					 pauseLayer.getRegionX(), pauseLayer.getRegionY(),
+						pauseLayer.getRegionWidth(), pauseLayer.getRegionHeight(), false, false);
+			
 	}
 	@Override
 	public void dispose() {

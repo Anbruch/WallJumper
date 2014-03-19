@@ -24,6 +24,7 @@ public class World extends ScreenHelper {
 	public static int levelNum = 0;
 	public float countDown, levelTimer;
 	public boolean started, finishedDestroy;
+	int alpha;
 
 
 	private World() {
@@ -112,6 +113,7 @@ public class World extends ScreenHelper {
 			started = true;
 			WallJumper.paused = (WallJumper.paused == true) ? false : true;
 			WorldRenderer.renderer.pauseButton.toggle();
+			LevelStage.player.moveRight();
 			
 			return false;
 		}
@@ -120,7 +122,9 @@ public class World extends ScreenHelper {
 	//Return false to do a return in the method calling this
 	@Override
 	public boolean handleTouchInput(int screenX, int screenY, int pointer, int button) {
-		startLevel();
+		if(!startLevel()){
+			return false;
+		}
 		
 		// Top left corner is a pause button
 		if (screenX < Gdx.graphics.getWidth() / 10

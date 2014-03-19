@@ -93,10 +93,12 @@ public class Assets implements Disposable, AssetErrorListener{
 	public class Pause{
 		public final AtlasRegion pause;
 		public final AtlasRegion play;
+		public final AtlasRegion pauseLayer;
 
 		public Pause(TextureAtlas atlas){
 			pause = atlas.findRegion("PauseButton");
 			play = atlas.findRegion("PlayButton");
+			pauseLayer = atlas.findRegion("pauseLayer");
 		}
 	}
 	public class WallJumpParticle {
