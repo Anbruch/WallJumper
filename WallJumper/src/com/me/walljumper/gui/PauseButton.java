@@ -1,14 +1,14 @@
 package com.me.walljumper.gui;
 
-import walljumper.game_objects.AbstractGameObject;
-import walljumper.screens.World;
-import walljumper.tools.Assets;
+import com.me.walljumper.game_objects.AbstractGameObject;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.me.walljumper.Constants;
 import com.me.walljumper.WallJumper;
+import com.me.walljumper.screens.World;
+import com.me.walljumper.tools.Assets;
 
 public class PauseButton extends AbstractGameObject {
 	private TextureRegion pause;

@@ -1,15 +1,16 @@
 package com.me.walljumper;
 
-import walljumper.screens.MainMenu;
-import walljumper.screens.ScreenHelper;
-import walljumper.screens.World;
-import walljumper.tools.Assets;
-import walljumper.tools.InputManager;
-import walljumper.tools.WorldRenderer;
+import com.me.walljumper.screens.MainMenu;
+import com.me.walljumper.screens.ScreenHelper;
+import com.me.walljumper.screens.World;
+import com.me.walljumper.tools.*;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.me.walljumper.tools.Assets;
+import com.me.walljumper.tools.InputManager;
+import com.me.walljumper.tools.WorldRenderer;
 
 public class WallJumper extends Game {
 	public static boolean paused;//Game being paused handled in main

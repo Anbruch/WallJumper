@@ -5,336 +5,343 @@ filter: Nearest,Nearest
 repeat: none
 NightSkyNewMoon
   rotate: false
-  xy: 1, 511
+  xy: 1, 631
   size: 1920, 1080
   orig: 1920, 1080
   offset: 0, 0
   index: -1
+Title
+  rotate: false
+  xy: 1, 358
+  size: 666, 271
+  orig: 666, 271
+  offset: 0, 0
+  index: -1
 portal
   rotate: false
-  xy: 1, 384
+  xy: 1, 231
   size: 125, 125
   orig: 125, 125
   offset: 0, 0
   index: 1
 portal
   rotate: false
-  xy: 1, 257
+  xy: 669, 504
   size: 125, 125
   orig: 125, 125
   offset: 0, 0
   index: 2
 portal
   rotate: false
-  xy: 128, 384
+  xy: 1, 104
   size: 125, 125
   orig: 125, 125
   offset: 0, 0
   index: 3
 PauseButton
   rotate: false
-  xy: 1923, 1545
+  xy: 1923, 1665
   size: 41, 46
   orig: 41, 46
   offset: 0, 0
   index: -1
 PlayButton
   rotate: false
-  xy: 1, 209
+  xy: 128, 310
   size: 41, 46
   orig: 41, 46
   offset: 0, 0
   index: -1
 rogue_jumping
   rotate: false
-  xy: 128, 354
+  xy: 669, 474
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 1
 rogue_jumping
   rotate: false
-  xy: 255, 481
+  xy: 796, 601
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 2
 rogue_jumping
   rotate: false
-  xy: 1923, 1515
+  xy: 1, 74
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 3
 rogue_jumping
   rotate: false
-  xy: 1966, 1563
+  xy: 1923, 1635
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 4
 rogue_jumping
   rotate: false
-  xy: 1, 179
+  xy: 1966, 1683
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 5
 rogue_jumping
   rotate: false
-  xy: 44, 227
+  xy: 128, 280
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 6
 rogue_jumping
   rotate: false
-  xy: 128, 324
+  xy: 171, 328
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 7
 rogue_jumping
   rotate: false
-  xy: 169, 354
+  xy: 669, 444
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 8
 rogue_running
   rotate: false
-  xy: 255, 449
+  xy: 710, 472
   size: 31, 30
   orig: 31, 30
   offset: 0, 0
   index: 2
 rogue_running
   rotate: false
-  xy: 1923, 1484
+  xy: 796, 570
   size: 32, 29
   orig: 32, 29
   offset: 0, 0
   index: 6
 rogue_running
   rotate: false
-  xy: 1, 148
+  xy: 1, 43
   size: 31, 29
   orig: 31, 29
   offset: 0, 0
   index: 3
 rogue_running
   rotate: false
-  xy: 296, 481
+  xy: 837, 601
   size: 31, 28
   orig: 31, 28
   offset: 0, 0
   index: 1
 rogue_running
   rotate: false
-  xy: 128, 293
+  xy: 1923, 1604
   size: 30, 29
   orig: 30, 29
   offset: 0, 0
   index: 5
 rogue_running
   rotate: false
-  xy: 2007, 1564
+  xy: 42, 75
   size: 30, 27
   orig: 30, 27
   offset: 0, 0
   index: 4
 rogue_walling
   rotate: false
-  xy: 255, 415
+  xy: 128, 246
   size: 15, 32
   orig: 15, 32
   offset: 0, 0
   index: -1
 rogue_normal
   rotate: false
-  xy: 1923, 1449
+  xy: 669, 409
   size: 13, 33
   orig: 13, 33
   offset: 0, 0
   index: 0
 grass_body1
   rotate: false
-  xy: 85, 236
+  xy: 2007, 1692
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_body2
   rotate: false
-  xy: 169, 333
+  xy: 212, 337
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_body3
   rotate: false
-  xy: 210, 363
+  xy: 710, 451
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_body4
   rotate: false
-  xy: 288, 460
+  xy: 743, 483
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_body5
   rotate: false
-  xy: 1, 127
+  xy: 796, 549
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_body6
   rotate: false
-  xy: 329, 490
+  xy: 830, 580
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_bottomcorner
   rotate: false
-  xy: 128, 272
+  xy: 1, 22
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_end
   rotate: false
-  xy: 232, 363
+  xy: 870, 610
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbody1
   rotate: false
-  xy: 1, 106
+  xy: 1923, 1583
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbody2
   rotate: false
-  xy: 351, 490
+  xy: 74, 83
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbody3
   rotate: false
-  xy: 1, 85
+  xy: 145, 259
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbody4
   rotate: false
-  xy: 373, 490
+  xy: 684, 423
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbody5
   rotate: false
-  xy: 1, 64
+  xy: 234, 337
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbottombody1
   rotate: false
-  xy: 395, 490
+  xy: 765, 483
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbottombody2
   rotate: false
-  xy: 1, 43
+  xy: 796, 528
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbottombody3
   rotate: false
-  xy: 417, 490
+  xy: 1, 1
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbottombody4
   rotate: false
-  xy: 1, 22
+  xy: 892, 610
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbottombody5
   rotate: false
-  xy: 439, 490
+  xy: 1923, 1562
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_mid
   rotate: false
-  xy: 1, 1
+  xy: 96, 83
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_topcorner
   rotate: false
-  xy: 461, 490
+  xy: 256, 337
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 wallJump
   rotate: false
-  xy: 255, 393
+  xy: 128, 224
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 0
 wallJump
   rotate: false
-  xy: 272, 427
+  xy: 669, 387
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 1
 wallJump
   rotate: false
-  xy: 1923, 1427
+  xy: 818, 548
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 3
 wallJump
   rotate: false
-  xy: 1938, 1462
+  xy: 23, 21
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 4
 walljump
   rotate: false
-  xy: 23, 126
+  xy: 796, 506
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 5
 pauseLayer
   rotate: false
-  xy: 1966, 1552
+  xy: 1966, 1672
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
