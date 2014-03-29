@@ -23,6 +23,7 @@ public class Assets implements Disposable, AssetErrorListener{
 	public WallJumpParticle wallJumpParticle;
 	public Pause pause;
 	public Title title;
+	public Trap trap;
 	
 	private Assets(){
 		
@@ -46,6 +47,7 @@ public class Assets implements Disposable, AssetErrorListener{
 		portal = new Portal(atlas);
 		pause = new Pause(atlas);
 		title = new Title(atlas);
+		trap = new Trap(atlas);
 		wallJumpParticle = new WallJumpParticle(atlas);
 		
 	}
@@ -58,6 +60,13 @@ public class Assets implements Disposable, AssetErrorListener{
 	@Override
 	public void dispose() {
 		
+	}
+	public class Trap{
+		public final AtlasRegion spike;
+		
+		public Trap(TextureAtlas atlas){
+			spike = atlas.findRegion("spikeTrap");
+		}
 	}
 	public class Platform{
 		public final ArrayMap<String, AtlasRegion> platMap; 
@@ -86,10 +95,15 @@ public class Assets implements Disposable, AssetErrorListener{
 	public class Portal{
 		public final Array<AtlasRegion> portal;
 		public final Animation aniPortal;
+		public final Array <AtlasRegion> deathPortal;
+		public final Animation aniDeathPortal;
 		
 		public Portal(TextureAtlas atlas){
 			portal = atlas.findRegions("portal");
 			aniPortal = new Animation(1 / 10f, portal, Animation.LOOP);
+			
+			deathPortal = atlas.findRegions("deathPortal");
+			aniDeathPortal = new Animation(1 / 10f, deathPortal, Animation.LOOP);
 		}
 	}
 	public class Pause{

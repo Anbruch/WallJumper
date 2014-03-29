@@ -1,9 +1,11 @@
 package com.me.walljumper.tools;
 
+import com.me.walljumper.WallJumper;
 import com.me.walljumper.game_objects.AbstractGameObject;
 import com.me.walljumper.game_objects.classes.ManipulatableObject;
 import com.me.walljumper.game_objects.terrain.Platform;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -16,6 +18,7 @@ public class LevelStage {
 	public static Array<AbstractGameObject> platforms = new Array<AbstractGameObject>();
 	public static Array<AbstractGameObject> backPlatforms = new Array<AbstractGameObject>();
 	public static Array<ManipulatableObject> enemyControlledObjects = new Array<ManipulatableObject>();
+
 	public static Array<AbstractGameObject> uncollidableObjects = new Array<AbstractGameObject>();
 	public static ManipulatableObject player;
 	//For objects like the portal
@@ -25,8 +28,7 @@ public class LevelStage {
 	
 	
 	public LevelStage(){
-		levelLoader = new LevelLoader("levels/testLevel" + World.levelNum + ".png");
-		
+		levelLoader = new LevelLoader("levels/" + ("World" + WallJumper.World) + ("/s" + WallJumper.set) + "/l" + WallJumper.level + ".png");
 	}
 	public static void setPlayer(ManipulatableObject player){
 		LevelStage.player = player;
@@ -56,7 +58,10 @@ public class LevelStage {
 		return currentClosest;
 	}
 	public void render(SpriteBatch batch){
-		
+		//render portal
+		for(AbstractGameObject interactableObject: interactables){
+			interactableObject.render(batch);
+		}
 		//Render all of the manipulatable objects
 		for(ManipulatableObject object: LevelStage.playerControlledObjects){
 			object.render(batch);
@@ -73,10 +78,7 @@ public class LevelStage {
 		for(AbstractGameObject platform: LevelStage.platforms){
 			platform.render(batch);
 		}
-		//render portal
-		for(AbstractGameObject interactableObject: interactables){
-			interactableObject.render(batch);
-		}
+		
 		for(AbstractGameObject uncollidable: LevelStage.uncollidableObjects){
 			uncollidable.render(batch);
 		}
@@ -90,7 +92,7 @@ public class LevelStage {
 		backPlatforms.clear();
 		uncollidableObjects.clear();
 		InputManager.inputManager.controllableObjects.clear();
-		
+		player = null;
 		//set current level to null
 		levelLoader.destroy();
 	}

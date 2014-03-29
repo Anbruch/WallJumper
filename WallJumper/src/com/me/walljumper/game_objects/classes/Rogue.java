@@ -27,7 +27,7 @@ public class Rogue extends ManipulatableObject {
 		aniJumping = Assets.instance.rogue.aniJumping;
 		aniWalling = Assets.instance.rogue.aniWalling;
 		
-		position.set(x, y - .3f);
+		position.set(x, y);
 		acceleration.set(0, -20f);
 		moveSpeed = new Vector2(9, 13.5f);
 		state = STATE.GROUNDED;

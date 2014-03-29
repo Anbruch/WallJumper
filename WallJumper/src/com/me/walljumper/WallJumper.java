@@ -15,8 +15,8 @@ import com.me.walljumper.tools.WorldRenderer;
 public class WallJumper extends Game {
 	public static boolean paused;//Game being paused handled in main
 	public static ScreenHelper currentScreen;
-	//Variables for the world
-	
+	public static int World = 0, level = 0;
+	public static int set;
 	
 	
 	
@@ -24,7 +24,6 @@ public class WallJumper extends Game {
 	public void create() {	
 		
 		Assets.instance.init(new AssetManager());//Make the Spritesheet to be cut from later
-		InputManager.inputManager.init();
 		((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu());
 		WorldRenderer.renderer.init();
 		paused = false;
@@ -63,7 +62,25 @@ public class WallJumper extends Game {
 
 	@Override
 	public void resume() {
-		WallJumper.paused = false;
 
+	}
+
+	public static int getNumLevelsForSet(int i) {
+		int count = 0;
+		System.out.println("levels/" + ("World" + WallJumper.World) + ("/s" + i) + "/l" + 0 + ".png");
+
+		while(Gdx.files.internal("levels/" + ("World" + WallJumper.World) + ("/s" + i) + "/l" + count + ".png").exists()){
+			count++;
+		}
+		return count;
+
+	}
+
+	public static int getNumSetsOfLevels() {
+		int count = 0;
+		while(Gdx.files.internal("levels/" + ("World" + WallJumper.World) + ("/s" + count) + "/l" + 0 + ".png").exists()){
+			count++;
+		}
+		return count;
 	}
 }

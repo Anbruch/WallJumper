@@ -1,5 +1,7 @@
 package com.me.walljumper.screens;
 
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 
 public abstract class ScreenHelper implements Screen{
@@ -45,6 +47,10 @@ public abstract class ScreenHelper implements Screen{
 
 	public boolean handleKeyInput(int keycode) {
 		return false;
+	}
+	public void changeScreen(ScreenHelper screen) {
+		((Game) Gdx.app.getApplicationListener()).setScreen(screen);
+
 	}
 
 }

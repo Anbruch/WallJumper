@@ -10,7 +10,7 @@ import com.me.walljumper.Constants;
 public class CameraHelper {
 
 	private static final String TAG = CameraHelper.class.getName();
-	private final float MAX_ZOOM_IN = .25f;
+	private final float MAX_ZOOM_IN = .02f;
 	private final float MAX_ZOOM_OUT = 10.0f;
 	private Vector2 position;
 	private float zoom;
@@ -26,7 +26,7 @@ public class CameraHelper {
 		if(!hasTarget()){
 			return;
 		}
-		
+		System.out.println(target.position);
 		position.x += (target.position.x - position.x) / 10;
 		position.y += (target.position.y - position.y) / 10;
 	/*

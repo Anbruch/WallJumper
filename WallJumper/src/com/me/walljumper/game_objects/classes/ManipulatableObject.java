@@ -1,5 +1,6 @@
 package com.me.walljumper.game_objects.classes;
 
+import com.me.walljumper.Constants;
 import com.me.walljumper.game_objects.AbstractGameObject;
 import com.me.walljumper.game_objects.particles.WallJumpParticle;
 import com.me.walljumper.game_objects.weapons.Weapon;
@@ -14,20 +15,25 @@ import com.me.walljumper.tools.LevelStage;
 public class ManipulatableObject extends AbstractGameObject {
 
 	protected Vector2 moveSpeed;
+	public Vector2 deltaPosition, bhOriginPos;
 	protected VIEW_DIRECTION viewDirection;
 	protected STATE state;
 	protected AbstractGameObject target, collidingPlatformX, collidingPlatformY;
 	protected boolean xCollision;
 	private boolean right, left;
-	private float deltax, deltay;
+	private float deltax, deltay, rotSpeed;
+	public float moveToSomethingOverTime;
 	protected Animation zAttack;
+	
 
 	public Weapon weapon;
-	protected Animation aniJumping, aniWalling;
+	public Animation aniJumping, aniWalling;
 	private MeleeEnemyAI AI;
 	public COMBAT combatState;
 	private boolean wallJumped;
 	private float startFallTime;
+	public float time;
+	public float bhRadius;
 	
 	public enum VIEW_DIRECTION {
 		left, right
@@ -46,7 +52,9 @@ public class ManipulatableObject extends AbstractGameObject {
 		state = STATE.JUMPING;
 		combatState = COMBAT.NEUTRAL;
 		startFallTime = 0;
-		
+		origin.set(dimension.x / 2, dimension.y / 2);
+		rotSpeed = 220;
+		bhOriginPos = new Vector2();
 		
 		wallJumped = false;
 		currentFrameDimension = new Vector2();
@@ -56,6 +64,9 @@ public class ManipulatableObject extends AbstractGameObject {
 
 	public void actOnInputKeyDown(int keycode) {
 		// Movement, same among all characters
+		if(World.controller.blackHoled){
+			return;
+		}
 		switch (keycode) {
 		
 		case Keys.SPACE:
@@ -65,6 +76,8 @@ public class ManipulatableObject extends AbstractGameObject {
 		}
 	}// END OF METHOD
 	public boolean actOnInputTouch(int screenX, int screenY, int pointer, int button){
+		if(World.controller.blackHoled)
+			return false;
 		
 		jump();
 		return false;
@@ -318,7 +331,7 @@ public class ManipulatableObject extends AbstractGameObject {
 			//If you hit the top of the platform,
 			//set state to grounded and velocity to 0, 
 			//and position to the top of the platform
-			if (position.y > collidingPlatformY.position.y
+			if (collidingPlatformY != null && position.y > collidingPlatformY.position.y
 					+ collidingPlatformY.bounds.height) {
 				if((left || right) && xCollision == false)
 					setAnimation(aniRunning);
@@ -335,10 +348,11 @@ public class ManipulatableObject extends AbstractGameObject {
 	}
 	@Override
 	public void update(float deltaTime) {
-		if(AI != null)
-			AI.update();
 		
-		checkCombatState();
+		
+		if(World.controller.blackHoled){
+			return;
+		}
 		super.update(deltaTime);
 		moveX(deltaTime);
 		moveY(deltaTime);
@@ -348,6 +362,24 @@ public class ManipulatableObject extends AbstractGameObject {
 		bounds.setPosition(position);
 		
 
+	}
+
+	//Return false jump to World.contrlr.
+	public boolean continueToHole(float deltaTime) {
+		if(moveToSomethingOverTime > 0){
+
+			rotation += deltaTime * rotSpeed;
+			position.x = bhOriginPos.x + deltaPosition.x * ((time - moveToSomethingOverTime) / time) ;
+			position.y = bhOriginPos.y + deltaPosition.y * ((time - moveToSomethingOverTime) / time);
+			moveToSomethingOverTime -= deltaTime;
+			scale /= 1.03f;
+			super.update(deltaTime);
+			return true;
+		}
+		
+		return false;
+		
+		
 	}
 
 	//This method takes the MO (manipulatable object) and 
@@ -424,6 +456,12 @@ public class ManipulatableObject extends AbstractGameObject {
 				return true;
 			}
 		}
+		
+		for(AbstractGameObject interactable: LevelStage.interactables){
+			if(bounds.overlaps(interactable.bounds)){
+				interactable.interact(this);
+			}
+		}
 		return false;
 
 	}
@@ -437,7 +475,7 @@ public class ManipulatableObject extends AbstractGameObject {
 		currentFrameDimension.set(image.getRegionWidth(),
 				image.getRegionHeight());
 		// Draw
-		batch.draw(image.getTexture(), position.x, position.y, 0, 0,
+		batch.draw(image.getTexture(), position.x, position.y, origin.x, origin.y,
 				currentFrameDimension.x, currentFrameDimension.y, 1, 1,
 				rotation, image.getRegionX(), image.getRegionY(),
 				image.getRegionWidth(), image.getRegionHeight(),
@@ -447,16 +485,16 @@ public class ManipulatableObject extends AbstractGameObject {
 
 	//WALLJUMPER ONLY KINDA IDK
 	public void fallingToDie(float deltaTime) {
-		if(state == STATE.JUMPING){
+		if(state == STATE.JUMPING && velocity.y < 0){
 			startFallTime += deltaTime;
 			
-			if(startFallTime > 3 ){
+			if(startFallTime > 1.5f ){
 				World.controller.destroy();
 				World.controller.init();
 				return;
 			}
 			
-			if(startFallTime > 1.5f && World.controller.cameraHelper.hasTarget()){
+			if(startFallTime > 1f && World.controller.cameraHelper.hasTarget()){
 				World.controller.cameraHelper.setTarget(null);
 				return;
 			}
@@ -466,5 +504,7 @@ public class ManipulatableObject extends AbstractGameObject {
 		}
 		
 	}//End method
+
+	
 
 }

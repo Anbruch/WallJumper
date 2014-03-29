@@ -1,6 +1,7 @@
 package com.me.walljumper.game_objects;
 
 import com.me.walljumper.game_objects.classes.ManipulatableObject.VIEW_DIRECTION;
+import com.me.walljumper.screens.World;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -13,7 +14,7 @@ public abstract class AbstractGameObject{
 	public Vector2 position;
 	public Vector2 dimension;
 	public Vector2 origin;
-	public int scale;
+	public float scale;
 	
 	//Physics
 	public Vector2 acceleration;
@@ -30,6 +31,8 @@ public abstract class AbstractGameObject{
 	public float rotation;
 	public Animation animation;
 	public boolean animationBool;
+	protected boolean flipX;
+	protected boolean flipY;
 	
 	public AbstractGameObject(){
 		position = new Vector2();
@@ -55,6 +58,21 @@ public abstract class AbstractGameObject{
 		terminalVelocity = new Vector2(1, 1);
 		bounds = new Rectangle(x, y, width, height);
 	}
+	public AbstractGameObject(float x, float y, float width, float height,
+			boolean flipX, boolean flipY){
+		position = new Vector2(x, y);
+		dimension = new Vector2(width, height);
+		origin = new Vector2();
+		scale = 1;
+		rotation = 0;
+		
+		acceleration = new Vector2();
+		velocity = new Vector2();
+		terminalVelocity = new Vector2(1, 1);
+		bounds = new Rectangle(x, y, width, height);
+		this.flipX = flipX;
+		this.flipY = flipY;
+	}
 	public void update(float deltaTime){
 		
 		stateTime += deltaTime;
@@ -67,6 +85,9 @@ public abstract class AbstractGameObject{
 		
 		
 		
+		
+	}
+	public void interact(AbstractGameObject couple){
 		
 	}
 	public void setAnimation(Animation animation){
@@ -102,14 +123,14 @@ public abstract class AbstractGameObject{
 		// get correct image and draw the current proportions
 		image = null;
 		image = animation.getKeyFrame(stateTime, looping);
-		currentFrameDimension.set(image.getRegionWidth(),
-				image.getRegionHeight());
+		currentFrameDimension.set(image.getRegionWidth() / 10,
+				image.getRegionHeight() / 10);
 		// Draw
 		batch.draw(image.getTexture(), position.x, position.y, origin.x, origin.y,
 				currentFrameDimension.x, currentFrameDimension.y, 1, 1,
 				rotation, image.getRegionX(), image.getRegionY(),
 				image.getRegionWidth(), image.getRegionHeight(),
-				false, false);
+				flipX, flipY);
 
 	}
 }

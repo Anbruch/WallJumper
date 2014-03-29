@@ -99,7 +99,7 @@ public class Platform extends AbstractGameObject{
 		}
 		
 		//set basic vectors of position, dimension and bounds for collision
-		position.set(x, y - dimension.y * lengthY);
+		position.set(x, y - dimension.y * lengthY + 1.3f);
 
 		bounds.set(position.x, position.y, dimension.x * lengthX ,
 				dimension.y * lengthY - .3f);

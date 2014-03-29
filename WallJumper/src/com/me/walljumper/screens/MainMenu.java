@@ -21,11 +21,6 @@ import com.me.walljumper.tools.Assets;
 
 public class MainMenu extends ScreenHelper{
 	private Stage stage;
-	private Table table;
-	private TextureAtlas atlas;// done
-	 private static final float BUTTON_WIDTH = 300f;
-	    private static final float BUTTON_HEIGHT = 60f;
-	    private static final float BUTTON_SPACING = 10f;
 	private Skin skin;// done
 	//private TweenManager tweenManager;
 	private Image imgBackground, startScreen, title;
@@ -43,16 +38,15 @@ public class MainMenu extends ScreenHelper{
 		stage.act(delta);
 		stage.draw();
 		
-		changeScreen();
+		shouldChangeScreen();
 		
 		
 		twnManager.update(delta);
 	}
 	//Sets screen to the WorldController
-	private void changeScreen() {
+	private void shouldChangeScreen() {
 		if(Gdx.input.isTouched()){
-			((Game) Gdx.app.getApplicationListener()).setScreen(World.controller);
-
+			super.changeScreen(new LevelMenu());
 		}		
 	}
 

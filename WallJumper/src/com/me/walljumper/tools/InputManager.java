@@ -21,9 +21,9 @@ public class InputManager extends InputAdapter {
 		
 	}
 	public void init(){
-		
 		//Will send input to any objects that take it
 		controllableObjects = new Array<ManipulatableObject>();
+
 		Gdx.input.setInputProcessor(this); //Only this object receives player input
 	}
 	public void addObject(ManipulatableObject object){

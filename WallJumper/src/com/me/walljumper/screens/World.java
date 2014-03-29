@@ -1,15 +1,15 @@
 package com.me.walljumper.screens;
 
-import com.me.walljumper.game_objects.classes.ManipulatableObject;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
-import com.me.walljumper.Constants;
+import com.badlogic.gdx.math.Vector2;
 import com.me.walljumper.WallJumper;
+import com.me.walljumper.game_objects.AbstractGameObject;
+import com.me.walljumper.game_objects.classes.ManipulatableObject;
+import com.me.walljumper.game_objects.terrain.Portal;
 import com.me.walljumper.gui.PauseButton;
 import com.me.walljumper.tools.CameraHelper;
 import com.me.walljumper.tools.InputManager;
@@ -21,11 +21,14 @@ public class World extends ScreenHelper {
 	public CameraHelper cameraHelper;
 	public LevelStage levelStage;
 	private ManipulatableObject player;
-	public static int levelNum = 0;
 	public float countDown, levelTimer;
 	public boolean started, finishedDestroy;
-	int alpha;
-
+	public boolean blackHoled;
+	public static Portal portal;
+	public static boolean spiked;
+	
+	private ManipulatableObject from;
+	public AbstractGameObject to;
 
 	private World() {
 
@@ -34,21 +37,27 @@ public class World extends ScreenHelper {
 	public void init() {
 		countDown = 0;
 		finishedDestroy = false;
+		WorldRenderer.renderer.init();
+		spiked = false;
 		cameraHelper = new CameraHelper();// Essentially makes the camera follow
 		levelTimer = 0;
 	
 					
 		InputManager.inputManager.init();
 		levelStage = new LevelStage();
-
+		
 		// have a player variable here
 		player = InputManager.inputManager.getPlayer();
-		cameraHelper.setTarget(player);
+		cameraHelper.setTarget(LevelStage.player);
+		cameraHelper.applyTo(WorldRenderer.renderer.camera);
+		
 		
 		//Set up pause button
 		WallJumper.paused = true;
 		WorldRenderer.renderer.pauseButton = new PauseButton();
+		
 		started = false;
+		blackHoled = false;
 
 	}
 
@@ -61,8 +70,29 @@ public class World extends ScreenHelper {
 
 		levelStage.update(deltaTime);
 		cameraHelper.update(deltaTime);
+		
+		blackHoleMovement(deltaTime);
+		if(spiked){
+			World.controller.destroy();
+			World.controller.init();
+		}
+		
+		
 	}
-
+	private void blackHoleMovement(float deltaTime){
+		if(from != null && !from.continueToHole(deltaTime)){
+			if(portal.isDeathPortal()){
+				World.controller.destroy();
+				World.controller.init();
+				return;
+			}
+			backToLevelMenu();
+		}
+	}
+	public void backToLevelMenu(){
+		World.controller.destroy();
+		super.changeScreen(new LevelMenu());
+	}
 	@Override
 	public void render(float delta) {
 		//MAIN GAME UPDATE CALL
@@ -87,8 +117,10 @@ public class World extends ScreenHelper {
 		
 		Gdx.gl.glClearColor(255, 255, 255, 0); // Default background color
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-		WorldRenderer.renderer.render();
+		
+		if(WorldRenderer.renderer.camera != null){
+			WorldRenderer.renderer.render();
+		}
 
 	}
 	public float getLevelTime(){
@@ -107,6 +139,9 @@ public class World extends ScreenHelper {
 		}
 		return true;
 	}
+	
+	//return false jumps back to handleTouchInput which 
+	//instantle goes to inputManager.touchInput or keyInput
 	private boolean startLevel(){
 		if(!started){
 			levelTimer = 0;
@@ -148,7 +183,7 @@ public class World extends ScreenHelper {
 	public void show() {
 		World.controller.init();
 		WallJumper.currentScreen = this;
-
+		
 	}
 
 	@Override
@@ -168,8 +203,7 @@ public class World extends ScreenHelper {
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
-
+		destroy();
 	}
 
 	public Rectangle getPlayerRect() {
@@ -178,14 +212,38 @@ public class World extends ScreenHelper {
 	}
 
 	public void destroy() {
+		from = null;
+		to = null;
 		cameraHelper.destroy();
 		levelStage.destroy();
 		player = null;
+		WorldRenderer.renderer.destroy();
+		InputManager.inputManager.controllableObjects.clear();
 
 	}
 	//When called, automatically pauses game until countdown < 0
 	public void countDown() {
 		countDown = 1.5f;
+	}
+	public void moveTowards(ManipulatableObject from, AbstractGameObject to, float time) {
+		if(!blackHoled){
+			this.from = from;
+			this.to = to;
+			from.time = time;
+			from.stopMove();
+			from.velocity.set(0,0);
+			from.setAnimation(from.aniJumping);
+			blackHoled = true;
+			from.acceleration.set(0, 0);
+			from.moveToSomethingOverTime = time;
+			from.bhOriginPos = new Vector2(from.position);
+			from.deltaPosition = new Vector2(to.position.x + to.dimension.x / 2 - (from.position.x + from.dimension.x / 2),
+					to.position.y + to.dimension.y / 2  - (from.position.y + from.dimension.y / 2));
+		
+		}
+	}
+	public void nextLevel() {
+		//World.controller.destroy();
 	}
 
 }

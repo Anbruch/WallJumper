@@ -5,343 +5,371 @@ filter: Nearest,Nearest
 repeat: none
 NightSkyNewMoon
   rotate: false
-  xy: 1, 631
+  xy: 1, 663
   size: 1920, 1080
   orig: 1920, 1080
   offset: 0, 0
   index: -1
 Title
   rotate: false
-  xy: 1, 358
+  xy: 1, 390
   size: 666, 271
   orig: 666, 271
   offset: 0, 0
   index: -1
+deathPortal
+  rotate: false
+  xy: 1, 263
+  size: 125, 125
+  orig: 125, 125
+  offset: 0, 0
+  index: 1
+deathPortal
+  rotate: false
+  xy: 669, 536
+  size: 125, 125
+  orig: 125, 125
+  offset: 0, 0
+  index: 2
+deathPortal
+  rotate: false
+  xy: 1, 136
+  size: 125, 125
+  orig: 125, 125
+  offset: 0, 0
+  index: 3
 portal
   rotate: false
-  xy: 1, 231
+  xy: 128, 263
   size: 125, 125
   orig: 125, 125
   offset: 0, 0
   index: 1
 portal
   rotate: false
-  xy: 669, 504
+  xy: 669, 409
   size: 125, 125
   orig: 125, 125
   offset: 0, 0
   index: 2
 portal
   rotate: false
-  xy: 1, 104
+  xy: 796, 536
   size: 125, 125
   orig: 125, 125
   offset: 0, 0
   index: 3
 PauseButton
   rotate: false
-  xy: 1923, 1665
+  xy: 1923, 1697
   size: 41, 46
   orig: 41, 46
   offset: 0, 0
   index: -1
 PlayButton
   rotate: false
-  xy: 128, 310
+  xy: 1, 88
   size: 41, 46
   orig: 41, 46
   offset: 0, 0
   index: -1
 rogue_jumping
   rotate: false
-  xy: 669, 474
+  xy: 128, 233
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 1
 rogue_jumping
   rotate: false
-  xy: 796, 601
+  xy: 255, 360
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 2
 rogue_jumping
   rotate: false
-  xy: 1, 74
+  xy: 796, 506
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 3
 rogue_jumping
   rotate: false
-  xy: 1923, 1635
+  xy: 923, 633
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 4
 rogue_jumping
   rotate: false
-  xy: 1966, 1683
+  xy: 1923, 1667
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 5
 rogue_jumping
   rotate: false
-  xy: 128, 280
+  xy: 1966, 1715
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 6
 rogue_jumping
   rotate: false
-  xy: 171, 328
+  xy: 1, 58
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 7
 rogue_jumping
   rotate: false
-  xy: 669, 444
+  xy: 44, 106
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 8
 rogue_running
   rotate: false
-  xy: 710, 472
+  xy: 128, 201
   size: 31, 30
   orig: 31, 30
   offset: 0, 0
   index: 2
 rogue_running
   rotate: false
-  xy: 796, 570
+  xy: 255, 329
   size: 32, 29
   orig: 32, 29
   offset: 0, 0
   index: 6
 rogue_running
   rotate: false
-  xy: 1, 43
+  xy: 796, 475
   size: 31, 29
   orig: 31, 29
   offset: 0, 0
   index: 3
 rogue_running
   rotate: false
-  xy: 837, 601
+  xy: 169, 233
   size: 31, 28
   orig: 31, 28
   offset: 0, 0
   index: 1
 rogue_running
   rotate: false
-  xy: 1923, 1604
+  xy: 923, 602
   size: 30, 29
   orig: 30, 29
   offset: 0, 0
   index: 5
 rogue_running
   rotate: false
-  xy: 42, 75
+  xy: 296, 361
   size: 30, 27
   orig: 30, 27
   offset: 0, 0
   index: 4
 rogue_walling
   rotate: false
-  xy: 128, 246
+  xy: 1923, 1633
   size: 15, 32
   orig: 15, 32
   offset: 0, 0
   index: -1
 rogue_normal
   rotate: false
-  xy: 669, 409
+  xy: 1, 23
   size: 13, 33
   orig: 13, 33
   offset: 0, 0
   index: 0
 grass_body1
   rotate: false
-  xy: 2007, 1692
+  xy: 837, 515
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_body2
   rotate: false
-  xy: 212, 337
+  xy: 964, 642
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_body3
   rotate: false
-  xy: 710, 451
+  xy: 2007, 1724
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_body4
   rotate: false
-  xy: 743, 483
+  xy: 85, 115
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_body5
   rotate: false
-  xy: 796, 549
+  xy: 128, 180
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_body6
   rotate: false
-  xy: 830, 580
+  xy: 161, 212
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_bottomcorner
   rotate: false
-  xy: 1, 22
+  xy: 255, 308
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_end
   rotate: false
-  xy: 870, 610
+  xy: 796, 454
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbody1
   rotate: false
-  xy: 1923, 1583
+  xy: 202, 242
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbody2
   rotate: false
-  xy: 74, 83
+  xy: 923, 581
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbody3
   rotate: false
-  xy: 145, 259
+  xy: 328, 369
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbody4
   rotate: false
-  xy: 684, 423
+  xy: 1940, 1646
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbody5
   rotate: false
-  xy: 234, 337
+  xy: 16, 37
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbottombody1
   rotate: false
-  xy: 765, 483
+  xy: 859, 515
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbottombody2
   rotate: false
-  xy: 796, 528
+  xy: 986, 642
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbottombody3
   rotate: false
-  xy: 1, 1
+  xy: 128, 159
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbottombody4
   rotate: false
-  xy: 892, 610
+  xy: 255, 287
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_endbottombody5
   rotate: false
-  xy: 1923, 1562
+  xy: 796, 433
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_mid
   rotate: false
-  xy: 96, 83
+  xy: 224, 242
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 grass_topcorner
   rotate: false
-  xy: 256, 337
+  xy: 923, 560
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
+spikeTrap
+  rotate: false
+  xy: 350, 369
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 wallJump
   rotate: false
-  xy: 128, 224
+  xy: 1923, 1611
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 0
 wallJump
   rotate: false
-  xy: 669, 387
+  xy: 1, 1
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 1
 wallJump
   rotate: false
-  xy: 818, 548
+  xy: 150, 179
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 3
 wallJump
   rotate: false
-  xy: 23, 21
+  xy: 161, 190
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 4
 walljump
   rotate: false
-  xy: 796, 506
+  xy: 277, 307
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 5
 pauseLayer
   rotate: false
-  xy: 1966, 1672
+  xy: 669, 398
   size: 16, 9
   orig: 16, 9
   offset: 0, 0

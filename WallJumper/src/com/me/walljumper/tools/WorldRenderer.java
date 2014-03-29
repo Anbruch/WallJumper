@@ -53,6 +53,7 @@ public class WorldRenderer implements Disposable{
 		whiteFont = new BitmapFont(Gdx.files.internal("Font/white.fnt"));
 		blackFont = new BitmapFont(Gdx.files.internal("Font/black.fnt"));
 		
+		resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		
 		
 	}
@@ -141,6 +142,14 @@ public class WorldRenderer implements Disposable{
 					 pauseLayer.getRegionX(), pauseLayer.getRegionY(),
 						pauseLayer.getRegionWidth(), pauseLayer.getRegionHeight(), false, false);
 			
+	}
+	public void destroy(){
+		guiCamera = null;
+		pauseButton = null;
+		camera = null;
+		pauseLayer = null;
+		background_image = null;
+		background_camera = null;
 	}
 	@Override
 	public void dispose() {

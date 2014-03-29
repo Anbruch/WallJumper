@@ -6,40 +6,45 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.me.walljumper.screens.World;
 import com.me.walljumper.tools.Assets;
+import com.me.walljumper.tools.LevelStage;
 
 public class Portal extends AbstractGameObject{
-	
+	private boolean death;
 	public Portal(){
 		
 	}
-	public Portal(float x, float y){
-		init(x, y);
+	public Portal(float x, float y, boolean death){
+		init(x, y, death);
 	}
-	public void init(float x, float y){
+	public void init(float x, float y, boolean death){
 		currentFrameDimension = new Vector2();
-		position.set(x, y - 1);
+		position.set(x, y);
+		this.death = death;
 		
 		
-		aniNormal = Assets.instance.portal.aniPortal;
+		aniNormal = death ? Assets.instance.portal.aniDeathPortal : Assets.instance.portal.aniPortal;
 		setAnimation(aniNormal);
 		
 		image = animation.getKeyFrame(stateTime);
-		scale = 5;
+		scale = death ? 2.5f : 5;
 		dimension.set(image.getRegionWidth() / 100.0f * scale, image.getRegionHeight() / 100.0f * scale);
-		bounds.set(position.x, position.y, dimension.x - dimension.x / 3, dimension.y);
+		bounds.set(position.x + .2f, position.y, dimension.x - .5f, dimension.y - .7f);
+	}
+	@Override
+	public void interact(AbstractGameObject couple){
+		
+		World.controller.moveTowards(LevelStage.player, this, .7f);
+		World.portal = this;
 	}
 	@Override
 	public void update(float deltaTime){
 		super.update(deltaTime);
-		if(bounds.overlaps(World.controller.getPlayerRect())){
-			World.levelNum++;
-			World.controller.destroy();
-			World.controller.init();
-		}
+		
 	}
 	
 	@Override
 	public void render(SpriteBatch batch) {
+		
 		
 		// get correct image and draw the current proportions
 		image = null;
@@ -53,6 +58,9 @@ public class Portal extends AbstractGameObject{
 				image.getRegionWidth(), image.getRegionHeight(),
 				false, false);
 
+	}
+	public boolean isDeathPortal() {
+		return death;
 	}
 
 }
