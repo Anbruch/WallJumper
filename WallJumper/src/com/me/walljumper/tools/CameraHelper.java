@@ -26,7 +26,6 @@ public class CameraHelper {
 		if(!hasTarget()){
 			return;
 		}
-		System.out.println(target.position);
 		position.x += (target.position.x - position.x) / 10;
 		position.y += (target.position.y - position.y) / 10;
 	/*
@@ -72,6 +71,7 @@ public class CameraHelper {
 		camera.position.x = this.position.x;
 		camera.position.y = this.position.y;
 		camera.zoom = zoom;
+		
 		camera.update();
 		
 	}

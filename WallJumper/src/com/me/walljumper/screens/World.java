@@ -2,41 +2,63 @@ package com.me.walljumper.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
+import com.me.walljumper.DirectedGame;
 import com.me.walljumper.WallJumper;
 import com.me.walljumper.game_objects.AbstractGameObject;
 import com.me.walljumper.game_objects.classes.ManipulatableObject;
 import com.me.walljumper.game_objects.terrain.Portal;
+import com.me.walljumper.gui.Button;
 import com.me.walljumper.gui.PauseButton;
+import com.me.walljumper.tools.Assets;
+import com.me.walljumper.tools.AudioManager;
 import com.me.walljumper.tools.CameraHelper;
 import com.me.walljumper.tools.InputManager;
 import com.me.walljumper.tools.LevelStage;
 import com.me.walljumper.tools.WorldRenderer;
 
-public class World extends ScreenHelper {
-	public static World controller = new World();
+public class World  {
+	public static World controller;
 	public CameraHelper cameraHelper;
 	public LevelStage levelStage;
 	private ManipulatableObject player;
 	public float countDown, levelTimer;
-	public boolean started, finishedDestroy;
+	public boolean started;
 	public boolean blackHoled;
 	public static Portal portal;
 	public static boolean spiked;
+	public Button button;
+	private boolean init;
 	
 	private ManipulatableObject from;
 	public AbstractGameObject to;
+	private DirectedGame game;
+	public GameScreen gameScreen;
 
-	private World() {
-
+	public World(DirectedGame game, GameScreen gameScreen) {
+		this.game = game;
+		this.gameScreen = gameScreen;
 	}
 
+	
 	public void init() {
+		
+		//LOAD ASSETS FOR WORLD SCREEN (int WallJumper.World)-
+			Array<String> files = new Array<String>();
+			files.add("images/World" + WallJumper.World + ".pack");
+			Assets.instance.init(new AssetManager(), files, false);
+		
+		//PlayMusic
+		if(!AudioManager.instance.isPlaying())
+			AudioManager.instance.playMusic(Assets.instance.music.world0);
+		
 		countDown = 0;
-		finishedDestroy = false;
 		WorldRenderer.renderer.init();
 		spiked = false;
 		cameraHelper = new CameraHelper();// Essentially makes the camera follow
@@ -48,6 +70,9 @@ public class World extends ScreenHelper {
 		
 		// have a player variable here
 		player = InputManager.inputManager.getPlayer();
+		
+		
+		//Set up camera helper
 		cameraHelper.setTarget(LevelStage.player);
 		cameraHelper.applyTo(WorldRenderer.renderer.camera);
 		
@@ -70,30 +95,34 @@ public class World extends ScreenHelper {
 
 		levelStage.update(deltaTime);
 		cameraHelper.update(deltaTime);
-		
+		WorldRenderer.renderer.weather.update(deltaTime);
 		blackHoleMovement(deltaTime);
+		checkDeath();
+		
+		
+		
+		
+	}
+	private void checkDeath() {
 		if(spiked){
-			World.controller.destroy();
-			World.controller.init();
-		}
+			restartLevel();
+		}		
+	}
+	private void restartLevel(){
 		
-		
+		World.controller.destroy();
+		World.controller.init();
 	}
 	private void blackHoleMovement(float deltaTime){
 		if(from != null && !from.continueToHole(deltaTime)){
 			if(portal.isDeathPortal()){
-				World.controller.destroy();
-				World.controller.init();
+				restartLevel();
 				return;
 			}
-			backToLevelMenu();
+			gameScreen.backToLevelMenu();
 		}
 	}
-	public void backToLevelMenu(){
-		World.controller.destroy();
-		super.changeScreen(new LevelMenu());
-	}
-	@Override
+	
 	public void render(float delta) {
 		//MAIN GAME UPDATE CALL
 		if (!WallJumper.paused && countDown <= 0) {
@@ -104,6 +133,7 @@ public class World extends ScreenHelper {
 			if(Gdx.input.isKeyPressed(Keys.SHIFT_LEFT)){
 				delta *= -1;
 			}
+			if(!blackHoled)
 			levelTimer += delta;
 
 			update(delta);
@@ -123,19 +153,19 @@ public class World extends ScreenHelper {
 		}
 
 	}
+	public InputProcessor getInputProcessor(){
+		return InputManager.inputManager;
+	}
 	public float getLevelTime(){
 		return levelTimer;
 	}
 
-	@Override
 	public void resize(int width, int height) {
-
+		WorldRenderer.renderer.resize(width, height);
 	}
-	@Override
 	public boolean handleKeyInput(int keycode){
 		if(Keys.SPACE == keycode){
 			return startLevel();
-			
 		}
 		return true;
 	}
@@ -155,7 +185,6 @@ public class World extends ScreenHelper {
 		return true;
 	}
 	//Return false to do a return in the method calling this
-	@Override
 	public boolean handleTouchInput(int screenX, int screenY, int pointer, int button) {
 		if(!startLevel()){
 			return false;
@@ -179,35 +208,27 @@ public class World extends ScreenHelper {
 		return true;
 	}
 
-	@Override
 	public void show() {
 		World.controller.init();
-		WallJumper.currentScreen = this;
 		
 	}
 
-	@Override
 	public void hide() {
-		// TODO Auto-generated method stub
-
+		World.controller.destroy();
 	}
 
-	@Override
 	public void pause() {
 
 	}
 
-	@Override
 	public void resume() {
 	}
 
-	@Override
 	public void dispose() {
 		destroy();
 	}
 
 	public Rectangle getPlayerRect() {
-		// TODO Auto-generated method stub
 		return player.bounds;
 	}
 
@@ -215,9 +236,11 @@ public class World extends ScreenHelper {
 		from = null;
 		to = null;
 		cameraHelper.destroy();
+		if(levelStage != null)
 		levelStage.destroy();
 		player = null;
 		WorldRenderer.renderer.destroy();
+		Assets.instance.dispose();
 		InputManager.inputManager.controllableObjects.clear();
 
 	}
@@ -237,13 +260,11 @@ public class World extends ScreenHelper {
 			from.acceleration.set(0, 0);
 			from.moveToSomethingOverTime = time;
 			from.bhOriginPos = new Vector2(from.position);
-			from.deltaPosition = new Vector2(to.position.x + to.dimension.x / 2 - (from.position.x + from.dimension.x / 2),
-					to.position.y + to.dimension.y / 2  - (from.position.y + from.dimension.y / 2));
+			from.deltaPosition = new Vector2(to.position.x + to.dimension.x / 2 - (from.position.x + from.dimension.x / 2) + .5f,
+					to.position.y + to.dimension.y / 2  - (from.position.y + from.dimension.y / 2) + .6f);
 		
 		}
 	}
-	public void nextLevel() {
-		//World.controller.destroy();
-	}
+	
 
 }

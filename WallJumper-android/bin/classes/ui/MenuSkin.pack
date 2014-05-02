@@ -3,7 +3,7 @@ MenuSkin.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-background
+bg0
   rotate: false
   xy: 1, 925
   size: 1920, 1080
@@ -17,6 +17,13 @@ startscreen
   orig: 1280, 720
   offset: 0, 0
   index: -1
+title
+  rotate: false
+  xy: 1283, 652
+  size: 666, 271
+  orig: 666, 271
+  offset: 0, 0
+  index: -1
 button.down
   rotate: false
   xy: 1, 107
@@ -26,7 +33,7 @@ button.down
   index: -1
 button.up
   rotate: false
-  xy: 1283, 829
+  xy: 1283, 556
   size: 246, 94
   orig: 246, 94
   offset: 0, 0
@@ -43,5 +50,17 @@ levelbutton.up
   xy: 1, 1
   size: 94, 104
   orig: 94, 104
+  offset: 0, 0
+  index: -1
+
+MenuSkin2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+bg1
+  rotate: false
+  xy: 1, 1
+  size: 1920, 1080
+  orig: 1920, 1080
   offset: 0, 0
   index: -1

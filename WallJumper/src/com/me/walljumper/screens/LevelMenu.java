@@ -3,85 +3,109 @@ package com.me.walljumper.screens;
 import aurelienribon.tweenengine.TweenManager;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.loaders.AsynchronousAssetLoader;
+import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.utils.Array;
 import com.me.walljumper.Constants;
+import com.me.walljumper.DirectedGame;
 import com.me.walljumper.WallJumper;
+import com.me.walljumper.gui.Button;
+import com.me.walljumper.gui.Image;
+import com.me.walljumper.gui.Scene;
+import com.me.walljumper.gui.SceneAssets;
+import com.me.walljumper.screens.screentransitions.ScreenTransition;
+import com.me.walljumper.screens.screentransitions.ScreenTransitionFade;
 
 public class LevelMenu extends ScreenHelper {
-	private Stage stage;
-	private Skin skin;
-	private Image imgBackground;
+	
+	private Image bg;
+	private Scene scene;
 	private TweenManager twnManager;
-	private Table container;
 
 	
+	public LevelMenu(DirectedGame game) {
+		super(game);
+	}
+
+
+
+
+
 	@Override
 	public void render(float delta) {
 		//Have to do this
 		Gdx.gl.glClearColor(255, 255, 255, 0); // Default background color
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
-		stage.act(delta);
-		stage.draw();
+		
+		scene.update(delta);
+		scene.render();
 		
 		//twnManager.update(delta);
 	}
+	
+
+	
+
 
 	@Override
 	public void resize(int width, int height) {
-		stage.setViewport(Constants.bgViewportWidth, Constants.bgViewportHeight, false);
-
+		scene.resize(width, height);
 	}
 
 	@Override
 	public void show() {
-		stage = new Stage();
-		Gdx.input.setInputProcessor(stage);
+		//LOAD ASSETS FOR UI
+		Array<String> paths = new Array<String>();
+		paths.add("ui/MenuSkin.pack");
+		SceneAssets.instance.dispose();
+		SceneAssets.instance = new SceneAssets(new AssetManager(), paths);
+		
+		scene = new Scene(this, game);
 		WallJumper.currentScreen = this;
 		rebuildStage();
 	}
 
 	private void rebuildStage() {
+		bg = new Image(false, "bg" + WallJumper.World, 0, 0, Constants.bgViewportWidth, Constants.bgViewportHeight);
+		bg.setToWrite("World " + WallJumper.World, Constants.bgViewportWidth / 2 - 10, Constants.bgViewportHeight - 50);
+		scene.add(bg);
 		
-		skin = new Skin(Gdx.files.internal(Constants.SKIN_UI), new TextureAtlas(Constants.TEXTURE_ATLAS_UI));
+		//Make each level button
+		for(int i = 0; i < WallJumper.numButtonsPerPage; i++){
+			float buttonWidth = 94 * 1.7f, buttonHeight = 104 * 1.7f;
+			Button button = new Button(true, "levelbutton.down", "levelbutton.up", 
+					Constants.levelOffsetX + (i % 6) * (buttonWidth+ Constants.buttonSpacingX), 
+					Constants.bgViewportHeight + Constants.levelOffsetY - (i / 6 + 1) * (buttonHeight + Constants.buttonSpacingY),
+					buttonWidth, buttonHeight){
+				@Override
+				public boolean clickRelease() {
+					
+					//Set level to the button's number
+					WallJumper.level = this.getNum();
+					SceneAssets.instance.dispose();
+					ScreenTransitionFade transition = ScreenTransitionFade.init(.75f);
+					game.setScreen(new GameScreen(game), transition);
+					return false;
+				}
+			};
+			button.setNum(i);
+			float textOffsetX = button.getNum()	< 10 ? 8 : 15;
+			button.setToWrite("" + button.getNum(), button.dimension.x / 2 - textOffsetX, button.dimension.y / 2 + 10);
+			scene.add(button);
+		}
 		
-		//Each table of actors
-		container = new Table();
-		container.setFillParent(true);
 		
-		buildBackgroundLayer();
-		buildObjectsLayer();
-		Label label = new Label("World " + WallJumper.World, skin);
-		label.setPosition(Constants.bgViewportWidth / 2 - label.getWidth() / 2, Constants.bgViewportHeight - label.getHeight() - 20);
-		  
-		ScrollPane scroll = new ScrollPane(container);
-		scroll.setFillParent(true);
-		scroll.setFlickScroll(true);
 		
-		scroll.setFlingTime(0.1f);
-		 
-		 
-		 
-         
-        final Table table = new Table();
-        table.setFillParent(true);
-
-        stage.addActor(table);
-		stage.addActor(label);
 		
-        table.add(scroll).fill().expand();
+		
         
 
 		
@@ -120,71 +144,32 @@ public class LevelMenu extends ScreenHelper {
 */
 	}
 		
-	private void buildBackgroundLayer() {
-		imgBackground = new Image(skin, "background");
-		container.addActor(imgBackground);
-		
-	}
-
-	private void buildObjectsLayer() {
-		int maxRow = WallJumper.getNumSetsOfLevels(), rowsMaxCol;
-		
-		for(int i = 0; i < maxRow; i++){
-			rowsMaxCol = WallJumper.getNumLevelsForSet(i);
-			for(int j = 0; j < rowsMaxCol; j++){
-				
-		       final TextButton levelButton = new TextButton("" + j, skin);
-		        levelButton.setPosition(Constants.levelOffsetX + j *
-		        		(Constants.buttonSpacingX + 25 + levelButton.getWidth()), 
-		        		Constants.bgViewportHeight - levelButton.getHeight() - 70 - Constants.levelOffsetY
-		        		- i * (Constants.buttonSpacingY + levelButton.getHeight()));
-		        levelButton.setName("s" + i + "l" + j);
-		        System.out.println(levelButton);
-		        levelButton.addListener(new ChangeListener() {
-					
-					@Override
-					public void changed(ChangeEvent event, Actor actor) {
-						
-						int s = actor.getName().lastIndexOf('s') + 1;
-						WallJumper.set = actor.getName().charAt(s) - 48;
-						
-						int l = actor.getName().lastIndexOf('l') + 1;
-						WallJumper.level = actor.getName().charAt(l) - 48;
-
-						changeScreen(World.controller);
-						
-					}
-					
-						
-				});
-		        container.addActor(levelButton);
-			}
-		}
-		
 	
-	}
 
 	@Override
 	public void hide() {
-		
+		scene.destroy();
+		twnManager = null;
+		scene = null;
 	}
 
 	@Override
 	public void pause() {
 		
 	}
-
+	@Override
+	public InputProcessor getInputProcessor(){
+		return scene;
+	}
 	@Override
 	public void resume() {
 		
 	}
 
-	@Override
-	public void dispose() {
-		stage.dispose();
-	}
+
 	
 	public boolean handleTouchInput(int screenX, int screenY, int pointer, int button){
+
 		return false;
 	}
 

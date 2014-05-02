@@ -9,9 +9,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Disposable;
 import com.me.walljumper.Constants;
 import com.me.walljumper.WallJumper;
+import com.me.walljumper.game_objects.terrain.Weather;
 import com.me.walljumper.gui.PauseButton;
 import com.me.walljumper.screens.World;
-import com.me.walljumper.tools.Assets.Pause;
 
 public class WorldRenderer implements Disposable{
 	private SpriteBatch batch;
@@ -22,6 +22,8 @@ public class WorldRenderer implements Disposable{
 	public TextureRegion background_image, pauseLayer;
 	public PauseButton pauseButton;
 	public BitmapFont whiteFont, blackFont;
+	public Weather weather;
+	public boolean weatherBool;
 	
 	private WorldRenderer(){
 		
@@ -29,6 +31,8 @@ public class WorldRenderer implements Disposable{
 	public void init(){
 		
 		batch = new SpriteBatch();
+		weather = new Weather();
+		weatherBool = false;
 		background_image = Assets.instance.nightSky.nightSky;
 		pauseLayer = Assets.instance.pause.pauseLayer;
 		
@@ -59,18 +63,20 @@ public class WorldRenderer implements Disposable{
 	}
 	public void writeToWorld(String string, float x, float y){
 		
-		
 		whiteFont.draw(batch, string, x, y);
 		
 	}
 	
 	private void renderWorld(){
-		
+		//apply changes to camera, render level
 		World.controller.cameraHelper.applyTo(camera);
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		
 		World.controller.render(batch);
+		//World.controller.button.render(batch);
+		weather.render(batch);
+
 		batch.end();
 		
 	}
@@ -103,6 +109,8 @@ public class WorldRenderer implements Disposable{
 		if(World.controller.started){
 			float curTime = World.controller.getLevelTime();
 			
+			//if curTime > 1, multiplying by 100 will move the the numbers after the decimal to 
+			//front of decimal so they can be placed to the right of the decimal
 			float afterDecimal = curTime > 1 ? (curTime % (int)(curTime)) * 100 : curTime * 100;
 			String time = "" + (int)(curTime) + "." + (int)(afterDecimal);
 			writeToWorld(time, Constants.bgViewportWidth / 2, Constants.bgViewportHeight - 50);
@@ -150,6 +158,7 @@ public class WorldRenderer implements Disposable{
 		pauseLayer = null;
 		background_image = null;
 		background_camera = null;
+		weather.destroy();
 	}
 	@Override
 	public void dispose() {

@@ -29,12 +29,12 @@ public class Rogue extends ManipulatableObject {
 		
 		position.set(x, y);
 		acceleration.set(0, -20f);
-		moveSpeed = new Vector2(9, 13.5f);
+		moveSpeed = new Vector2(9f, 13.5f);
 		state = STATE.GROUNDED;
 		setAnimation(aniNormal);
 		terminalVelocity.set(10, 20);
 		dimension.set(width * scale, height * scale);
-		bounds.set(0, 0, dimension.x, dimension.y);
+		bounds.set(position.x, position.y, dimension.x, dimension.y);
 	}
 	
 	@Override
@@ -71,6 +71,7 @@ public class Rogue extends ManipulatableObject {
 		currentFrameDimension.set((image.getRegionWidth() / 100.0f) * scale,
 				 (image.getRegionHeight()/100.0f) * scale);
 		
+		//Draw him flipped when he's running into walll
 		if(state == STATE.GROUNDED && animation.getPlayMode() == Animation.NORMAL){
 			// Draw
 			batch.draw(image.getTexture(), position.x, position.y, 0, 0,
@@ -81,12 +82,22 @@ public class Rogue extends ManipulatableObject {
 			return;
 		}
 		
-		// Draw
-		batch.draw(image.getTexture(), position.x, position.y, 0, 0,
-				currentFrameDimension.x, currentFrameDimension.y, 1, 1,
-				rotation, image.getRegionX(), image.getRegionY(),
-				image.getRegionWidth(), image.getRegionHeight(),
-				viewDirection == VIEW_DIRECTION.left, false);
+		// Draw him .2 pixels to the right because he looks off the wall
+		//when he's sliding down and he's on the left side of the wall
+
+		if(state == STATE.WALLING && viewDirection == VIEW_DIRECTION.right)
+			batch.draw(image.getTexture(), position.x + .2f, position.y, 0, 0,
+					currentFrameDimension.x, currentFrameDimension.y, 1, 1,
+					rotation, image.getRegionX(), image.getRegionY(),
+					image.getRegionWidth(), image.getRegionHeight(),
+					viewDirection == VIEW_DIRECTION.left, false);
+		else{
+			batch.draw(image.getTexture(), position.x, position.y, 0, 0,
+					currentFrameDimension.x, currentFrameDimension.y, 1, 1,
+					rotation, image.getRegionX(), image.getRegionY(),
+					image.getRegionWidth(), image.getRegionHeight(),
+					viewDirection == VIEW_DIRECTION.left, false);
+		}
 
 	}
 

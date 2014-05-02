@@ -2,10 +2,17 @@ package com.me.walljumper.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.me.walljumper.DirectedGame;
+import com.me.walljumper.WallJumper;
 
 public abstract class ScreenHelper implements Screen{
-
+	protected DirectedGame game;
+	
+	public ScreenHelper(DirectedGame game){
+		this.game = game;
+	}
 	@Override
 	public void render(float delta) {
 		
@@ -28,12 +35,12 @@ public abstract class ScreenHelper implements Screen{
 
 	@Override
 	public void pause() {
-		
+		WallJumper.paused = true;
 	}
 
 	@Override
 	public void resume() {
-		
+		WallJumper.paused = false;
 	}
 
 	@Override
@@ -49,8 +56,10 @@ public abstract class ScreenHelper implements Screen{
 		return false;
 	}
 	public void changeScreen(ScreenHelper screen) {
-		((Game) Gdx.app.getApplicationListener()).setScreen(screen);
+		((DirectedGame) Gdx.app.getApplicationListener()).setScreen(screen);
 
 	}
+
+	public abstract InputProcessor getInputProcessor();
 
 }

@@ -3,32 +3,28 @@ package com.me.walljumper;
 import aurelienribon.tweenengine.TweenAccessor;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.me.walljumper.gui.SceneObject;
 
-public class ActorAccessor implements TweenAccessor<Actor>{
+public class ActorAccessor implements TweenAccessor<SceneObject>{
 
 	
-	public static final int XY = 0, RGB = 1, ALPHA = 2, SCALE = 3;
+	public static final int XY = 0, RGB = 1, ROTATION = 2, SCALE = 3;
 
-	@Override
-	public int getValues(Actor target, int tweenType, float[] returnValues) {
+	
+	public int getValues(SceneObject target, int tweenType, float[] returnValues) {
 		switch(tweenType){
 		case XY:
-			returnValues[0] = target.getX();
-			returnValues[1] = target.getY();
+			returnValues[0] = target.position.x;
+			returnValues[1] = target.position.y;
 			return 2;
-		case RGB:
-			returnValues[0] = target.getColor().r;
-			returnValues[1] = target.getColor().b;
-			returnValues[2] = target.getColor().g;
-			return 3;
-
-		
-		case ALPHA:
-			returnValues[0] = target.getColor().a;
+		case ROTATION:
+			returnValues[0] = target.rotation;
 			return 1;
+		
+	
 		case SCALE: 
-			returnValues[0] = target.getScaleX();
-			returnValues[1] = target.getScaleY();
+			returnValues[0] = target.scaleX;
+			returnValues[1] = target.scaleY;
 			return 2;
 			
 		default:
@@ -37,23 +33,24 @@ public class ActorAccessor implements TweenAccessor<Actor>{
 		}
 	}
 
-	@Override
-	public void setValues(Actor target, int tweenType, float[] newValues) {
+	
+	public void setValues(SceneObject target, int tweenType, float[] newValues) {
 		switch(tweenType){
 		case XY:
-			target.setPosition(newValues[0], newValues[1]);
+			target.position.set(newValues[0], newValues[1]);
 			break;
-		case RGB:
-			target.setColor(newValues[0], newValues[1], newValues[2], target.getColor().a);
+		case ROTATION:
+			target.rotation = newValues[0];
 			break;
-		case ALPHA:
-			target.setColor(target.getColor().r, target.getColor().g, target.getColor().b, newValues[0]);
-			break;
+		
 		case SCALE:
-			target.setScale(newValues[0], newValues[1]);
+			target.scaleX = newValues[0];
+			target.scaleY = newValues[1];
 		default:
 			assert false;
 		}
 	}
+
+
 
 }

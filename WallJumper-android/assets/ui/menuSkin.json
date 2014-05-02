@@ -13,8 +13,9 @@
 	},
 	com.badlogic.gdx.scenes.scene2d.ui.Image:
 	{
-		background: { drawable: background },
+		bg0: { drawable: bg0 },
 		startScreen: { drawable: startscreen },
+		bg1: { drawable: bg1 },
 	},
 	com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 		default: { font: black, fontColor: red }

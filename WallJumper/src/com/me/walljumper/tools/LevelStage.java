@@ -28,7 +28,7 @@ public class LevelStage {
 	
 	
 	public LevelStage(){
-		levelLoader = new LevelLoader("levels/" + ("World" + WallJumper.World) + ("/s" + WallJumper.set) + "/l" + WallJumper.level + ".png");
+		levelLoader = new LevelLoader("levels/" + ("World" + WallJumper.World) + "/l" + WallJumper.level + ".png");
 	}
 	public static void setPlayer(ManipulatableObject player){
 		LevelStage.player = player;

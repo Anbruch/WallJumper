@@ -32,12 +32,12 @@ public class Platform extends AbstractGameObject{
 		endBodyImages = new Array<TextureRegion>();
 		endBottomBodyImages = new Array<TextureRegion>();
 		
-		topCornerFileName = platType.concat("_topcorner");
-		midFileName = platType.concat("_mid");
-		bodyFileName = platType.concat("_body");
-		endBodyFileName = platType.concat("_endbody");
-		bottomCornerFileName = platType.concat("_bottomcorner");
-		endBottomBodyFileName = platType.concat("_endbottombody");
+		topCornerFileName = "topcorner";
+		midFileName = "mid";
+		bodyFileName = "body";
+		endBodyFileName ="endbody";
+		bottomCornerFileName = "bottomcorner";
+		endBottomBodyFileName = "endbottombody";
 		
 		
 		
@@ -65,10 +65,10 @@ public class Platform extends AbstractGameObject{
 		
 		//Pick between end images of the platform
 		if(lengthY > 1){
-			endFileName = platType.concat("_topcorner");
+			endFileName = "topcorner";
 
 		}else{
-			endFileName = platType.concat("_end");
+			endFileName = "end";
 			endImage = Assets.instance.platform.platMap.get(endFileName);
 
 		}

@@ -106,10 +106,13 @@ public class ManipulatableObject extends AbstractGameObject {
 		if(state == STATE.WALLING && !wallJumped && collidingPlatformX != null){
 			velocity.y = moveSpeed.y;
 			wallJumped = true;
+			
+			//Draws when he's jumping right from the wall
 			if(viewDirection == VIEW_DIRECTION.right){
 				LevelStage.uncollidableObjects.add(new WallJumpParticle(position.x, position.y - (dimension.y/2), 1, 1, false));
+			//Draws when he's jumping left from the wall
 			} else {
-				LevelStage.uncollidableObjects.add(new WallJumpParticle(position.x - .1f, position.y - (dimension.y/2), 1, 1, true));
+				LevelStage.uncollidableObjects.add(new WallJumpParticle(position.x + .1f, position.y - (dimension.y/2), 1, 1, true));
 			}
 		}
 		
@@ -286,8 +289,7 @@ public class ManipulatableObject extends AbstractGameObject {
 		}else{
 			xCollision = true;
 		}
-		
-
+	
 		
 		// so you run when you land from jump
 		if (animation != aniRunning && state == STATE.GROUNDED
@@ -457,6 +459,7 @@ public class ManipulatableObject extends AbstractGameObject {
 			}
 		}
 		
+		//Collide with (spikes, portals)
 		for(AbstractGameObject interactable: LevelStage.interactables){
 			if(bounds.overlaps(interactable.bounds)){
 				interactable.interact(this);
@@ -504,7 +507,4 @@ public class ManipulatableObject extends AbstractGameObject {
 		}
 		
 	}//End method
-
-	
-
 }
