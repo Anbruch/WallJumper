@@ -2,6 +2,7 @@ package com.me.walljumper.game_objects;
 
 import com.me.walljumper.game_objects.classes.ManipulatableObject.VIEW_DIRECTION;
 import com.me.walljumper.screens.World;
+import com.me.walljumper.tools.WorldRenderer;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -33,6 +34,7 @@ public abstract class AbstractGameObject{
 	public boolean animationBool;
 	protected boolean flipX;
 	protected boolean flipY;
+	protected boolean onScreen;
 	
 	public AbstractGameObject(){
 		position = new Vector2();
@@ -78,6 +80,8 @@ public abstract class AbstractGameObject{
 		stateTime += deltaTime;
 		stateTime = stateTime > 0 ? stateTime : 0;
 		
+		onScreen = World.controller.cameraHelper.onScreen(this) ? true : false;
+			
 		updateMotionX(deltaTime);
 		updateMotionY(deltaTime);
 		
@@ -126,6 +130,7 @@ public abstract class AbstractGameObject{
 		currentFrameDimension.set(image.getRegionWidth() / 10,
 				image.getRegionHeight() / 10);
 		// Draw
+		if(onScreen)
 		batch.draw(image.getTexture(), position.x, position.y, origin.x, origin.y,
 				currentFrameDimension.x, currentFrameDimension.y, 1, 1,
 				rotation, image.getRegionX(), image.getRegionY(),

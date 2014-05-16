@@ -29,7 +29,7 @@ public class Scene implements InputProcessor {
 	
 	/*****HOW TO USE THIS SCENE*****
 	 * 1st step, create a Scene object.
-	 * 
+	 * 2nd step, add to children
 	 */
 	
 	public Scene(ScreenHelper screenHelper, DirectedGame game){

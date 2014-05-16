@@ -28,7 +28,7 @@ public class LevelStage {
 	
 	
 	public LevelStage(){
-		levelLoader = new LevelLoader("levels/" + ("World" + WallJumper.World) + "/l" + WallJumper.level + ".png");
+		levelLoader = new LevelLoader("levels/" + ("World" + WallJumper.WorldNum) + "/l" + WallJumper.level + ".png");
 	}
 	public static void setPlayer(ManipulatableObject player){
 		LevelStage.player = player;
@@ -107,7 +107,13 @@ public class LevelStage {
 		for(ManipulatableObject object: LevelStage.enemyControlledObjects){
 			object.update(deltaTime);
 		}
-		
+		for(int i = LevelStage.backPlatforms.size - 1; i >= 0; i--){
+			backPlatforms.get(i).update(deltaTime);
+		}
+		//render all of the terrain
+		for(AbstractGameObject platform: LevelStage.platforms){
+			platform.update(deltaTime);
+		}
 		for(AbstractGameObject interactableObject: interactables){
 			interactableObject.update(deltaTime);
 		}

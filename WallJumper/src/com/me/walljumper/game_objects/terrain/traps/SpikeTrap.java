@@ -26,21 +26,26 @@ public class SpikeTrap extends AbstractGameObject{
 			position = new Vector2(x - 1, y);
 			bounds = new Rectangle(position.x + .4f, position.y + .4f, lengthX * dimension.x + dimension.x - .8f, dimension.y - .8f);
 			break;
+		//Spike is below
 		case BOT:
 			position = new Vector2(x - 1, y + .3f);
 			flipY = true;
 			bounds = new Rectangle(position.x + .2f, position.y, lengthX * dimension.x + dimension.x - .2f, dimension.y);
 			break;
-		case LEFT:
-			position = new Vector2(x, y - lengthY * dimension.y + 1.25f);
-			rotation = 90;
-			flipY = true;
-			bounds = new Rectangle(position.x, position.y + .2f, lengthX - .35f, dimension.y * lengthY - .2f);
-			break;
+			
+		//Spike is right of the platform
 		case RIGHT:
 			position = new Vector2(x, y - lengthY * dimension.y + 1.25f);
 			rotation = 90;
-			bounds = new Rectangle(position.x - .35f, position.y + .2f, lengthX, dimension.y * lengthY - .2f);
+			flipY = true;
+			bounds = new Rectangle(position.x, position.y + .2f, lengthX - .45f, dimension.y * lengthY - .2f);
+			break;
+		
+		//Spike is left of the platform
+		case LEFT:
+			position = new Vector2(x, y - lengthY * dimension.y + 1.25f);
+			rotation = 90;
+			bounds = new Rectangle(position.x - .1f, position.y + .2f, lengthX, dimension.y * lengthY - .2f);
 			break;
 		}
 		

@@ -13,15 +13,20 @@
 	},
 	com.badlogic.gdx.scenes.scene2d.ui.Image:
 	{
-		background: { drawable: "background" },
-		startScreen: { drawable: "startscreen" },
+		bg0: { drawable: bg0 },
+		startScreen: { drawable: startscreen },
+		bg1: { drawable: bg1 },
 	},
 	com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
-		default: { font: white, fontColor: white }
+		default: { font: black, fontColor: red }
 	},
 	com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
-		default: { up: button.up, down: button.down, font: black }
-	
+		default: { up: levelbutton.up, down: levelbutton.down, font: black }
+		
+	},
+	com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle: {
+		default: { hScrollKnob: button.up, vScrollKnob: button.up }
 	}
+	
 	
 }

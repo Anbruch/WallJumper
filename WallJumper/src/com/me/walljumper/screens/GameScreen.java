@@ -9,6 +9,7 @@ import com.me.walljumper.WallJumper;
 import com.me.walljumper.screens.screentransitions.ScreenTransition;
 import com.me.walljumper.screens.screentransitions.ScreenTransitionFade;
 import com.me.walljumper.screens.screentransitions.ScreenTransitionSlice;
+import com.me.walljumper.tools.AudioManager;
 import com.me.walljumper.tools.InputManager;
 
 public class GameScreen extends ScreenHelper {
@@ -66,12 +67,27 @@ public class GameScreen extends ScreenHelper {
 		
 		return World.controller.handleKeyInput(keycode);
 	}
+	
+	//CHANGE LEVEL METHODS
+	public void restartLevel(){
+		
+		World.controller.destroy();
+		World.controller.init();
+	}
+	
 	public void backToLevelMenu(){
-		ScreenTransition transition = ScreenTransitionSlice.init(1f, ScreenTransitionSlice.DOWN, 10,
+		AudioManager.instance.stopMusic();
+		ScreenTransition transition = ScreenTransitionSlice.init(.6f, ScreenTransitionSlice.UP_DOWN, 10,
 				Interpolation.pow2Out);
 		game.setScreen(new LevelMenu(game), transition);
-
 	}
+	
+	public void nextLevel(){
+		WallJumper.level++;
+		World.controller.destroy();
+		World.controller.init();
+	}
+	
 	public void changeScreen(ScreenHelper screen) {
 		((Game) Gdx.app.getApplicationListener()).setScreen(screen);
 	}

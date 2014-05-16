@@ -36,16 +36,12 @@ public class Portal extends AbstractGameObject{
 		World.controller.moveTowards(LevelStage.player, this, .7f);
 		World.portal = this;
 	}
-	@Override
-	public void update(float deltaTime){
-		super.update(deltaTime);
-		
-	}
+
 	
 	@Override
 	public void render(SpriteBatch batch) {
 		
-		
+		if(onScreen){
 		// get correct image and draw the current proportions
 		image = null;
 		image = animation.getKeyFrame(stateTime, looping);
@@ -57,6 +53,7 @@ public class Portal extends AbstractGameObject{
 				rotation, image.getRegionX(), image.getRegionY(),
 				image.getRegionWidth(), image.getRegionHeight(),
 				false, false);
+		}
 
 	}
 	public boolean isDeathPortal() {

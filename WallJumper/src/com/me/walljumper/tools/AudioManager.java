@@ -4,7 +4,7 @@ import com.badlogic.gdx.audio.Music;
 
 public class AudioManager {
 	
-	public static final AudioManager instance = new AudioManager();
+	public static AudioManager instance = new AudioManager();
 	private Music playingMusic;
 	
 	private AudioManager(){
@@ -21,7 +21,10 @@ public class AudioManager {
 		
 	}
 	public void stopMusic(){
-		if(playingMusic != null)
+		System.out.println("theousntu");
+		if(playingMusic != null){
 			playingMusic.stop();
+			playingMusic = null;
+		}
 	}
 }

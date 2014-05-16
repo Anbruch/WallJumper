@@ -31,15 +31,16 @@ public class World  {
 	public float countDown, levelTimer;
 	public boolean started;
 	public boolean blackHoled;
+	public boolean failedLoad;
 	public static Portal portal;
 	public static boolean spiked;
 	public Button button;
-	private boolean init;
 	
 	private ManipulatableObject from;
 	public AbstractGameObject to;
 	private DirectedGame game;
 	public GameScreen gameScreen;
+	public boolean renderAll;
 
 	public World(DirectedGame game, GameScreen gameScreen) {
 		this.game = game;
@@ -48,25 +49,28 @@ public class World  {
 
 	
 	public void init() {
-		
-		//LOAD ASSETS FOR WORLD SCREEN (int WallJumper.World)-
-			Array<String> files = new Array<String>();
-			files.add("images/World" + WallJumper.World + ".pack");
-			Assets.instance.init(new AssetManager(), files, false);
-		
+	
 		//PlayMusic
 		if(!AudioManager.instance.isPlaying())
 			AudioManager.instance.playMusic(Assets.instance.music.world0);
 		
 		countDown = 0;
-		WorldRenderer.renderer.init();
 		spiked = false;
-		cameraHelper = new CameraHelper();// Essentially makes the camera follow
 		levelTimer = 0;
-	
-					
+		
+		//Init other necessary classes
+		WorldRenderer.renderer.init();
+		cameraHelper = new CameraHelper();// Essentially makes the camera follow
+		cameraHelper.setZoom(.65f);
+		cameraHelper.transitionToZoom(1.5f, .5f);
 		InputManager.inputManager.init();
 		levelStage = new LevelStage();
+		
+		
+		if(failedLoad){
+			failedLoad = false;
+			return;
+		}
 		
 		// have a player variable here
 		player = InputManager.inputManager.getPlayer();
@@ -75,14 +79,16 @@ public class World  {
 		//Set up camera helper
 		cameraHelper.setTarget(LevelStage.player);
 		cameraHelper.applyTo(WorldRenderer.renderer.camera);
-		
+		cameraHelper.setPosition(LevelStage.player.position.x, LevelStage.player.position.y);
 		
 		//Set up pause button
 		WallJumper.paused = true;
 		WorldRenderer.renderer.pauseButton = new PauseButton();
 		
+		levelStage.update(0);
 		started = false;
 		blackHoled = false;
+		renderAll = true;
 
 	}
 
@@ -98,25 +104,18 @@ public class World  {
 		WorldRenderer.renderer.weather.update(deltaTime);
 		blackHoleMovement(deltaTime);
 		checkDeath();
-		
-		
-		
-		
 	}
+	
 	private void checkDeath() {
 		if(spiked){
-			restartLevel();
+			gameScreen.restartLevel();
 		}		
 	}
-	private void restartLevel(){
-		
-		World.controller.destroy();
-		World.controller.init();
-	}
+	
 	private void blackHoleMovement(float deltaTime){
 		if(from != null && !from.continueToHole(deltaTime)){
 			if(portal.isDeathPortal()){
-				restartLevel();
+				gameScreen.restartLevel();
 				return;
 			}
 			gameScreen.backToLevelMenu();
@@ -126,7 +125,7 @@ public class World  {
 	public void render(float delta) {
 		//MAIN GAME UPDATE CALL
 		if (!WallJumper.paused && countDown <= 0) {
-			
+			renderAll = false;
 			delta = delta < .25f ? delta : .25f;
 			
 			
@@ -176,6 +175,8 @@ public class World  {
 		if(!started){
 			levelTimer = 0;
 			started = true;
+			cameraHelper.transitionToZoom(.58f, .9f);
+			countDown(.9f);
 			WallJumper.paused = (WallJumper.paused == true) ? false : true;
 			WorldRenderer.renderer.pauseButton.toggle();
 			LevelStage.player.moveRight();
@@ -196,11 +197,11 @@ public class World  {
 			WallJumper.paused = (WallJumper.paused == true) ? false : true;
 			WorldRenderer.renderer.pauseButton.toggle();
 			return false;
-			// If paused, don't send touch inputs
+			
+		// If paused, don't send touch inputs
 		} else if (WallJumper.paused){
 			WallJumper.paused = false;
 			WorldRenderer.renderer.pauseButton.toggle();
-
 			return false;
 		
 		}
@@ -226,6 +227,13 @@ public class World  {
 
 	public void dispose() {
 		destroy();
+		levelStage = null;
+		InputManager.inputManager = null;
+		AudioManager.instance.stopMusic();
+		AudioManager.instance = null;
+		Assets.instance.dispose();
+		Assets.instance = null;
+		WorldRenderer.renderer = null;
 	}
 
 	public Rectangle getPlayerRect() {
@@ -240,13 +248,12 @@ public class World  {
 		levelStage.destroy();
 		player = null;
 		WorldRenderer.renderer.destroy();
-		Assets.instance.dispose();
 		InputManager.inputManager.controllableObjects.clear();
 
 	}
 	//When called, automatically pauses game until countdown < 0
-	public void countDown() {
-		countDown = 1.5f;
+	public void countDown(float time) {
+		countDown = time;
 	}
 	public void moveTowards(ManipulatableObject from, AbstractGameObject to, float time) {
 		if(!blackHoled){
@@ -265,6 +272,4 @@ public class World  {
 		
 		}
 	}
-	
-
 }

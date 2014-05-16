@@ -28,8 +28,8 @@ public class Rogue extends ManipulatableObject {
 		aniWalling = Assets.instance.rogue.aniWalling;
 		
 		position.set(x, y);
-		acceleration.set(0, -20f);
-		moveSpeed = new Vector2(9f, 13.5f);
+		acceleration.set(0, -25f);
+		moveSpeed = new Vector2(16f, 16f);
 		state = STATE.GROUNDED;
 		setAnimation(aniNormal);
 		terminalVelocity.set(10, 20);
@@ -39,6 +39,7 @@ public class Rogue extends ManipulatableObject {
 	
 	@Override
 	protected void ensureCorrectCollisionBounds() {
+		
 		bounds.y = position.y;
 		bounds.x = position.x;
 		
@@ -55,13 +56,6 @@ public class Rogue extends ManipulatableObject {
 		
 	}
 	
-	@Override
-	public void update(float deltaTime){
-		
-		super.update(deltaTime);
-		
-	
-	}
 	
 	@Override
 	public void render(SpriteBatch batch) {

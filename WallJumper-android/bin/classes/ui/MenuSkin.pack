@@ -52,6 +52,13 @@ levelbutton.up
   orig: 94, 104
   offset: 0, 0
   index: -1
+homeButton
+  rotate: false
+  xy: 249, 164
+  size: 38, 37
+  orig: 38, 37
+  offset: 0, 0
+  index: -1
 
 MenuSkin2.png
 format: RGBA8888

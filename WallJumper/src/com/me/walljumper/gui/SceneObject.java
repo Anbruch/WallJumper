@@ -9,9 +9,9 @@ import com.me.walljumper.Constants;
 import com.me.walljumper.tools.Assets;
 
 public abstract class SceneObject {
-	protected Rectangle bounds;
+	public Rectangle bounds;
 	protected TextureRegion cur, up, down;
-	public Vector2 position;
+	public Vector2 position, afterTwnPos;
 	public Vector2 dimension;
 	protected int number;
 	protected boolean interactable;
@@ -33,6 +33,9 @@ public abstract class SceneObject {
 		dimension = new Vector2(width, height);
 		bounds = new Rectangle(position.x, position.y, width, height);
 		
+	}
+	public void setAfterTwn(Vector2 afterTwnPos){
+		this.afterTwnPos = afterTwnPos;
 	}
 	public SceneObject(boolean clickable, String image, float x, float y, float width, float height){
 		interactable = clickable;

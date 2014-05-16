@@ -492,8 +492,7 @@ public class ManipulatableObject extends AbstractGameObject {
 			startFallTime += deltaTime;
 			
 			if(startFallTime > 1.5f ){
-				World.controller.destroy();
-				World.controller.init();
+				World.controller.spiked = true;
 				return;
 			}
 			

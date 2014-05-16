@@ -50,6 +50,7 @@ public class LevelLoader {
 		try{
 		pixmap = new Pixmap(Gdx.files.internal(fileName));
 		}catch(Exception e){
+			World.controller.failedLoad = true;
 			World.controller.gameScreen.backToLevelMenu();
 			return;
 		}
@@ -63,7 +64,14 @@ public class LevelLoader {
 
 				// Get color of current pixel as 32-bit RGBA value
 				int currentPixel = pixmap.getPixel(pixelX, pixelY);
+				
+				if(BLOCK_TYPE.EMPTY.sameColor(currentPixel)){
+					continue;
+				}
 				if (BLOCK_TYPE.PLATFORM.sameColor(currentPixel) || BLOCK_TYPE.PLATFORM_START_DOWN_RIGHT.sameColor(currentPixel)) {
+					
+					
+					//S
 					if (isStartOfNewObject(pixelX, pixelY, BLOCK_TYPE.PLATFORM.color, BLOCK_TYPE.PLATFORM_START_RIGHT_DOWN.color) || BLOCK_TYPE.PLATFORM_START_DOWN_RIGHT.sameColor(currentPixel)) {
 						boolean putInFront = nextIsSameColor(pixelX + 1, pixelY, BLOCK_TYPE.PLATFORM.color);
 						
@@ -142,10 +150,10 @@ public class LevelLoader {
 							LevelStage.interactables.add(new SpikeTrap((float)(pixelX), (float)(baseHeight), lengthX, lengthY, 1f, 1f, SIDE.TOP));
 						//LEFT
 						}else if(nextIsSameColor(pixelX + 1, pixelY, BLOCK_TYPE.PLATFORM.color)){
-							LevelStage.interactables.add(new SpikeTrap((float)(pixelX), (float)(baseHeight), lengthX, lengthY, 1f, 1f, SIDE.RIGHT));
+							LevelStage.interactables.add(new SpikeTrap((float)(pixelX), (float)(baseHeight), lengthX, lengthY, 1f, 1f, SIDE.LEFT));
 						//RIGHT
 						}else if(nextIsSameColor(pixelX - 1, pixelY, BLOCK_TYPE.PLATFORM.color)){
-							LevelStage.interactables.add(new SpikeTrap((float)(pixelX), (float)(baseHeight), lengthX, lengthY, 1f, 1f, SIDE.LEFT));
+							LevelStage.interactables.add(new SpikeTrap((float)(pixelX), (float)(baseHeight), lengthX, lengthY, 1f, 1f, SIDE.RIGHT));
 
 						}else{
 							LevelStage.interactables.add(new Portal(pixelX, baseHeight, true));

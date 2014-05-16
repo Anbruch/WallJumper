@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Disposable;
 import com.me.walljumper.Constants;
 import com.me.walljumper.WallJumper;
+import com.me.walljumper.game_objects.AbstractGameObject;
 import com.me.walljumper.game_objects.terrain.Weather;
 import com.me.walljumper.gui.PauseButton;
 import com.me.walljumper.screens.World;
@@ -59,6 +60,9 @@ public class WorldRenderer implements Disposable{
 		
 		resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		
+		
+	}
+	public void onScreen(AbstractGameObject obj){
 		
 	}
 	public void writeToWorld(String string, float x, float y){
@@ -128,7 +132,7 @@ public class WorldRenderer implements Disposable{
 		camera.viewportWidth = (Constants.viewportHeight / (float)height) * (float)width;
 		camera.update();
 		
-		background_camera.viewportHeight = Constants.bgViewportHeight;
+		background_camera.viewportHeight =  Constants.bgViewportHeight;
 		background_camera.viewportWidth = (Constants.bgViewportHeight / (float) height) * (float)width;
 		background_camera.position.set(background_camera.viewportWidth / 2, background_camera.viewportHeight / 2, 100);
 		background_camera.update();
@@ -146,7 +150,7 @@ public class WorldRenderer implements Disposable{
 	}
 	private void renderTransparency() {
 		if(WallJumper.paused)
-			batch.draw(pauseLayer.getTexture(), 0, 0, Constants.bgViewportWidth,  Constants.bgViewportHeight,
+			batch.draw(pauseLayer.getTexture(), 0, 0, guiCamera.viewportWidth,  guiCamera.viewportHeight,
 					 pauseLayer.getRegionX(), pauseLayer.getRegionY(),
 						pauseLayer.getRegionWidth(), pauseLayer.getRegionHeight(), false, false);
 			

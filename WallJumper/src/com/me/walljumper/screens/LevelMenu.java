@@ -22,10 +22,12 @@ import com.me.walljumper.gui.Scene;
 import com.me.walljumper.gui.SceneAssets;
 import com.me.walljumper.screens.screentransitions.ScreenTransition;
 import com.me.walljumper.screens.screentransitions.ScreenTransitionFade;
+import com.me.walljumper.tools.Assets;
 
 public class LevelMenu extends ScreenHelper {
 	
 	private Image bg;
+	private Button backButton;
 	private Scene scene;
 	private TweenManager twnManager;
 
@@ -34,7 +36,18 @@ public class LevelMenu extends ScreenHelper {
 		super(game);
 	}
 
-
+	@Override
+	public void show() {
+		//LOAD ASSETS FOR UI
+		Array<String> paths = new Array<String>();
+		paths.add("ui/MenuSkin.pack");
+		SceneAssets.instance.dispose();
+		SceneAssets.instance = new SceneAssets(new AssetManager(), paths);
+		
+		scene = new Scene(this, game);
+		WallJumper.currentScreen = this;
+		rebuildStage();
+	}
 
 
 
@@ -60,22 +73,13 @@ public class LevelMenu extends ScreenHelper {
 		scene.resize(width, height);
 	}
 
-	@Override
-	public void show() {
-		//LOAD ASSETS FOR UI
-		Array<String> paths = new Array<String>();
-		paths.add("ui/MenuSkin.pack");
-		SceneAssets.instance.dispose();
-		SceneAssets.instance = new SceneAssets(new AssetManager(), paths);
-		
-		scene = new Scene(this, game);
-		WallJumper.currentScreen = this;
-		rebuildStage();
-	}
+	
 
 	private void rebuildStage() {
-		bg = new Image(false, "bg" + WallJumper.World, 0, 0, Constants.bgViewportWidth, Constants.bgViewportHeight);
-		bg.setToWrite("World " + WallJumper.World, Constants.bgViewportWidth / 2 - 10, Constants.bgViewportHeight - 50);
+		
+		//Make background image 
+		bg = new Image(false, "bg" + WallJumper.WorldNum, -60 , 0, Constants.bgViewportWidth + 120, Constants.bgViewportHeight);
+		bg.setToWrite("World " + WallJumper.WorldNum, Constants.bgViewportWidth / 2 - 60, Constants.bgViewportHeight - 50);
 		scene.add(bg);
 		
 		//Make each level button
@@ -96,56 +100,31 @@ public class LevelMenu extends ScreenHelper {
 					return false;
 				}
 			};
-			button.setNum(i);
+			button.setNum(i + 1);
+			
+			//Setup the text  for each button
 			float textOffsetX = button.getNum()	< 10 ? 8 : 15;
 			button.setToWrite("" + button.getNum(), button.dimension.x / 2 - textOffsetX, button.dimension.y / 2 + 10);
 			scene.add(button);
 		}
-		
-		
-		
-		
-		
-        
-
+		//Making back button
+		backButton = new Button(true, "homeButton", "homeButton", 0,
+				Constants.bgViewportHeight - 75, 77, 75) {
+			@Override
+			public boolean clickRelease() {
+				
+				//Transition back to the WorldScreen
+				
+				//Delete this world's assets
+				Assets.instance.dispose();
+				ScreenTransitionFade transition = ScreenTransitionFade.init(.75f);
+				game.setScreen(new WorldScreen(game), transition);
+				return false;
+			}
+		};
+		scene.add(backButton);
 		
 	}
-	public void getLevelButton(int level) {
-		  /*  Button button = new Button(skin);
-		     
-		    // Create the label to show the level number
-		    Label label = new Label(Integer.toString(level), skin);
-		    label.setFontScale(2f);
-		    label.setAlignment(Align.center);      
-		     
-		    // Stack the image and the label at the top of our button
-		    button.stack(new Image(skin.getDrawable("top")), label).expand().fill();
-		 
-		    // Randomize the number of stars earned for demonstration purposes
-		    //int stars = MathUtils.random(-1, +3);
-		    Table starTable = new Table();
-		    starTable.defaults().pad(5);
-		    if (stars >= 0) {
-		        for (int star = 0; star < 3; star++) {
-		            if (stars > star) {
-		                starTable.add(new Image(skin.getDrawable("star-filled"))).width(20).height(20);
-		            } else {
-		                starTable.add(new Image(skin.getDrawable("star-unfilled"))).width(20).height(20);
-		            }
-		        }          
-		    }
-		     
-		    button.row();
-		    button.add(starTable).height(30);
-		     
-		    button.setName("Level" + Integer.toString(level));
-		    button.addListener(levelClickListener);    
-		    return button;
-*/
-	}
-		
-	
-
 	@Override
 	public void hide() {
 		scene.destroy();
@@ -166,8 +145,6 @@ public class LevelMenu extends ScreenHelper {
 		
 	}
 
-
-	
 	public boolean handleTouchInput(int screenX, int screenY, int pointer, int button){
 
 		return false;

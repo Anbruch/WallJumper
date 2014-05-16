@@ -59,7 +59,7 @@ public class SceneAssets implements Disposable, AssetErrorListener {
 			worldScreenAssetFiles.add("levelbutton.down");
 			worldScreenAssetFiles.add("levelbutton.up");
 			worldScreenAssetFiles.add("title");
-			
+			worldScreenAssetFiles.add("homeButton");
 			
 			//builds the ArrayMap of ui objects 
 			uiMap = new ArrayMap<String, AtlasRegion>();

@@ -60,17 +60,23 @@ public class WorldScreen extends ScreenHelper {
 	}
 
 	private void rebuildStage() {
-		Image bg = new Image(true, "bg" + WallJumper.World,
+		Image bg = new Image(true, "bg" + WallJumper.WorldNum,
 				50, 100, Constants.bgViewportWidth / 2, Constants.bgViewportHeight / 2){
 			@Override
 			public boolean clickRelease(){
 				this.interactable = false;
 				ScreenTransitionFade transition = ScreenTransitionFade.init(.75f);
 				game.setScreen(new LevelMenu(game), transition);
+				
+				//LOAD ASSETS FOR WORLD SCREEN (int WallJumper.World)-
+				Array<String> files = new Array<String>();
+				files.add("images/World" + WallJumper.WorldNum + ".pack");
+				Assets.instance.init(new AssetManager(), files, false);
 				return false;
 			}
 			
 		};
+		bg.setToWrite("TAP ME", bg.dimension.x / 2 - 20,  bg.dimension.y / 2);
 		scene.add(bg);
 		
 			
@@ -81,7 +87,7 @@ public class WorldScreen extends ScreenHelper {
 				public boolean clickRelease(){
 					//Increment World and reload the world Screen
 					
-					WallJumper.World = WallJumper.World < WallJumper.numWorlds - 1 ? WallJumper.World + 1 : 0;
+					WallJumper.WorldNum = WallJumper.WorldNum < WallJumper.numWorlds - 1 ? WallJumper.WorldNum + 1 : 0;
 					ScreenTransitionFade transition = ScreenTransitionFade.init(.75f);
 					game.setScreen(new WorldScreen(game), transition);
 					return false;

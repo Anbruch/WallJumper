@@ -1,11 +1,11 @@
 package com.me.walljumper.tools;
 
-import com.me.walljumper.game_objects.AbstractGameObject;
-
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.me.walljumper.Constants;
+import com.me.walljumper.game_objects.AbstractGameObject;
 
 public class CameraHelper {
 
@@ -14,31 +14,51 @@ public class CameraHelper {
 	private final float MAX_ZOOM_OUT = 10.0f;
 	private Vector2 position;
 	private float zoom;
-	private boolean chasingTarget;
+	private float zoomDifference;
+	private float transitionTime, cur;
 	private AbstractGameObject target;
+	private float rate;
+	Rectangle rect;
 	
 	public CameraHelper(){
 		position = new Vector2();
 		zoom = .65f;
-		chasingTarget = false;
+		rect = new Rectangle(-5, 0, Constants.viewportWidth + 10, Constants.viewportHeight);
+		rate = 0;
 	}
 	public void update(float deltaTime){
+		if(transitionTime > 0){
+			zoom += rate * deltaTime;
+			transitionTime -= deltaTime;
+		}
 		if(!hasTarget()){
 			return;
 		}
-		position.x += (target.position.x - position.x) / 10;
-		position.y += (target.position.y - position.y) / 10;
-	/*
-		position.x = target.position.x + target.origin.x + target.dimension.x / 2;
-		position.y = target.position.y + target.origin.y ;*/
+		float deltaX = (target.position.x - position.x) / 10,
+				deltaY = (target.position.y - position.y) / 10;
+		position.x += deltaX;
+		position.y += deltaY;
+		
+		rect.x += deltaX;
+		rect.y += deltaY;
+		
+
 		
 	}
 	public void setTarget(AbstractGameObject target){
 		this.target = target;
-		chasingTarget = true;
+	}
+	public boolean onScreen(AbstractGameObject obj){
+		//Checks if camera bounds overlaps with 
+		if(obj.bounds.overlaps(rect))
+			return true;
+		
+		return false;
+		
 	}
 	public void setPosition(float x, float y){
 		this.position.set(x, y);
+		rect.setPosition(x - Constants.viewportWidth / 2 - 5, y - Constants.viewportHeight / 2);
 		
 	}
 	public Vector2 getPosition(){
@@ -71,7 +91,6 @@ public class CameraHelper {
 		camera.position.x = this.position.x;
 		camera.position.y = this.position.y;
 		camera.zoom = zoom;
-		
 		camera.update();
 		
 	}
@@ -79,6 +98,11 @@ public class CameraHelper {
 		target = null;
 		position = null;
 	}
-
-	
+	public void transitionToZoom(float zoomTo, float transitionTime) {
+		
+		//timePassed * rate
+		zoomDifference = zoomTo - zoom;
+		this.transitionTime = transitionTime;
+		rate = zoomDifference / transitionTime;
+	}
 }

@@ -1,0 +1,166 @@
+
+World0.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+bg
+  rotate: false
+  xy: 1, 170
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+buttonDown
+  rotate: false
+  xy: 1, 64
+  size: 94, 104
+  orig: 94, 104
+  offset: 0, 0
+  index: -1
+buttonUp
+  rotate: false
+  xy: 1923, 1146
+  size: 94, 104
+  orig: 94, 104
+  offset: 0, 0
+  index: -1
+body1
+  rotate: false
+  xy: 1, 43
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
+body2
+  rotate: false
+  xy: 97, 149
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
+body3
+  rotate: false
+  xy: 1923, 1125
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
+body4
+  rotate: false
+  xy: 2019, 1231
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
+body5
+  rotate: false
+  xy: 1, 22
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
+body6
+  rotate: false
+  xy: 23, 43
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
+bottomcorner
+  rotate: false
+  xy: 97, 128
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
+end
+  rotate: false
+  xy: 119, 149
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
+endbody1
+  rotate: false
+  xy: 1923, 1104
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
+endbody2
+  rotate: false
+  xy: 1945, 1125
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
+endbody3
+  rotate: false
+  xy: 2019, 1210
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
+endbody4
+  rotate: false
+  xy: 1, 1
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
+endbody5
+  rotate: false
+  xy: 23, 22
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
+endbottombody1
+  rotate: false
+  xy: 45, 43
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
+endbottombody2
+  rotate: false
+  xy: 97, 107
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
+endbottombody3
+  rotate: false
+  xy: 119, 128
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
+endbottombody4
+  rotate: false
+  xy: 141, 149
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
+endbottombody5
+  rotate: false
+  xy: 1923, 1083
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
+mid
+  rotate: false
+  xy: 1945, 1104
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
+topcorner
+  rotate: false
+  xy: 1967, 1125
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
