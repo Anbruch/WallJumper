@@ -1,7 +1,7 @@
 package com.me.walljumper.tools;
 
 import com.me.walljumper.game_objects.classes.ManipulatableObject;
-
+import com.me.walljumper.gui.SceneObject;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
@@ -70,6 +70,12 @@ public class InputManager extends InputAdapter {
 	}
 	@Override
 	public boolean touchDown (int screenX, int screenY, int pointer, int button) {
+		//Sends all touch down coordinates to the children
+		for(SceneObject objects : WorldRenderer.renderer.getSceneObjects()){
+			if(objects.touchDown(screenX, screenY, pointer, button)){
+				break;
+			}
+		}
 		
 		if(!WallJumper.currentScreen.handleTouchInput(screenX, screenY, pointer, button)){
 			
@@ -83,9 +89,28 @@ public class InputManager extends InputAdapter {
 		
 		
 		
+		
+		return false;
+	}
+	
+	@Override
+	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+		//Sends all the on release touch coordinates to children
+		for(SceneObject objects : WorldRenderer.renderer.getSceneObjects()){
+			objects.touchUp(screenX, screenY, pointer, button);
+		}
 		return false;
 	}
 
+
+	@Override
+	public boolean touchDragged(int screenX, int screenY, int pointer) {
+		//Sends all the on release touch coordinates to children
+		for(SceneObject objects : WorldRenderer.renderer.getSceneObjects()){
+			objects.touchDragged(screenX, screenY, pointer);
+		}
+		return false;
+	}
 
 	private void checkPausePressed() {
 		

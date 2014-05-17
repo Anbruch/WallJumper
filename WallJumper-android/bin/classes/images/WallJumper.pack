@@ -3,226 +3,240 @@ WallJumper.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+button.down
+  rotate: false
+  xy: 1, 33
+  size: 246, 94
+  orig: 246, 94
+  offset: 0, 0
+  index: -1
+button.up
+  rotate: false
+  xy: 249, 33
+  size: 246, 94
+  orig: 246, 94
+  offset: 0, 0
+  index: -1
 deathPortal
   rotate: false
-  xy: 1, 2
+  xy: 497, 2
   size: 125, 125
   orig: 125, 125
   offset: 0, 0
   index: 1
 deathPortal
   rotate: false
-  xy: 128, 2
+  xy: 624, 2
   size: 125, 125
   orig: 125, 125
   offset: 0, 0
   index: 2
 deathPortal
   rotate: false
-  xy: 255, 2
+  xy: 751, 2
   size: 125, 125
   orig: 125, 125
   offset: 0, 0
   index: 3
 portal
   rotate: false
-  xy: 382, 2
+  xy: 878, 2
   size: 125, 125
   orig: 125, 125
   offset: 0, 0
   index: 1
 portal
   rotate: false
-  xy: 509, 2
+  xy: 1005, 2
   size: 125, 125
   orig: 125, 125
   offset: 0, 0
   index: 2
 portal
   rotate: false
-  xy: 636, 2
+  xy: 1132, 2
   size: 125, 125
   orig: 125, 125
   offset: 0, 0
   index: 3
+rogue_running
+  rotate: false
+  xy: 1, 1
+  size: 31, 30
+  orig: 31, 30
+  offset: 0, 0
+  index: 2
 PauseButton
   rotate: false
-  xy: 763, 81
+  xy: 1259, 81
   size: 41, 46
   orig: 41, 46
   offset: 0, 0
   index: -1
 PlayButton
   rotate: false
-  xy: 763, 33
+  xy: 1259, 33
   size: 41, 46
   orig: 41, 46
   offset: 0, 0
   index: -1
-rogue_running
-  rotate: false
-  xy: 763, 1
-  size: 31, 30
-  orig: 31, 30
-  offset: 0, 0
-  index: 2
 rogue_jumping
   rotate: false
-  xy: 806, 99
+  xy: 34, 3
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 1
 rogue_jumping
   rotate: false
-  xy: 806, 69
+  xy: 1302, 99
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 2
 rogue_jumping
   rotate: false
-  xy: 847, 99
+  xy: 1259, 3
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 3
 rogue_jumping
   rotate: false
-  xy: 806, 39
+  xy: 75, 3
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 4
 rogue_jumping
   rotate: false
-  xy: 847, 69
+  xy: 1302, 69
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 5
 rogue_jumping
   rotate: false
-  xy: 888, 99
+  xy: 1343, 99
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 6
 rogue_jumping
   rotate: false
-  xy: 847, 39
+  xy: 116, 3
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 7
 rogue_jumping
   rotate: false
-  xy: 888, 69
+  xy: 1302, 39
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 8
 rogue_running
   rotate: false
-  xy: 929, 98
+  xy: 1343, 68
   size: 32, 29
   orig: 32, 29
   offset: 0, 0
   index: 6
 rogue_running
   rotate: false
-  xy: 963, 98
-  size: 31, 29
-  orig: 31, 29
-  offset: 0, 0
-  index: 3
-rogue_running
-  rotate: false
-  xy: 888, 39
+  xy: 1384, 99
   size: 31, 28
   orig: 31, 28
   offset: 0, 0
   index: 1
 rogue_running
   rotate: false
-  xy: 929, 69
-  size: 30, 27
-  orig: 30, 27
+  xy: 1377, 68
+  size: 31, 29
+  orig: 31, 29
   offset: 0, 0
-  index: 4
+  index: 3
 rogue_running
   rotate: false
-  xy: 921, 38
+  xy: 157, 2
   size: 30, 29
   orig: 30, 29
   offset: 0, 0
   index: 5
+rogue_running
+  rotate: false
+  xy: 1343, 39
+  size: 30, 27
+  orig: 30, 27
+  offset: 0, 0
+  index: 4
 rogue_walling
   rotate: false
-  xy: 996, 95
+  xy: 1417, 95
   size: 15, 32
   orig: 15, 32
   offset: 0, 0
   index: -1
 rogue_normal
   rotate: false
-  xy: 961, 63
+  xy: 1434, 94
   size: 13, 33
   orig: 13, 33
   offset: 0, 0
   index: 0
 spikeTrap
   rotate: false
-  xy: 953, 42
+  xy: 189, 12
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
+pauseLayer
+  rotate: false
+  xy: 189, 1
+  size: 16, 9
+  orig: 16, 9
+  offset: 0, 0
+  index: -1
 wallJump
   rotate: false
-  xy: 1013, 107
+  xy: 1375, 46
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 0
 wallJump
   rotate: false
-  xy: 976, 76
+  xy: 1449, 107
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 1
 wallJump
   rotate: false
-  xy: 796, 11
+  xy: 1386, 46
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 3
 wallJump
   rotate: false
-  xy: 807, 17
+  xy: 1460, 107
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 4
 walljump
   rotate: false
-  xy: 818, 17
+  xy: 1397, 46
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 5
-pauseLayer
-  rotate: false
-  xy: 829, 28
-  size: 16, 9
-  orig: 16, 9
-  offset: 0, 0
-  index: -1
 snow
   rotate: false
-  xy: 953, 63
+  xy: 1302, 33
   size: 3, 4
   orig: 3, 4
   offset: 0, 0

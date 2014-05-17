@@ -8,7 +8,7 @@ import com.me.walljumper.gui.SceneObject;
 public class ActorAccessor implements TweenAccessor<SceneObject>{
 
 	
-	public static final int XY = 0, RGB = 1, ROTATION = 2, SCALE = 3;
+	public static final int XY = 0, RGB = 1, ROTATION = 2, SCALE = 3, ALPHA = 4;
 
 	
 	public int getValues(SceneObject target, int tweenType, float[] returnValues) {
@@ -27,6 +27,9 @@ public class ActorAccessor implements TweenAccessor<SceneObject>{
 			returnValues[1] = target.scaleY;
 			return 2;
 			
+		case ALPHA:
+			returnValues[0] = target.alpha;
+			return 1;
 		default:
 			assert false;
 			return -1;
@@ -46,6 +49,10 @@ public class ActorAccessor implements TweenAccessor<SceneObject>{
 		case SCALE:
 			target.scaleX = newValues[0];
 			target.scaleY = newValues[1];
+			break;
+		case ALPHA:
+			target.alpha = newValues[0];
+			break;
 		default:
 			assert false;
 		}

@@ -15,6 +15,7 @@ import com.me.walljumper.gui.Button;
 import com.me.walljumper.gui.Image;
 import com.me.walljumper.gui.Scene;
 import com.me.walljumper.gui.SceneAssets;
+import com.me.walljumper.gui.SceneObject;
 import com.me.walljumper.screens.screentransitions.ScreenTransitionFade;
 import com.me.walljumper.screens.screentransitions.ScreenTransitionSlice;
 import com.me.walljumper.screens.screentransitions.ScreenTransitionSlide;
@@ -60,11 +61,12 @@ public class WorldScreen extends ScreenHelper {
 	}
 
 	private void rebuildStage() {
+		SceneObject.setCamera(Scene.camera);
 		Image bg = new Image(true, "bg" + WallJumper.WorldNum,
 				50, 100, Constants.bgViewportWidth / 2, Constants.bgViewportHeight / 2){
 			@Override
 			public boolean clickRelease(){
-				this.interactable = false;
+				this.clickable = false;
 				ScreenTransitionFade transition = ScreenTransitionFade.init(.75f);
 				game.setScreen(new LevelMenu(game), transition);
 				

@@ -20,6 +20,7 @@ import com.me.walljumper.gui.Button;
 import com.me.walljumper.gui.Image;
 import com.me.walljumper.gui.Scene;
 import com.me.walljumper.gui.SceneAssets;
+import com.me.walljumper.gui.SceneObject;
 import com.me.walljumper.screens.screentransitions.ScreenTransition;
 import com.me.walljumper.screens.screentransitions.ScreenTransitionFade;
 import com.me.walljumper.tools.Assets;
@@ -76,7 +77,7 @@ public class LevelMenu extends ScreenHelper {
 	
 
 	private void rebuildStage() {
-		
+		SceneObject.setCamera(Scene.camera);
 		//Make background image 
 		bg = new Image(false, "bg" + WallJumper.WorldNum, -60 , 0, Constants.bgViewportWidth + 120, Constants.bgViewportHeight);
 		bg.setToWrite("World " + WallJumper.WorldNum, Constants.bgViewportWidth / 2 - 60, Constants.bgViewportHeight - 50);

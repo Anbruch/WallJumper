@@ -184,10 +184,15 @@ public class Assets implements Disposable, AssetErrorListener {
 
 	public class Pause {
 		public final AtlasRegion pause;
+		public final AtlasRegion goalBackground;
 		public final AtlasRegion play;
 		public final AtlasRegion pauseLayer;
+		public final AtlasRegion buttonUp, buttonDown;
 
 		public Pause(TextureAtlas atlas) {
+			goalBackground = atlas.findRegion("button.down");
+			buttonUp = atlas.findRegion("button.up");
+			buttonDown = atlas.findRegion("button.down");
 			pause = atlas.findRegion("PauseButton");
 			play = atlas.findRegion("PlayButton");
 			pauseLayer = atlas.findRegion("pauseLayer");

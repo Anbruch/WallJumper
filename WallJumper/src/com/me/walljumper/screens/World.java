@@ -1,9 +1,10 @@
 package com.me.walljumper.screens;
 
+import aurelienribon.tweenengine.TweenManager;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -15,7 +16,9 @@ import com.me.walljumper.game_objects.AbstractGameObject;
 import com.me.walljumper.game_objects.classes.ManipulatableObject;
 import com.me.walljumper.game_objects.terrain.Portal;
 import com.me.walljumper.gui.Button;
+import com.me.walljumper.gui.Image;
 import com.me.walljumper.gui.PauseButton;
+import com.me.walljumper.gui.SceneObject;
 import com.me.walljumper.tools.Assets;
 import com.me.walljumper.tools.AudioManager;
 import com.me.walljumper.tools.CameraHelper;
@@ -41,6 +44,11 @@ public class World  {
 	private DirectedGame game;
 	public GameScreen gameScreen;
 	public boolean renderAll;
+	
+	private TweenManager tween;
+	public boolean nextLevel;
+	public boolean backTolevelMenu;
+	
 
 	public World(DirectedGame game, GameScreen gameScreen) {
 		this.game = game;
@@ -54,6 +62,8 @@ public class World  {
 		if(!AudioManager.instance.isPlaying())
 			AudioManager.instance.playMusic(Assets.instance.music.world0);
 		
+		nextLevel = false;
+		backTolevelMenu = false;
 		countDown = 0;
 		spiked = false;
 		levelTimer = 0;
@@ -66,6 +76,8 @@ public class World  {
 		InputManager.inputManager.init();
 		levelStage = new LevelStage();
 		
+		//USED AS IN GAME MENU DURING PLAY
+		tween = new TweenManager();
 		
 		if(failedLoad){
 			failedLoad = false;
@@ -109,7 +121,11 @@ public class World  {
 	private void checkDeath() {
 		if(spiked){
 			gameScreen.restartLevel();
-		}		
+		}else if(nextLevel){
+			gameScreen.nextLevel();
+		}else if(backTolevelMenu){
+			gameScreen.backToLevelMenu();
+		}
 	}
 	
 	private void blackHoleMovement(float deltaTime){
@@ -118,7 +134,11 @@ public class World  {
 				gameScreen.restartLevel();
 				return;
 			}
-			gameScreen.backToLevelMenu();
+			//gameScreen.backToLevelMenu();
+			
+			//Play the success screen, watch it out, it may run every from if from != null
+			WorldRenderer.renderer.levelCompleteMenu();
+			from = null;
 		}
 	}
 	
@@ -255,6 +275,8 @@ public class World  {
 	public void countDown(float time) {
 		countDown = time;
 	}
+	
+	//Transitions into blackhole, only called once due to blackHoled bool
 	public void moveTowards(ManipulatableObject from, AbstractGameObject to, float time) {
 		if(!blackHoled){
 			this.from = from;

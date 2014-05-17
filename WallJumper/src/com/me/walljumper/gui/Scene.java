@@ -74,17 +74,10 @@ public class Scene implements InputProcessor {
 		for(SceneObject obj : children){
 			obj.update(deltaTime);
 		}
-		checkClickedButton();
 		cameraHelper.update(deltaTime);
 		cameraHelper.applyTo(camera);
 	}	
 	
-	private void checkClickedButton() {
-		if(clickedButton != null){
-			ScreenTransitionFade transition = ScreenTransitionFade.init(.75f);
-			game.setScreen(new GameScreen(game), transition);
-		}
-	}
 
 	public void render(){
 		

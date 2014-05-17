@@ -51,6 +51,7 @@ public class MainMenu extends ScreenHelper{
 		
 	}
 	private void rebuildStage(){
+		SceneObject.setCamera(Scene.camera);
 		
 		//Background image
 		bg = new Image(true, "bg" + (int)(Math.random() * WallJumper.numWorlds), 
@@ -59,7 +60,7 @@ public class MainMenu extends ScreenHelper{
 		
 		//PLATFORM/RIFTRUNNER IMAGE
 		//platform + runner image
-		platform = new Image(false, "startscreen", 0, 0, Constants.bgViewportWidth, Constants.bgViewportHeight);
+		platform = new Image(false, "startscreen", 50, 0, Constants.bgViewportWidth, Constants.bgViewportHeight);
 		scene.add(platform);
 		
 		
@@ -69,7 +70,7 @@ public class MainMenu extends ScreenHelper{
 		title = new Image(false, "title", (float) (Constants.bgViewportWidth * Math.random()),
 				(float) (Constants.bgViewportHeight * Math.random()), titleWidth, titleHeight);
 		title.setScale(0);
-		title.setAfterTwn(new Vector2(Constants.bgViewportWidth / 2 - title.dimension.x / 2, Constants.bgViewportHeight / 2));
+		title.setAfterTwn(new Vector2(Constants.bgViewportWidth / 2 - title.dimension.x / 2, Constants.bgViewportHeight / 2 + 20));
 		scene.add(title);
 		
 		
@@ -98,6 +99,7 @@ public class MainMenu extends ScreenHelper{
 				return false;
 			}
 		};
+		//Go from small to big
 		tutorial.setScale(0);
 		tutorial.setAfterTwn(new Vector2(Constants.bgViewportWidth / 2 - tutorial.dimension.x / 2, Constants.bgViewportHeight / 2 - 175));
 		scene.add(tutorial);

@@ -24,7 +24,7 @@ public class WallJumper extends DirectedGame {
 
 	@Override
 	public void dispose() {
-		
+		if(World.controller != null)
 		World.controller.dispose();
 		World.controller = null;
 		WorldNum = 0;

@@ -21,7 +21,6 @@ public class AudioManager {
 		
 	}
 	public void stopMusic(){
-		System.out.println("theousntu");
 		if(playingMusic != null){
 			playingMusic.stop();
 			playingMusic = null;

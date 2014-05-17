@@ -53,6 +53,8 @@ public class Weather {
 	public void destroy(){
 		curTime = 0;
 		nextTime = 0;
+		if(drops == null)
+			return;
 		while(drops.size > 0){
 			drops.removeIndex(0);
 		}

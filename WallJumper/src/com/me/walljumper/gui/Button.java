@@ -2,6 +2,7 @@ package com.me.walljumper.gui;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
@@ -24,6 +25,18 @@ public class Button extends SceneObject {
 		up = SceneAssets.instance.ui.uiMap.get(textureKeyUp);
 		down = SceneAssets.instance.ui.uiMap.get(textureKeyDown);
 		cur = up;
+		
+	}
+	public Button(boolean clickable, TextureRegion textureUp, TextureRegion textureDown
+			, float x, float y, float width, float height) {
+		super(clickable, x, y, width, height);
+		
+		//Set up images
+		up = textureUp;
+		down = textureDown;
+		cur = up;
+		System.out.println(textureDown);
+		
 	}
 	
 	

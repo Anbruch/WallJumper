@@ -4,15 +4,23 @@ package com.me.walljumper.tools;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.me.walljumper.Constants;
 import com.me.walljumper.WallJumper;
 import com.me.walljumper.game_objects.AbstractGameObject;
 import com.me.walljumper.game_objects.terrain.Weather;
+import com.me.walljumper.gui.Button;
+import com.me.walljumper.gui.Image;
 import com.me.walljumper.gui.PauseButton;
+import com.me.walljumper.gui.SceneObject;
+import com.me.walljumper.screens.LevelMenu;
 import com.me.walljumper.screens.World;
+import com.me.walljumper.screens.WorldScreen;
+import com.me.walljumper.screens.screentransitions.ScreenTransitionFade;
 
 public class WorldRenderer implements Disposable{
 	private SpriteBatch batch;
@@ -25,6 +33,8 @@ public class WorldRenderer implements Disposable{
 	public BitmapFont whiteFont, blackFont;
 	public Weather weather;
 	public boolean weatherBool;
+	private Array<SceneObject> sceneObjects;
+
 	
 	private WorldRenderer(){
 		
@@ -33,10 +43,12 @@ public class WorldRenderer implements Disposable{
 		
 		batch = new SpriteBatch();
 		weather = new Weather();
-		weatherBool = false;
+		weatherBool = WallJumper.WorldNum != 1 ? false : true;
 		background_image = Assets.instance.nightSky.nightSky;
 		pauseLayer = Assets.instance.pause.pauseLayer;
 		
+		sceneObjects = new Array<SceneObject>();
+
 		
 		
 		//Initialize main camera
@@ -70,7 +82,11 @@ public class WorldRenderer implements Disposable{
 		whiteFont.draw(batch, string, x, y);
 		
 	}
-	
+
+
+	public void clearScene(){
+		getSceneObjects().clear();
+	}
 	private void renderWorld(){
 		//apply changes to camera, render level
 		World.controller.cameraHelper.applyTo(camera);
@@ -78,7 +94,6 @@ public class WorldRenderer implements Disposable{
 		batch.begin();
 		
 		World.controller.render(batch);
-		//World.controller.button.render(batch);
 		weather.render(batch);
 
 		batch.end();
@@ -102,12 +117,20 @@ public class WorldRenderer implements Disposable{
 		renderTapToStart();
 		renderTimer();
 		pauseButton.render(batch);
+
 		
 		renderTransparency();
+		otherRenders();
 
 			
 		
 		batch.end();
+	}
+	private void otherRenders() {
+		//Render menu screen
+		for(SceneObject objects: getSceneObjects()){
+			objects.render(batch);
+		}
 	}
 	private void renderTimer() {
 		if(World.controller.started){
@@ -163,10 +186,48 @@ public class WorldRenderer implements Disposable{
 		background_image = null;
 		background_camera = null;
 		weather.destroy();
+		clearScene();
 	}
 	@Override
 	public void dispose() {
 		batch.dispose();
 	}
+	public void levelCompleteMenu() {
+		SceneObject.setCamera(guiCamera);
+		Image backgroundWindow = new Image(false, Assets.instance.pause.goalBackground, 0, 0, 500, 300);
+		backgroundWindow.position.set(Constants.bgViewportWidth / 2 - backgroundWindow.dimension.x / 2, Constants.bgViewportHeight / 5);
+		getSceneObjects().add(backgroundWindow);
+		
+		Button levelMenu = new Button(true, Assets.instance.pause.buttonDown, Assets.instance.pause.buttonUp, 0, 0, 150, 100){
+			@Override
+			public boolean clickRelease() {
+				World.controller.backTolevelMenu = true;
+				return false;
+				
+			}
+		};
+		levelMenu.position.set(backgroundWindow.position.x + 30, backgroundWindow.position.y + 30);
+		levelMenu.bounds.setPosition(levelMenu.position.x, levelMenu.position.y);
+		getSceneObjects().add(levelMenu);
+		
+		Button nextLevelButton = new Button(true, Assets.instance.pause.buttonUp, Assets.instance.pause.buttonDown, 0, 0, 150, 100){
+			@Override
+			public boolean clickRelease() {
+				World.controller.nextLevel = true;
+				return false;
+				
+			}
+		};
+		nextLevelButton.position.set(backgroundWindow.position.x + 60 + levelMenu.dimension.x, backgroundWindow.position.y + 30);
+		nextLevelButton.bounds.setPosition(nextLevelButton.position.x, nextLevelButton.position.y);
+		getSceneObjects().add(nextLevelButton);
+		
+		
+		
+	}
+	public Array<SceneObject> getSceneObjects() {
+		return sceneObjects;
+	}
+	
 
 }
