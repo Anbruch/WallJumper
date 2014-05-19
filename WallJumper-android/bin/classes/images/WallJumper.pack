@@ -3,240 +3,303 @@ WallJumper.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+scroll
+  rotate: false
+  xy: 1, 608
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: 1
+scroll
+  rotate: false
+  xy: 1, 206
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: 2
+scroll
+  rotate: false
+  xy: 403, 608
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: 3
+scroll
+  rotate: false
+  xy: 403, 206
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: 4
+scroll
+  rotate: false
+  xy: 805, 608
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: 5
+scroll
+  rotate: false
+  xy: 805, 206
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: 6
+scroll
+  rotate: false
+  xy: 1207, 608
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: 7
+scroll
+  rotate: false
+  xy: 1207, 608
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: 9
+scroll
+  rotate: false
+  xy: 1207, 206
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: 8
 button.down
   rotate: false
-  xy: 1, 33
+  xy: 1, 110
   size: 246, 94
   orig: 246, 94
   offset: 0, 0
   index: -1
 button.up
   rotate: false
-  xy: 249, 33
+  xy: 1609, 914
   size: 246, 94
   orig: 246, 94
   offset: 0, 0
   index: -1
 deathPortal
   rotate: false
-  xy: 497, 2
+  xy: 1609, 787
   size: 125, 125
   orig: 125, 125
   offset: 0, 0
   index: 1
 deathPortal
   rotate: false
-  xy: 624, 2
+  xy: 1609, 660
   size: 125, 125
   orig: 125, 125
   offset: 0, 0
   index: 2
 deathPortal
   rotate: false
-  xy: 751, 2
+  xy: 1609, 533
   size: 125, 125
   orig: 125, 125
   offset: 0, 0
   index: 3
 portal
   rotate: false
-  xy: 878, 2
+  xy: 1609, 406
   size: 125, 125
   orig: 125, 125
   offset: 0, 0
   index: 1
 portal
   rotate: false
-  xy: 1005, 2
+  xy: 1609, 279
   size: 125, 125
   orig: 125, 125
   offset: 0, 0
   index: 2
 portal
   rotate: false
-  xy: 1132, 2
+  xy: 1736, 787
   size: 125, 125
   orig: 125, 125
   offset: 0, 0
   index: 3
-rogue_running
-  rotate: false
-  xy: 1, 1
-  size: 31, 30
-  orig: 31, 30
-  offset: 0, 0
-  index: 2
 PauseButton
   rotate: false
-  xy: 1259, 81
+  xy: 1, 62
   size: 41, 46
   orig: 41, 46
   offset: 0, 0
   index: -1
 PlayButton
   rotate: false
-  xy: 1259, 33
+  xy: 249, 158
   size: 41, 46
   orig: 41, 46
   offset: 0, 0
   index: -1
 rogue_jumping
   rotate: false
-  xy: 34, 3
+  xy: 1609, 249
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 1
 rogue_jumping
   rotate: false
-  xy: 1302, 99
+  xy: 1857, 980
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 2
 rogue_jumping
   rotate: false
-  xy: 1259, 3
+  xy: 1736, 757
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 3
 rogue_jumping
   rotate: false
-  xy: 75, 3
+  xy: 1, 32
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 4
 rogue_jumping
   rotate: false
-  xy: 1302, 69
+  xy: 44, 80
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 5
 rogue_jumping
   rotate: false
-  xy: 1343, 99
+  xy: 249, 128
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 6
 rogue_jumping
   rotate: false
-  xy: 116, 3
+  xy: 292, 176
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 7
 rogue_jumping
   rotate: false
-  xy: 1302, 39
+  xy: 1609, 219
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 8
 rogue_running
   rotate: false
-  xy: 1343, 68
+  xy: 1650, 247
+  size: 31, 30
+  orig: 31, 30
+  offset: 0, 0
+  index: 2
+rogue_running
+  rotate: false
+  xy: 1857, 949
   size: 32, 29
   orig: 32, 29
   offset: 0, 0
   index: 6
 rogue_running
   rotate: false
-  xy: 1384, 99
-  size: 31, 28
-  orig: 31, 28
-  offset: 0, 0
-  index: 1
-rogue_running
-  rotate: false
-  xy: 1377, 68
+  xy: 1736, 726
   size: 31, 29
   orig: 31, 29
   offset: 0, 0
   index: 3
 rogue_running
   rotate: false
-  xy: 157, 2
+  xy: 1898, 980
+  size: 31, 28
+  orig: 31, 28
+  offset: 0, 0
+  index: 1
+rogue_running
+  rotate: false
+  xy: 1, 1
   size: 30, 29
   orig: 30, 29
   offset: 0, 0
   index: 5
 rogue_running
   rotate: false
-  xy: 1343, 39
+  xy: 1777, 758
   size: 30, 27
   orig: 30, 27
   offset: 0, 0
   index: 4
-rogue_walling
-  rotate: false
-  xy: 1417, 95
-  size: 15, 32
-  orig: 15, 32
-  offset: 0, 0
-  index: -1
 rogue_normal
   rotate: false
-  xy: 1434, 94
+  xy: 1857, 914
   size: 13, 33
   orig: 13, 33
   offset: 0, 0
   index: 0
+rogue_walling
+  rotate: false
+  xy: 1736, 692
+  size: 15, 32
+  orig: 15, 32
+  offset: 0, 0
+  index: -1
 spikeTrap
   rotate: false
-  xy: 189, 12
+  xy: 85, 89
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
-pauseLayer
-  rotate: false
-  xy: 189, 1
-  size: 16, 9
-  orig: 16, 9
-  offset: 0, 0
-  index: -1
 wallJump
   rotate: false
-  xy: 1375, 46
+  xy: 333, 184
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 0
 wallJump
   rotate: false
-  xy: 1449, 107
+  xy: 1650, 225
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 1
 wallJump
   rotate: false
-  xy: 1386, 46
+  xy: 1683, 257
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 3
 wallJump
   rotate: false
-  xy: 1460, 107
+  xy: 1891, 958
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 4
 walljump
   rotate: false
-  xy: 1397, 46
+  xy: 1931, 988
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 5
+pauseLayer
+  rotate: false
+  xy: 44, 69
+  size: 16, 9
+  orig: 16, 9
+  offset: 0, 0
+  index: -1
 snow
   rotate: false
-  xy: 1302, 33
+  xy: 249, 122
   size: 3, 4
   orig: 3, 4
   offset: 0, 0

@@ -1,6 +1,7 @@
 package com.me.walljumper.gui;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -26,6 +27,7 @@ public abstract class SceneObject {
 	private String text;
 	private float fontOffsetX, fontOffsetY;
 	public float alpha, scaleX, scaleY;
+
 	
 	public SceneObject(){
 		
@@ -82,6 +84,7 @@ public abstract class SceneObject {
 	public abstract boolean clickedDown();
 	public abstract boolean clickRelease();
 	public abstract void update(float deltaTime);
+	
 	
 	public void render(SpriteBatch batch) {
 		

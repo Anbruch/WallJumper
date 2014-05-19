@@ -22,7 +22,7 @@ public class Assets implements Disposable, AssetErrorListener {
 	public Rogue rogue;
 	public Portal portal;
 	public WallJumpParticle wallJumpParticle;
-	public Pause pause;
+	public UI pause;
 	public Title title;
 	public Trap trap;
 	public Rain rain;
@@ -50,7 +50,7 @@ public class Assets implements Disposable, AssetErrorListener {
 		nightSky = new Background(atlas);
 		rogue = new Rogue(atlas);
 		portal = new Portal(atlas);
-		pause = new Pause(atlas);
+		pause = new UI(atlas);
 		title = new Title(atlas);
 		trap = new Trap(atlas);
 		wallJumpParticle = new WallJumpParticle(atlas);
@@ -85,7 +85,7 @@ public class Assets implements Disposable, AssetErrorListener {
 		nightSky = new Background(atlasMap.get(1));
 		rogue = new Rogue(atlasMap.get(0));
 		portal = new Portal(atlasMap.get(0));
-		pause = new Pause(atlasMap.get(0));
+		pause = new UI(atlasMap.get(0));
 		title = new Title(atlasMap.get(0));
 		trap = new Trap(atlasMap.get(0));
 		wallJumpParticle = new WallJumpParticle(atlasMap.get(0));
@@ -182,20 +182,26 @@ public class Assets implements Disposable, AssetErrorListener {
 		}
 	}
 
-	public class Pause {
+	public class UI {
 		public final AtlasRegion pause;
 		public final AtlasRegion goalBackground;
 		public final AtlasRegion play;
 		public final AtlasRegion pauseLayer;
 		public final AtlasRegion buttonUp, buttonDown;
+		public final Array<AtlasRegion> scroll;
+		public final Animation aniScroll;
 
-		public Pause(TextureAtlas atlas) {
+		public UI(TextureAtlas atlas) {
 			goalBackground = atlas.findRegion("button.down");
+			
 			buttonUp = atlas.findRegion("button.up");
 			buttonDown = atlas.findRegion("button.down");
 			pause = atlas.findRegion("PauseButton");
 			play = atlas.findRegion("PlayButton");
 			pauseLayer = atlas.findRegion("pauseLayer");
+			
+			scroll = atlas.findRegions("scroll");
+			aniScroll = new Animation(1 / 20f, scroll, Animation.NORMAL);
 		}
 	}
 

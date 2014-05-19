@@ -114,6 +114,7 @@ public class World  {
 		levelStage.update(deltaTime);
 		cameraHelper.update(deltaTime);
 		WorldRenderer.renderer.weather.update(deltaTime);
+		WorldRenderer.renderer.updateScene(deltaTime);
 		blackHoleMovement(deltaTime);
 		checkDeath();
 	}
@@ -147,7 +148,6 @@ public class World  {
 		if (!WallJumper.paused && countDown <= 0) {
 			renderAll = false;
 			delta = delta < .25f ? delta : .25f;
-			
 			
 			if(Gdx.input.isKeyPressed(Keys.SHIFT_LEFT)){
 				delta *= -1;

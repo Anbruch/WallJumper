@@ -83,7 +83,11 @@ public class WorldRenderer implements Disposable{
 		
 	}
 
-
+	public void updateScene(float deltaTime){
+		for(SceneObject objs:sceneObjects){
+			objs.update(deltaTime);
+		}
+	}
 	public void clearScene(){
 		getSceneObjects().clear();
 	}
@@ -140,7 +144,7 @@ public class WorldRenderer implements Disposable{
 			//front of decimal so they can be placed to the right of the decimal
 			float afterDecimal = curTime > 1 ? (curTime % (int)(curTime)) * 100 : curTime * 100;
 			String time = "" + (int)(curTime) + "." + (int)(afterDecimal);
-			writeToWorld(time, Constants.bgViewportWidth / 2, Constants.bgViewportHeight - 50);
+			writeToWorld(time, Constants.bgViewportWidth / 2 - 30, Constants.bgViewportHeight - 50);
 		}
 	}
 	private void renderTapToStart() {
@@ -194,33 +198,40 @@ public class WorldRenderer implements Disposable{
 	}
 	public void levelCompleteMenu() {
 		SceneObject.setCamera(guiCamera);
-		Image backgroundWindow = new Image(false, Assets.instance.pause.goalBackground, 0, 0, 500, 300);
+		Image backgroundWindow = new Image(false, Assets.instance.pause.aniScroll, 0, 0, 400, 400){
+			@Override
+			public void onAnimationComplete() {
+				Button levelMenu = new Button(true, Assets.instance.pause.buttonDown, Assets.instance.pause.buttonUp, 0, 0, 150, 100){
+					@Override
+					public boolean clickRelease() {
+						World.controller.backTolevelMenu = true;
+						return false;
+						
+					}
+				};
+				
+				levelMenu.position.set(this.position.x + 30, this.position.y + 30);
+				levelMenu.bounds.setPosition(levelMenu.position.x, levelMenu.position.y);
+				getSceneObjects().add(levelMenu);
+				
+				Button nextLevelButton = new Button(true, Assets.instance.pause.buttonUp, Assets.instance.pause.buttonDown, 0, 0, 150, 100){
+					@Override
+					public boolean clickRelease() {
+						World.controller.nextLevel = true;
+						return false;
+						
+					}
+				};
+				nextLevelButton.position.set(this.position.x + 60 + levelMenu.dimension.x, this.position.y + 30);
+				nextLevelButton.bounds.setPosition(nextLevelButton.position.x, nextLevelButton.position.y);
+				getSceneObjects().add(nextLevelButton);
+			}
+		};
+		backgroundWindow.setScale(1.8f);
 		backgroundWindow.position.set(Constants.bgViewportWidth / 2 - backgroundWindow.dimension.x / 2, Constants.bgViewportHeight / 5);
 		getSceneObjects().add(backgroundWindow);
 		
-		Button levelMenu = new Button(true, Assets.instance.pause.buttonDown, Assets.instance.pause.buttonUp, 0, 0, 150, 100){
-			@Override
-			public boolean clickRelease() {
-				World.controller.backTolevelMenu = true;
-				return false;
-				
-			}
-		};
-		levelMenu.position.set(backgroundWindow.position.x + 30, backgroundWindow.position.y + 30);
-		levelMenu.bounds.setPosition(levelMenu.position.x, levelMenu.position.y);
-		getSceneObjects().add(levelMenu);
 		
-		Button nextLevelButton = new Button(true, Assets.instance.pause.buttonUp, Assets.instance.pause.buttonDown, 0, 0, 150, 100){
-			@Override
-			public boolean clickRelease() {
-				World.controller.nextLevel = true;
-				return false;
-				
-			}
-		};
-		nextLevelButton.position.set(backgroundWindow.position.x + 60 + levelMenu.dimension.x, backgroundWindow.position.y + 30);
-		nextLevelButton.bounds.setPosition(nextLevelButton.position.x, nextLevelButton.position.y);
-		getSceneObjects().add(nextLevelButton);
 		
 		
 		

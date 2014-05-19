@@ -477,6 +477,7 @@ public class ManipulatableObject extends AbstractGameObject {
 		image = animation.getKeyFrame(stateTime, looping);
 		currentFrameDimension.set(image.getRegionWidth(),
 				image.getRegionHeight());
+		
 		// Draw
 		batch.draw(image.getTexture(), position.x, position.y, origin.x, origin.y,
 				currentFrameDimension.x, currentFrameDimension.y, 1, 1,

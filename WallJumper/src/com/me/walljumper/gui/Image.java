@@ -1,5 +1,6 @@
 package com.me.walljumper.gui;
 
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
@@ -8,7 +9,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.me.walljumper.tools.Assets;
 
 public class Image extends SceneObject {
-	private Sprite sprite;
+	private boolean looping;
+	private Animation animation;
+	private float stateTime;
+	private Vector2 currentFrameDimension;
+	private boolean animationCompleted;
 
 	public Image(){
 		
@@ -20,27 +25,70 @@ public class Image extends SceneObject {
 	}
 	
 
-	public Image(boolean clickable, AtlasRegion goalBackground, float x, float y, float width,
+	public Image(boolean clickable, TextureRegion goalBackground, float x, float y, float width,
 			float height) {
 		super(clickable, null, x, y, width, height);
 		cur = goalBackground;
 
 	}
-	@Override
-	public boolean clickedDown() {
+	
+	public Image(boolean clickable, Animation animation,  float x, float y, float width,
+			float height) {
+		super(clickable, null, x, y, width, height);
+		setAnimation(animation);
+		currentFrameDimension = new Vector2();
 
-		return false;
+	}
+	public void setAnimation(Animation animation){
+		if(animation.getPlayMode() == Animation.NORMAL){
+			looping = false;
+		}else
+			looping = true;
+		this.animation = animation;
+		stateTime = 0;
+		
+	}
+	@Override
+	public void render(SpriteBatch batch) {
+		if(animation == null){
+			super.render(batch);
+			return;
+		}
+		cur = null;
+		cur = animation.getKeyFrame(stateTime, looping);
+		currentFrameDimension.set(cur.getRegionWidth(),
+				cur.getRegionHeight());
+		batch.draw(cur, position.x, position.y,
+				currentFrameDimension.x / 2, currentFrameDimension.y / 2, currentFrameDimension.x, currentFrameDimension.y, scaleX, scaleY, rotation);
+		return;
 	}
 
 	@Override
 	public void update(float deltaTime) {
 		
+		//if animation, increment stateTime and then run any code for 
+		//completion of animation
+		if(animation != null){
+			stateTime += deltaTime;
+			if(animation.isAnimationFinished(stateTime) && !animationCompleted){
+				onAnimationComplete();
+				animationCompleted = true;
+			}
+		}
 	}
 
 
 
+	public void onAnimationComplete() {
+		
+	}
 	@Override
 	public boolean clickRelease() {
+
+		return false;
+	}
+	@Override
+	public boolean clickedDown() {
 		// TODO Auto-generated method stub
 		return false;
 	}
