@@ -1,7 +1,6 @@
 package com.me.walljumper.gui;
 
 import com.me.walljumper.game_objects.AbstractGameObject;
-
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -9,6 +8,8 @@ import com.me.walljumper.Constants;
 import com.me.walljumper.WallJumper;
 import com.me.walljumper.screens.World;
 import com.me.walljumper.tools.Assets;
+import com.me.walljumper.tools.InputManager;
+import com.me.walljumper.tools.WorldRenderer;
 
 public class PauseButton extends AbstractGameObject {
 	private TextureRegion pause;
@@ -26,6 +27,18 @@ public class PauseButton extends AbstractGameObject {
 	public void toggle(){
 		
 		image = !WallJumper.paused  ? pause : play;
+		if(WallJumper.paused){
+			WorldRenderer.renderer.pauseMenu();
+			World.controller.cameraHelper.moveTowardsPosition(World.controller.cameraHelper.getTarget().position);
+			World.controller.cameraHelper.setTarget(null);
+			World.controller.renderAll = true;
+		}else{
+			World.controller.renderAll = false;
+			World.controller.cameraHelper.setTarget(InputManager.inputManager.getPlayer());
+			World.controller.cameraHelper.transitionToZoom(Constants.defaultZoom);
+			WorldRenderer.renderer.clearScene();
+			
+		}
 	}
 	@Override
 	public void render(SpriteBatch batch){

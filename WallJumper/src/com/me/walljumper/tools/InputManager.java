@@ -35,14 +35,15 @@ public class InputManager extends InputAdapter {
 			Gdx.app.exit();
 			return false;
 		}
+		if(WallJumper.paused || World.controller.countDown > 0){
+			return false;
+		}
 		
 		if(!WallJumper.currentScreen.handleKeyInput(keycode))
 			return false;
 
 		
-		if(WallJumper.paused || World.controller.countDown > 0){
-			return false;
-		}
+		
 		//Send input to the controlled objects
 		for(ManipulatableObject target:controllableObjects){
 			target.actOnInputKeyDown(keycode);
@@ -73,11 +74,11 @@ public class InputManager extends InputAdapter {
 		//Sends all touch down coordinates to the children
 		for(SceneObject objects : WorldRenderer.renderer.getSceneObjects()){
 			if(objects.touchDown(screenX, screenY, pointer, button)){
-				break;
+				return false;
 			}
 		}
 		
-		if(!WallJumper.currentScreen.handleTouchInput(screenX, screenY, pointer, button)){
+		if(!WallJumper.currentScreen.handleTouchInput(screenX, screenY, pointer, button) ){
 			
 			return false;
 		}

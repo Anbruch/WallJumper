@@ -176,15 +176,16 @@ public class WorldRenderer implements Disposable{
 		renderGUI();
 	}
 	private void renderTransparency() {
-		if(WallJumper.paused)
+		/*if(WallJumper.paused)
 			batch.draw(pauseLayer.getTexture(), 0, 0, guiCamera.viewportWidth,  guiCamera.viewportHeight,
 					 pauseLayer.getRegionX(), pauseLayer.getRegionY(),
 						pauseLayer.getRegionWidth(), pauseLayer.getRegionHeight(), false, false);
-			
+			*/
 	}
 	public void destroy(){
 		guiCamera = null;
 		pauseButton = null;
+		SceneObject.setCamera(null);
 		camera = null;
 		pauseLayer = null;
 		background_image = null;
@@ -195,6 +196,32 @@ public class WorldRenderer implements Disposable{
 	@Override
 	public void dispose() {
 		batch.dispose();
+	}
+	public void pauseMenu(){
+		SceneObject.setCamera(guiCamera);
+		Button zoomOut = new Button(true, Assets.instance.pause.buttonDown, Assets.instance.pause.buttonUp, 20, 20, 150, 75){
+			@Override
+			public boolean clickedDown() {
+
+				World.controller.cameraHelper.zoomBy(.25f);
+				return false;
+			}
+			
+		};
+		zoomOut.setToWrite("zoomOut", 15, zoomOut.dimension.y / 2, false);
+		getSceneObjects().add(zoomOut);
+		
+		Button zoomIn = new Button(true, Assets.instance.pause.buttonDown, Assets.instance.pause.buttonUp, zoomOut.position.x + zoomOut.dimension.x + 20, 20, 150, 75){
+			@Override
+			public boolean clickedDown() {
+
+				World.controller.cameraHelper.zoomBy(-.25f);
+				return false;
+			}
+			
+		};
+		zoomIn.setToWrite("zoomIn", 17, zoomOut.dimension.y / 2, false);
+		getSceneObjects().add(zoomIn);
 	}
 	public void levelCompleteMenu() {
 		SceneObject.setCamera(guiCamera);
@@ -230,10 +257,6 @@ public class WorldRenderer implements Disposable{
 		backgroundWindow.setScale(1.8f);
 		backgroundWindow.position.set(Constants.bgViewportWidth / 2 - backgroundWindow.dimension.x / 2, Constants.bgViewportHeight / 5);
 		getSceneObjects().add(backgroundWindow);
-		
-		
-		
-		
 		
 	}
 	public Array<SceneObject> getSceneObjects() {

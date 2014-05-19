@@ -80,7 +80,7 @@ public class LevelMenu extends ScreenHelper {
 		SceneObject.setCamera(Scene.camera);
 		//Make background image 
 		bg = new Image(false, "bg" + WallJumper.WorldNum, -60 , 0, Constants.bgViewportWidth + 120, Constants.bgViewportHeight);
-		bg.setToWrite("World " + WallJumper.WorldNum, Constants.bgViewportWidth / 2 - 60, Constants.bgViewportHeight - 50);
+		bg.setToWrite("World " + WallJumper.WorldNum, Constants.bgViewportWidth / 2 - 60, Constants.bgViewportHeight - 50, true);
 		scene.add(bg);
 		
 		//Make each level button
@@ -105,7 +105,7 @@ public class LevelMenu extends ScreenHelper {
 			
 			//Setup the text  for each button
 			float textOffsetX = button.getNum()	< 10 ? 8 : 15;
-			button.setToWrite("" + button.getNum(), button.dimension.x / 2 - textOffsetX, button.dimension.y / 2 + 10);
+			button.setToWrite("" + button.getNum(), button.dimension.x / 2 - textOffsetX, button.dimension.y / 2 + 10, true);
 			scene.add(button);
 		}
 		//Making back button

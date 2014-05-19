@@ -78,7 +78,7 @@ public class WorldScreen extends ScreenHelper {
 			}
 			
 		};
-		bg.setToWrite("TAP ME", bg.dimension.x / 2 - 20,  bg.dimension.y / 2);
+		bg.setToWrite("TAP ME", bg.dimension.x / 2 - 20,  bg.dimension.y / 2, true);
 		scene.add(bg);
 		
 			

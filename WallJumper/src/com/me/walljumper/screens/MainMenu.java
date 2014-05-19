@@ -174,10 +174,10 @@ public class MainMenu extends ScreenHelper{
 			@Override
 			 public void onEvent(int type, BaseTween<?> source) {
 				play.bounds.setPosition(play.afterTwnPos);
-				play.setToWrite("Play", play.dimension.x / 2 - 40, play.dimension.y /2 + 5);
+				play.setToWrite("Play", play.dimension.x / 2 - 40, play.dimension.y /2 + 5, true);
 				
 				tutorial.bounds.setPosition(tutorial.afterTwnPos);
-				tutorial.setToWrite("Tutorial", tutorial.dimension.x / 2 - 70, tutorial.dimension.y / 2 + 5);
+				tutorial.setToWrite("Tutorial", tutorial.dimension.x / 2 - 70, tutorial.dimension.y / 2 + 5, true);
 				
 				
 				//BUILD ANOTHER TWEEN EVER 15 SECONDS

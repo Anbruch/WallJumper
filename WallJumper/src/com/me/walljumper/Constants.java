@@ -9,6 +9,7 @@ import com.me.walljumper.tools.Assets;
 
 public class Constants {
 	
+	public static final float defaultZoom = .58f;
 	public static final float viewportWidth = 25.0f, 
 			viewportHeight = 25.0f, bgViewportWidth = 1280f, bgViewportHeight = 720f;
 	public static final String SKIN_UI = "ui/menuSkin.json";

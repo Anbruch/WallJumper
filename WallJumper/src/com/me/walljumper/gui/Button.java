@@ -35,7 +35,6 @@ public class Button extends SceneObject {
 		up = textureUp;
 		down = textureDown;
 		cur = up;
-		System.out.println(textureDown);
 		
 	}
 	

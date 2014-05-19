@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.me.walljumper.Constants;
+import com.me.walljumper.tools.WorldRenderer;
 
 public abstract class SceneObject {
 	private static OrthographicCamera currentCamera;
@@ -20,7 +21,7 @@ public abstract class SceneObject {
 	protected boolean clickable;
 	public float rotation;
 	private boolean flipY;
-	private boolean flipX;
+	private boolean usingScene;
 	
 	private Sprite sprite;
 	
@@ -42,6 +43,7 @@ public abstract class SceneObject {
 		rotation = 0;
 		text = "";
 		scaleX = 1; scaleY = 1;
+		usingScene = true;
 
 		dimension = new Vector2(width, height);
 		bounds = new Rectangle(position.x, position.y, width, height);
@@ -55,6 +57,7 @@ public abstract class SceneObject {
 		position = new Vector2(x, y);
 		fontOffsetX = 0; fontOffsetY = 0;
 		rotation = 0;
+		usingScene = true;
 		text = "";
 		scaleX = 1; scaleY = 1;
 		if(image != null)
@@ -69,10 +72,11 @@ public abstract class SceneObject {
 		scaleX = num;
 		scaleY = num;
 	}
-	public void setToWrite(String text, float fontOffsetX, float fontOffsetY){
+	public void setToWrite(String text, float fontOffsetX, float fontOffsetY, boolean usingScene){
 		this.text = text;
 		this.fontOffsetX = fontOffsetX;
 		this.fontOffsetY = fontOffsetY;
+		this.usingScene = usingScene;
 	}
 	public void setNum(int number){
 		this.number = number;
@@ -91,7 +95,12 @@ public abstract class SceneObject {
 		
 		batch.draw(cur, position.x, position.y,
 				dimension.x / 2, dimension.y / 2, dimension.x, dimension.y, scaleX, scaleY, rotation);
-		Scene.curScene.writeToWorld(text, this, fontOffsetX, fontOffsetY);
+		
+		if(usingScene)
+			Scene.curScene.writeToWorld(text, this, fontOffsetX, fontOffsetY);
+		else			
+			WorldRenderer.renderer.writeToWorld(text, position.x + fontOffsetX,  position.y + fontOffsetY);
+		
 		
 	}
 	public boolean touchDown(int screenX, int screenY, int pointer, int button){

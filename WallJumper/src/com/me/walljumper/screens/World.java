@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.me.walljumper.Constants;
 import com.me.walljumper.DirectedGame;
 import com.me.walljumper.WallJumper;
 import com.me.walljumper.game_objects.AbstractGameObject;
@@ -71,8 +72,7 @@ public class World  {
 		//Init other necessary classes
 		WorldRenderer.renderer.init();
 		cameraHelper = new CameraHelper();// Essentially makes the camera follow
-		cameraHelper.setZoom(.65f);
-		cameraHelper.transitionToZoom(1.5f, .5f);
+		cameraHelper.setZoom(Constants.defaultZoom);
 		InputManager.inputManager.init();
 		levelStage = new LevelStage();
 		
@@ -144,22 +144,21 @@ public class World  {
 	}
 	
 	public void render(float delta) {
+		
+		renderAll = cameraHelper.zoom != Constants.defaultZoom ? true : renderAll;
 		//MAIN GAME UPDATE CALL
-		if (!WallJumper.paused && countDown <= 0) {
+		if (!WallJumper.paused && cameraHelper.zoom == Constants.defaultZoom) {
 			renderAll = false;
 			delta = delta < .25f ? delta : .25f;
-			
-			if(Gdx.input.isKeyPressed(Keys.SHIFT_LEFT)){
-				delta *= -1;
-			}
+
 			if(!blackHoled)
 			levelTimer += delta;
 
 			update(delta);
 
-		}
+		
 		//Update countdown
-		if (countDown > 0 || WallJumper.paused) {
+		}else {
 			countDown -= delta;
 			controller.cameraHelper.update(delta);
 		}
@@ -195,8 +194,6 @@ public class World  {
 		if(!started){
 			levelTimer = 0;
 			started = true;
-			cameraHelper.transitionToZoom(.58f, .9f);
-			countDown(.9f);
 			WallJumper.paused = (WallJumper.paused == true) ? false : true;
 			WorldRenderer.renderer.pauseButton.toggle();
 			LevelStage.player.moveRight();
@@ -207,9 +204,7 @@ public class World  {
 	}
 	//Return false to do a return in the method calling this
 	public boolean handleTouchInput(int screenX, int screenY, int pointer, int button) {
-		if(!startLevel()){
-			return false;
-		}
+		
 		
 		// Top left corner is a pause button
 		if (screenX < Gdx.graphics.getWidth() / 10
@@ -218,15 +213,13 @@ public class World  {
 			WorldRenderer.renderer.pauseButton.toggle();
 			return false;
 			
-		// If paused, don't send touch inputs
-		} else if (WallJumper.paused){
-			WallJumper.paused = false;
-			WorldRenderer.renderer.pauseButton.toggle();
-			return false;
-		
 		}
 		
+		if(!startLevel() || WallJumper.paused){
+			return false;
+		}
 		return true;
+		
 	}
 
 	public void show() {
@@ -294,4 +287,6 @@ public class World  {
 		
 		}
 	}
+	
+	
 }
