@@ -60,7 +60,7 @@ public class MainMenu extends ScreenHelper{
 		
 		//PLATFORM/RIFTRUNNER IMAGE
 		//platform + runner image
-		platform = new Image(false, "startscreen", 50, 0, Constants.bgViewportWidth, Constants.bgViewportHeight);
+		platform = new Image(false, "startscreen", 0, 0, Constants.bgViewportWidth, Constants.bgViewportHeight);
 		scene.add(platform);
 		
 		

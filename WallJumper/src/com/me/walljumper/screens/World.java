@@ -49,6 +49,7 @@ public class World  {
 	private TweenManager tween;
 	public boolean nextLevel;
 	public boolean backTolevelMenu;
+	public boolean camOnTarget;
 	
 
 	public World(DirectedGame game, GameScreen gameScreen) {
@@ -147,7 +148,7 @@ public class World  {
 		
 		renderAll = cameraHelper.zoom != Constants.defaultZoom ? true : renderAll;
 		//MAIN GAME UPDATE CALL
-		if (!WallJumper.paused && cameraHelper.zoom == Constants.defaultZoom) {
+		if (!WallJumper.paused && cameraHelper.zoom == Constants.defaultZoom && camOnTarget) {
 			renderAll = false;
 			delta = delta < .25f ? delta : .25f;
 
@@ -159,7 +160,7 @@ public class World  {
 		
 		//Update countdown
 		}else {
-			countDown -= delta;
+			
 			controller.cameraHelper.update(delta);
 		}
 		

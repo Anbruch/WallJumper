@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.me.walljumper.Constants;
 import com.me.walljumper.game_objects.AbstractGameObject;
+import com.me.walljumper.screens.World;
 
 public class CameraHelper {
 
@@ -40,22 +41,33 @@ public class CameraHelper {
 			zoom = deltaZoom > zoomTarget - zoom ? zoomTarget : zoom + deltaZoom;
 		}
 		
+		
+		
 
 	
-
-		float deltaX = !hasTarget() ? (targetSpot.x - position.x) / 10
-				: (target.position.x - position.x) / 10, deltaY = !hasTarget() ? (targetSpot.y - position.y) / 10
-				: (target.position.y - position.y) / 10;
-		position.x += deltaX;
-		position.y += deltaY;
-
+		if(targetSpot != null || hasTarget()){
+			float deltaX = !hasTarget() ? (targetSpot.x - position.x) / 10
+					: (target.position.x - position.x) / 10, deltaY = !hasTarget() ? (targetSpot.y - position.y) / 10
+					: (target.position.y - position.y) / 10;
+			position.x += deltaX;
+			position.y += deltaY;
+			
+			if(deltaX > 5 || deltaX < - 5 || deltaY > 5 || deltaY < - 5)
+				World.controller.camOnTarget = false;
+			else{
+				if(World.controller != null && hasTarget())
+					World.controller.camOnTarget = true;
+			}
+		
+		
 		rect.x += deltaX;
 		rect.y += deltaY;
-
+		}
 	}
 
 	public void setTarget(AbstractGameObject target) {
 		this.target = target;
+		this.targetSpot = null;
 	}
 
 	public boolean onScreen(AbstractGameObject obj) {
@@ -69,7 +81,7 @@ public class CameraHelper {
 
 	public void setPosition(float x, float y) {
 		this.position.set(x, y);
-		this.targetSpot.set(position);
+		targetSpot = new Vector2(position);
 		rect.setPosition(x - Constants.viewportWidth / 2 - 5, y
 				- Constants.viewportHeight / 2);
 
@@ -117,6 +129,7 @@ public class CameraHelper {
 
 	public void destroy() {
 		target = null;
+		targetSpot = null;
 		position = null;
 	}
 
@@ -125,6 +138,7 @@ public class CameraHelper {
 	}
 
 	public void moveTowardsPosition(Vector2 targetSpot) {
+		
 		this.targetSpot = targetSpot;
 	}
 
@@ -136,5 +150,13 @@ public class CameraHelper {
 
 		// timePassed * rate
 		zoomTarget = zoomTo;
+	}
+
+	public boolean isWithin(float f) {
+		
+		if(position.dst(target.position) < f){
+			return true;
+		}
+		return false;
 	}
 }

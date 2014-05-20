@@ -189,10 +189,33 @@ public class Assets implements Disposable, AssetErrorListener {
 		public final AtlasRegion pauseLayer;
 		public final AtlasRegion buttonUp, buttonDown;
 		public final Array<AtlasRegion> scroll;
+		public final AtlasRegion zoomOut_Up, zoomOut_Down;
+		public final AtlasRegion zoomIn_Up, zoomIn_Down;
+		public final AtlasRegion mDown_down, mDown_up,
+				mLeft_down, mLeft_up,
+				mRight_up, mRight_down,
+				mUp_up, mUp_down, mPad, magnifyingGlass;
+				
+
 		public final Animation aniScroll;
 
 		public UI(TextureAtlas atlas) {
 			goalBackground = atlas.findRegion("button.down");
+			zoomOut_Up = atlas.findRegion("zoomOut_up");
+			zoomOut_Down = atlas.findRegion("zoomOut_down");
+			zoomIn_Up = atlas.findRegion("zoomIn_up");
+			zoomIn_Down = atlas.findRegion("zoomIn_down");
+			
+			mDown_up = atlas.findRegion("mDown_up");
+			mDown_down = atlas.findRegion("mDown_down");
+			mLeft_up = atlas.findRegion("mLeft_up");
+			mLeft_down = atlas.findRegion("mLeft_down");
+			mRight_down = atlas.findRegion("mRight_down");
+			mRight_up = atlas.findRegion("mRight_up");
+			mUp_up = atlas.findRegion("mUp_up");
+			mUp_down = atlas.findRegion("mUp_down");
+			mPad = atlas.findRegion("mPad");
+			magnifyingGlass = atlas.findRegion("MagnifyingGlass");
 			
 			buttonUp = atlas.findRegion("button.up");
 			buttonDown = atlas.findRegion("button.down");

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.me.walljumper.Constants;
@@ -133,6 +134,7 @@ public class WorldRenderer implements Disposable{
 	private void otherRenders() {
 		//Render menu screen
 		for(SceneObject objects: getSceneObjects()){
+			objects.update(0);
 			objects.render(batch);
 		}
 	}
@@ -199,29 +201,108 @@ public class WorldRenderer implements Disposable{
 	}
 	public void pauseMenu(){
 		SceneObject.setCamera(guiCamera);
-		Button zoomOut = new Button(true, Assets.instance.pause.buttonDown, Assets.instance.pause.buttonUp, 20, 20, 150, 75){
+		//Making Zoomout and Zoomin buttons
+		Button zoomOut = new Button(true, Assets.instance.pause.zoomOut_Up, Assets.instance.pause.zoomOut_Down, 20, 20, 121, 65){
 			@Override
-			public boolean clickedDown() {
-
-				World.controller.cameraHelper.zoomBy(.25f);
-				return false;
+			public void update(float deltaTime) {
+				super.update(0);
+				if(cur == down){
+					World.controller.cameraHelper.zoomBy(.15f);
+				}
+				return;
 			}
 			
 		};
-		zoomOut.setToWrite("zoomOut", 15, zoomOut.dimension.y / 2, false);
 		getSceneObjects().add(zoomOut);
 		
-		Button zoomIn = new Button(true, Assets.instance.pause.buttonDown, Assets.instance.pause.buttonUp, zoomOut.position.x + zoomOut.dimension.x + 20, 20, 150, 75){
+		Button zoomIn = new Button(true, Assets.instance.pause.zoomIn_Up, Assets.instance.pause.zoomIn_Down, zoomOut.position.x + zoomOut.dimension.x, 20, 121, 65){
 			@Override
-			public boolean clickedDown() {
-
-				World.controller.cameraHelper.zoomBy(-.25f);
-				return false;
+			public void update(float deltaTime) {
+				super.update(0);
+				if(cur == down){
+					World.controller.cameraHelper.zoomBy(-.15f);
+				}
+				return;
 			}
 			
 		};
-		zoomIn.setToWrite("zoomIn", 17, zoomOut.dimension.y / 2, false);
 		getSceneObjects().add(zoomIn);
+		
+		//Magnifying glass		
+		Image magnifyingGlass = new Image(false, Assets.instance.pause.magnifyingGlass, zoomIn.position.x - 35, zoomIn.position.y + 10, 70, 71);
+		getSceneObjects().add(magnifyingGlass);
+		
+		
+		
+		//MAKING THE DPAD CAMERA POSITION CONTROLS
+		Image mPad = new Image(false, Assets.instance.pause.mPad, Constants.bgViewportWidth * 5 / 7 + 85, 30, 215 * 1.3f, 215 * 1.3f);
+		getSceneObjects().add(mPad);
+		
+		float width = 85 * 1.3f;
+		//UP ZOOM
+		Button zoomUp = new Button(true, Assets.instance.pause.mUp_up, Assets.instance.pause.mUp_down, mPad.position.x + mPad.dimension.x / 2 - width / 2, mPad.position.y + width / 4 + mPad.dimension.y / 2, width, width){
+			@Override
+			public void update(float deltaTime) {
+				super.update(0);
+				if(cur == down){
+					World.controller.cameraHelper.setTarget(null);
+					World.controller.cameraHelper.movePositionBy(new Vector2(0, 10));				
+				}
+
+			}
+			
+			
+		};
+		getSceneObjects().add(zoomUp);
+		
+		
+		//DOWN ZOOM
+		Button zoomDown = new Button(true, Assets.instance.pause.mDown_up, Assets.instance.pause.mDown_down, zoomUp.position.x, mPad.position.y, width, width){
+			@Override
+			public void update(float deltaTime) {
+				super.update(0);
+				if(cur == down){
+					World.controller.cameraHelper.setTarget(null);
+					World.controller.cameraHelper.movePositionBy(new Vector2(0, -10));				
+				}
+
+			}
+			
+			
+		};
+		getSceneObjects().add(zoomDown);
+		
+		
+		//LEFT ZOOM
+		Button zoomLeft = new Button(true, Assets.instance.pause.mLeft_up, Assets.instance.pause.mLeft_down, mPad.position.x, mPad.position.y + mPad.dimension.y / 2 - zoomDown.dimension.y / 2, width, width){
+			@Override
+			public void update(float deltaTime) {
+				super.update(0);
+				if(cur == down){
+					World.controller.cameraHelper.setTarget(null);
+					World.controller.cameraHelper.movePositionBy(new Vector2(-10, 0));				
+				}
+
+			}
+			
+		};
+		getSceneObjects().add(zoomLeft);
+		
+		
+		//RIGHT ZOOM
+		Button zoomRight = new Button(true, Assets.instance.pause.mRight_up, Assets.instance.pause.mRight_down, mPad.position.x + mPad.dimension.x / 2 + zoomLeft.dimension.x / 4, zoomLeft.position.y, width, width){
+			@Override
+			public void update(float deltaTime) {
+				super.update(0);
+				if(cur == down){
+					World.controller.cameraHelper.setTarget(null);
+					World.controller.cameraHelper.movePositionBy(new Vector2(10, 0));				
+				}
+
+			}
+			
+		};
+		getSceneObjects().add(zoomRight);
 	}
 	public void levelCompleteMenu() {
 		SceneObject.setCamera(guiCamera);
