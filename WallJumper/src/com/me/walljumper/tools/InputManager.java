@@ -71,26 +71,10 @@ public class InputManager extends InputAdapter {
 	}
 	@Override
 	public boolean touchDown (int screenX, int screenY, int pointer, int button) {
-		//Sends all touch down coordinates to the children
-		for(SceneObject objects : WorldRenderer.renderer.getSceneObjects()){
-			if(objects.touchDown(screenX, screenY, pointer, button)){
-				return false;
-			}
-		}
-		
-		if(!WallJumper.currentScreen.handleTouchInput(screenX, screenY, pointer, button) ){
-			
-			return false;
-		}
-		
-		for(ManipulatableObject target:controllableObjects){
-			target.actOnInputTouch(screenX, screenY, pointer, button);
-		}
 		
 		
-		
-		
-		
+		//Pass input to currentScreen
+		WallJumper.currentScreen.handleTouchInput(screenX, screenY, pointer, button);
 		return false;
 	}
 	

@@ -78,18 +78,18 @@ public class WorldScreen extends ScreenHelper {
 			}
 			
 		};
-		bg.setToWrite("TAP ME", bg.dimension.x / 2 - 20,  bg.dimension.y / 2, true);
+		//bg.setToWrite("TAP ME", bg.dimension.x / 2 - 20,  bg.dimension.y / 2, true);
 		scene.add(bg);
 		
 			
 			//This button goes to the Next World
-			Button nxtWrldButton = new Button(true, "button.down", "button.up",
-					Constants.bgViewportWidth - 50f, 0, 150, 125){
+			Button nxtWrldButton = new Button(true, "NextWorldButton", "NextWorldButton",
+					Constants.bgViewportWidth - 150f, 0, 150, 125){
 				@Override
 				public boolean clickRelease(){
 					//Increment World and reload the world Screen
 					
-					WallJumper.WorldNum = WallJumper.WorldNum < WallJumper.numWorlds - 1 ? WallJumper.WorldNum + 1 : 0;
+					WallJumper.WorldNum = WallJumper.WorldNum < WallJumper.numWorlds - 1 ? WallJumper.WorldNum + 1 : 1;
 					ScreenTransitionFade transition = ScreenTransitionFade.init(.75f);
 					game.setScreen(new WorldScreen(game), transition);
 					return false;

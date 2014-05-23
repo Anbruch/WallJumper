@@ -44,7 +44,7 @@ public class SceneAssets implements Disposable, AssetErrorListener {
 			
 			//Which images are loaded from this
 			Array<String> worldScreenAssetFiles = new Array<String>();
-			for(int i = 0; i < WallJumper.numWorlds; i++){
+			for(int i = 1; i <= WallJumper.numWorlds; i++){
 				worldScreenAssetFiles.add("bg" + i);
 			}
 			
@@ -59,6 +59,7 @@ public class SceneAssets implements Disposable, AssetErrorListener {
 			worldScreenAssetFiles.add("levelbutton.down");
 			worldScreenAssetFiles.add("levelbutton.up");
 			worldScreenAssetFiles.add("title");
+			worldScreenAssetFiles.add("NextWorldButton");
 			worldScreenAssetFiles.add("homeButton");
 			
 			//builds the ArrayMap of ui objects 

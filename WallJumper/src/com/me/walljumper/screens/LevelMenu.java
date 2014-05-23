@@ -65,19 +65,12 @@ public class LevelMenu extends ScreenHelper {
 		//twnManager.update(delta);
 	}
 	
-
-	
-
-
 	@Override
 	public void resize(int width, int height) {
 		scene.resize(width, height);
 	}
 
-	
-
 	private void rebuildStage() {
-		SceneObject.setCamera(Scene.camera);
 		//Make background image 
 		bg = new Image(false, "bg" + WallJumper.WorldNum, -60 , 0, Constants.bgViewportWidth + 120, Constants.bgViewportHeight);
 		bg.setToWrite("World " + WallJumper.WorldNum, Constants.bgViewportWidth / 2 - 60, Constants.bgViewportHeight - 50, true);

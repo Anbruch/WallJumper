@@ -20,7 +20,8 @@ public class LevelLoader {
 		EMPTY(0, 0, 0), PLAYER_SPAWNPOINT(255, 255, 255), ENEMY_SPAWNPOINT(255,
 				0, 0), GOAL(255, 255, 0), PLATFORM_RIGHT_DOWN(0, 0, 255),
 				PLATFORM_START_RIGHT_DOWN(0, 0, 100), SPIKE(125, 0, 0),
-				PLATFORM(0, 255, 0), PLATFORM_START_DOWN_RIGHT(0, 100,0);
+				PLATFORM(0, 255, 0), PLATFORM_START_DOWN_RIGHT(0, 100,0), 
+				TUTORIAL_PHASE_ONE(32, 74, 56);
 		private int color;
 
 		private BLOCK_TYPE(int r, int g, int b) {
@@ -133,31 +134,29 @@ public class LevelLoader {
 					LevelStage.interactables.add(new Portal(pixelX, baseHeight, false));
 					
 				//TRAP
-				}else if(BLOCK_TYPE.SPIKE.sameColor(currentPixel)){
-					if(isStartOfNewObject(pixelX, pixelY, currentPixel)){
+				}else if(BLOCK_TYPE.SPIKE.sameColor(currentPixel) && isStartOfNewObject(pixelX, pixelY, currentPixel)){
+					
+					Vector2 newPixelXY = extendPlatformDownRight(pixelX, pixelY, currentPixel);
+					int lengthX = (int) (newPixelXY.x - pixelX) + 1;
+					int lengthY = (int)(newPixelXY.y - pixelY) + 1;
+					
+					//If Platform is above this spike, flip it pointing downwards
+					if(nextIsSameColor(pixelX, pixelY - 1,BLOCK_TYPE.PLATFORM.color)){
 						
-						Vector2 newPixelXY = extendPlatformDownRight(pixelX, pixelY, currentPixel);
-						int lengthX = (int) (newPixelXY.x - pixelX) + 1;
-						int lengthY = (int)(newPixelXY.y - pixelY) + 1;
-						
-						//If Platform is above this spike, flip it pointing downwards
-						if(nextIsSameColor(pixelX, pixelY - 1,BLOCK_TYPE.PLATFORM.color)){
-							
-							LevelStage.interactables.add(new SpikeTrap((float)(pixelX), (float)(baseHeight), lengthX, lengthY, 1f, 1f, SIDE.BOT));
-						
-						//If platform is below this spike, flip it pointing up
-						}else if(nextIsSameColor(pixelX, pixelY + 1, BLOCK_TYPE.PLATFORM.color)){
-							LevelStage.interactables.add(new SpikeTrap((float)(pixelX), (float)(baseHeight), lengthX, lengthY, 1f, 1f, SIDE.TOP));
-						//LEFT
-						}else if(nextIsSameColor(pixelX + 1, pixelY, BLOCK_TYPE.PLATFORM.color)){
-							LevelStage.interactables.add(new SpikeTrap((float)(pixelX), (float)(baseHeight), lengthX, lengthY, 1f, 1f, SIDE.LEFT));
-						//RIGHT
-						}else if(nextIsSameColor(pixelX - 1, pixelY, BLOCK_TYPE.PLATFORM.color)){
-							LevelStage.interactables.add(new SpikeTrap((float)(pixelX), (float)(baseHeight), lengthX, lengthY, 1f, 1f, SIDE.RIGHT));
+						LevelStage.interactables.add(new SpikeTrap((float)(pixelX), (float)(baseHeight), lengthX, lengthY, 1f, 1f, SIDE.BOT));
+					
+					//If platform is below this spike, flip it pointing up
+					}else if(nextIsSameColor(pixelX, pixelY + 1, BLOCK_TYPE.PLATFORM.color)){
+						LevelStage.interactables.add(new SpikeTrap((float)(pixelX), (float)(baseHeight), lengthX, lengthY, 1f, 1f, SIDE.TOP));
+					//LEFT
+					}else if(nextIsSameColor(pixelX + 1, pixelY, BLOCK_TYPE.PLATFORM.color)){
+						LevelStage.interactables.add(new SpikeTrap((float)(pixelX), (float)(baseHeight), lengthX, lengthY, 1f, 1f, SIDE.LEFT));
+					//RIGHT
+					}else if(nextIsSameColor(pixelX - 1, pixelY, BLOCK_TYPE.PLATFORM.color)){
+						LevelStage.interactables.add(new SpikeTrap((float)(pixelX), (float)(baseHeight), lengthX, lengthY, 1f, 1f, SIDE.RIGHT));
 
-						}else{
-							LevelStage.interactables.add(new Portal(pixelX, baseHeight, true));
-						}
+					}else{
+						LevelStage.interactables.add(new Portal(pixelX, baseHeight, true));
 					}
 				}
 					/*else if (BLOCK_TYPE.ENEMY_SPAWNPOINT.sameColor(currentPixel)) {

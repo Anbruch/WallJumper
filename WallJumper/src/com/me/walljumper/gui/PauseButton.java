@@ -26,6 +26,9 @@ public class PauseButton extends AbstractGameObject {
 	}
 	public void toggle(){
 		
+		if(World.controller.blackHoled)
+			return;
+		
 		image = !WallJumper.paused  ? pause : play;
 		if(WallJumper.paused){
 			WorldRenderer.renderer.pauseMenu();

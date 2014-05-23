@@ -52,9 +52,9 @@ public class MainMenu extends ScreenHelper{
 	}
 	private void rebuildStage(){
 		SceneObject.setCamera(Scene.camera);
-		
+		System.out.println(WallJumper.WorldNum );
 		//Background image
-		bg = new Image(true, "bg" + (int)(Math.random() * WallJumper.numWorlds), 
+		bg = new Image(true, "bg" + (int)(Math.random() * WallJumper.numWorlds + 1), 
 				-60, 0, Constants.bgViewportWidth + 120, Constants.bgViewportHeight);
 		scene.add(bg);
 		

@@ -3,7 +3,7 @@ MenuSkin.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-bg0
+bg1
   rotate: false
   xy: 1, 925
   size: 1920, 1080
@@ -52,6 +52,13 @@ levelbutton.up
   orig: 94, 104
   offset: 0, 0
   index: -1
+NextWorldButton
+  rotate: false
+  xy: 1283, 454
+  size: 45, 100
+  orig: 45, 100
+  offset: 0, 0
+  index: -1
 homeButton
   rotate: false
   xy: 249, 164
@@ -64,7 +71,7 @@ MenuSkin2.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-bg1
+bg2
   rotate: false
   xy: 1, 1
   size: 1920, 1080

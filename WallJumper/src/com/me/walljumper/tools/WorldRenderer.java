@@ -44,7 +44,7 @@ public class WorldRenderer implements Disposable{
 		
 		batch = new SpriteBatch();
 		weather = new Weather();
-		weatherBool = WallJumper.WorldNum != 1 ? false : true;
+		weatherBool = WallJumper.WorldNum != 2 ? false : true;
 		background_image = Assets.instance.nightSky.nightSky;
 		pauseLayer = Assets.instance.pause.pauseLayer;
 		
@@ -105,7 +105,6 @@ public class WorldRenderer implements Disposable{
 		
 	}
 	private void renderBackground() {
-		// TODO Auto-generated method stub
 		batch.setProjectionMatrix(background_camera.combined);
 		batch.begin();
 		
@@ -115,7 +114,6 @@ public class WorldRenderer implements Disposable{
 		batch.end();
 	}
 	private void renderGUI() {
-		// TODO Auto-generated method stub
 		batch.setProjectionMatrix(guiCamera.combined);
 		batch.begin();
 		
@@ -187,7 +185,6 @@ public class WorldRenderer implements Disposable{
 	public void destroy(){
 		guiCamera = null;
 		pauseButton = null;
-		SceneObject.setCamera(null);
 		camera = null;
 		pauseLayer = null;
 		background_image = null;

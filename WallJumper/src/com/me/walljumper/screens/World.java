@@ -58,11 +58,16 @@ public class World  {
 	}
 
 	
+	public World(DirectedGame game, TutorialScreen tutorialScreen) {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public void init() {
 	
 		//PlayMusic
-		if(!AudioManager.instance.isPlaying())
-			AudioManager.instance.playMusic(Assets.instance.music.world0);
+		//if(!AudioManager.instance.isPlaying())
+		//	AudioManager.instance.playMusic(Assets.instance.music.world0);
 		
 		nextLevel = false;
 		backTolevelMenu = false;
@@ -97,6 +102,7 @@ public class World  {
 		//Set up pause button
 		WallJumper.paused = true;
 		WorldRenderer.renderer.pauseButton = new PauseButton();
+		WorldRenderer.renderer.pauseMenu();
 		
 		levelStage.update(0);
 		started = false;
@@ -195,7 +201,7 @@ public class World  {
 		if(!started){
 			levelTimer = 0;
 			started = true;
-			WallJumper.paused = (WallJumper.paused == true) ? false : true;
+			WallJumper.paused = (WallJumper.paused == true) ? false : false;
 			WorldRenderer.renderer.pauseButton.toggle();
 			LevelStage.player.moveRight();
 			
@@ -205,20 +211,34 @@ public class World  {
 	}
 	//Return false to do a return in the method calling this
 	public boolean handleTouchInput(int screenX, int screenY, int pointer, int button) {
+		//Sends all touch down coordinates to the children
+		for(SceneObject objects : WorldRenderer.renderer.getSceneObjects()){
+			if(objects.touchDown(screenX, screenY, pointer, button)){
+				return false;
+			}
+		}
+		if(!startLevel())
+			return false;
 		
 		
 		// Top left corner is a pause button
 		if (screenX < Gdx.graphics.getWidth() / 10
-				&& screenY < Gdx.graphics.getHeight() / 10) {
+				&& screenY < Gdx.graphics.getHeight() / 10 && !blackHoled) {
 			WallJumper.paused = (WallJumper.paused == true) ? false : true;
 			WorldRenderer.renderer.pauseButton.toggle();
 			return false;
-			
+		//
+		}else if(WallJumper.paused){
+				WallJumper.paused = false;
+				WorldRenderer.renderer.pauseButton.toggle();
+				return false;
 		}
 		
-		if(!startLevel() || WallJumper.paused){
-			return false;
+		//send input to riftrunner   
+		for(ManipulatableObject target:InputManager.inputManager.controllableObjects){
+			target.actOnInputTouch(screenX, screenY, pointer, button);
 		}
+		
 		return true;
 		
 	}

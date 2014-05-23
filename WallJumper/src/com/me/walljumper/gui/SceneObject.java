@@ -104,14 +104,19 @@ public abstract class SceneObject {
 		
 	}
 	public boolean touchDown(int screenX, int screenY, int pointer, int button){
+		try{
 		Vector2 x = Constants.screenToCoords(SceneObject.currentCamera, new Vector3(screenX, screenY, 0));
-		if(bounds.contains(x) && this.clickable){
-			cur = down != null ? down : cur;
-			clickedDown();
-			
-			return true;
-		}
 		
+		
+			if(bounds.contains(x) && this.clickable){
+				cur = down != null ? down : cur;
+				clickedDown();
+				
+				return true;
+			}
+		}catch(NullPointerException e){
+			
+		}
 		return false;
 	}
 	public void touchUp(int screenX, int screenY, int pointer, int button){

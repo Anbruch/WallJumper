@@ -5,13 +5,14 @@ import com.badlogic.gdx.utils.Array;
 import com.me.walljumper.screens.MainMenu;
 import com.me.walljumper.screens.ScreenHelper;
 import com.me.walljumper.screens.World;
+import com.me.walljumper.tools.WorldRenderer;
 
 public class WallJumper extends DirectedGame {
 	public static final int numWorlds = 2;
 	public static final int numButtonsPerPage = 18;
 	public static boolean paused;//Game being paused handled in main
 	public static ScreenHelper currentScreen;
-	public static int WorldNum = 0, level = 0;
+	public static int WorldNum = 1, level = 0;
 	
 	
 	
@@ -27,7 +28,7 @@ public class WallJumper extends DirectedGame {
 		if(World.controller != null)
 		World.controller.dispose();
 		World.controller = null;
-		WorldNum = 0;
+		WorldNum = 1;
 	}
 	
 	@Override
@@ -38,11 +39,15 @@ public class WallJumper extends DirectedGame {
 	@Override
 	public void pause() {
 		WallJumper.paused = true;
-	}
+		if(WorldRenderer.renderer != null && WorldRenderer.renderer.pauseButton != null)
+			WorldRenderer.renderer.pauseButton.toggle();
+	}	
 
 	@Override
 	public void resume() {
-
+		WallJumper.paused = false;
+		if(WorldRenderer.renderer != null && WorldRenderer.renderer.pauseButton != null)
+			WorldRenderer.renderer.pauseButton.toggle();
 	}
 
 	public static int getNumLevelsForSet(int i) {

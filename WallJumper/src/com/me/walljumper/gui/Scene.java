@@ -27,9 +27,19 @@ public class Scene implements InputProcessor {
 	private DirectedGame game;
 	
 	
-	/*****HOW TO USE THIS SCENE*****
+	/**How to use this scene: 
 	 * 1st step, create a Scene object.
-	 * 2nd step, add to children
+	 * 2nd step, add SceneObject children by doing scene.add(child);
+	 * Now, all your children are on the screen and clickable or not
+	 * You can override specific event methods such as
+	 * clickedDown() || clickedRelease()  as so
+	 * Button button = new Button(params...){
+	 * @override
+	 * public void clickedDown(){
+	 * 	etc..
+	 *  etc..
+	 * 
+	 * }
 	 */
 	
 	public Scene(ScreenHelper screenHelper, DirectedGame game){
@@ -49,6 +59,7 @@ public class Scene implements InputProcessor {
 		cameraHelper = new CameraHelper();
 		cameraHelper.setZoom(1);
 		cameraHelper.setPosition(Constants.sceneCamX, Constants.sceneCamY);
+		SceneObject.setCamera(camera);
 		//Set up camera helper
 		cameraHelper.applyTo(camera);
 		camera.update();
