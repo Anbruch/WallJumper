@@ -69,21 +69,13 @@ public class GameScreen extends ScreenHelper {
 	}
 	
 	//CHANGE LEVEL METHODS
-	public void restartLevel(){
-		
-		World.controller.destroy();
-		World.controller.init();
-	}
 	
-	public void backToLevelMenu(){
-		AudioManager.instance.stopMusic();
-		ScreenTransition transition = ScreenTransitionSlice.init(.6f, ScreenTransitionSlice.UP_DOWN, 10,
-				Interpolation.pow2Out);
-		game.setScreen(new LevelMenu(game), transition);
-	}
 	
+	
+	//Set spawnpoint to null, destroy and init world controller and go to next level
 	public void nextLevel(){
 		WallJumper.level++;
+		World.controller.setSpawnPoint(null, false);
 		World.controller.destroy();
 		World.controller.init();
 	}

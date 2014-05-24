@@ -24,7 +24,6 @@ import com.me.walljumper.gui.SceneObject;
 import com.me.walljumper.screens.screentransitions.ScreenTransitionFade;
 
 public class MainMenu extends ScreenHelper{
-	private float rng;
 
 	Image title, bg, platform;
 	Button play, tutorial, options;
@@ -52,7 +51,6 @@ public class MainMenu extends ScreenHelper{
 	}
 	private void rebuildStage(){
 		SceneObject.setCamera(Scene.camera);
-		System.out.println(WallJumper.WorldNum );
 		//Background image
 		bg = new Image(true, "bg" + (int)(Math.random() * WallJumper.numWorlds + 1), 
 				-60, 0, Constants.bgViewportWidth + 120, Constants.bgViewportHeight);

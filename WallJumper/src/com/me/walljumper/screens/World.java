@@ -40,10 +40,11 @@ public class World  {
 	public static boolean spiked;
 	public Button button;
 	
+	
 	private ManipulatableObject from;
 	public AbstractGameObject to;
 	private DirectedGame game;
-	public GameScreen gameScreen;
+	public ScreenHelper gameScreen;
 	public boolean renderAll;
 	
 	private TweenManager tween;
@@ -51,16 +52,18 @@ public class World  {
 	public boolean backTolevelMenu;
 	public boolean camOnTarget;
 	
+	private Vector2 spawnPoint;
+	private boolean faceLeft;
+	
+	
 
-	public World(DirectedGame game, GameScreen gameScreen) {
+	public World(DirectedGame game, ScreenHelper gameScreen) {
 		this.game = game;
 		this.gameScreen = gameScreen;
 	}
 
 	
-	public World(DirectedGame game, TutorialScreen tutorialScreen) {
-		// TODO Auto-generated constructor stub
-	}
+	
 
 
 	public void init() {
@@ -92,6 +95,8 @@ public class World  {
 		
 		// have a player variable here
 		player = InputManager.inputManager.getPlayer();
+		if(spawnPoint != null)
+			player.position.set(spawnPoint);
 		
 		
 		//Set up camera helper
@@ -127,15 +132,14 @@ public class World  {
 	}
 	
 	private void checkDeath() {
-		if(spiked){
+		if(backTolevelMenu){
+			gameScreen.backToLevelMenu();
+		} else if(spiked){
 			gameScreen.restartLevel();
 		}else if(nextLevel){
 			gameScreen.nextLevel();
-		}else if(backTolevelMenu){
-			gameScreen.backToLevelMenu();
 		}
 	}
-	
 	private void blackHoleMovement(float deltaTime){
 		if(from != null && !from.continueToHole(deltaTime)){
 			if(portal.isDeathPortal()){
@@ -150,6 +154,10 @@ public class World  {
 		}
 	}
 	
+	public void setSpawnPoint(Vector2 spawnPoint, boolean faceLeft){
+		this.spawnPoint = spawnPoint;
+		this.faceLeft = faceLeft;
+	}
 	public void render(float delta) {
 		
 		renderAll = cameraHelper.zoom != Constants.defaultZoom ? true : renderAll;
@@ -166,7 +174,6 @@ public class World  {
 		
 		//Update countdown
 		}else {
-			
 			controller.cameraHelper.update(delta);
 		}
 		
@@ -201,9 +208,12 @@ public class World  {
 		if(!started){
 			levelTimer = 0;
 			started = true;
-			WallJumper.paused = (WallJumper.paused == true) ? false : false;
-			WorldRenderer.renderer.pauseButton.toggle();
-			LevelStage.player.moveRight();
+			WorldRenderer.renderer.pauseButton.play();
+			if(faceLeft)
+				LevelStage.player.moveLeft();
+			else
+				LevelStage.player.moveRight();
+
 			
 			return false;
 		}
@@ -224,14 +234,12 @@ public class World  {
 		// Top left corner is a pause button
 		if (screenX < Gdx.graphics.getWidth() / 10
 				&& screenY < Gdx.graphics.getHeight() / 10 && !blackHoled) {
-			WallJumper.paused = (WallJumper.paused == true) ? false : true;
 			WorldRenderer.renderer.pauseButton.toggle();
 			return false;
 		//
 		}else if(WallJumper.paused){
-				WallJumper.paused = false;
-				WorldRenderer.renderer.pauseButton.toggle();
-				return false;
+			WorldRenderer.renderer.pauseButton.toggle();
+			return false;
 		}
 		
 		//send input to riftrunner   
@@ -245,6 +253,7 @@ public class World  {
 
 	public void show() {
 		World.controller.init();
+		World.controller.setSpawnPoint(null, false);
 		
 	}
 

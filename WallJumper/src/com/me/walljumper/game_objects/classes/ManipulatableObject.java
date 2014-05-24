@@ -3,7 +3,6 @@ package com.me.walljumper.game_objects.classes;
 import com.me.walljumper.Constants;
 import com.me.walljumper.game_objects.AbstractGameObject;
 import com.me.walljumper.game_objects.particles.WallJumpParticle;
-import com.me.walljumper.game_objects.weapons.Weapon;
 
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -26,7 +25,6 @@ public class ManipulatableObject extends AbstractGameObject {
 	protected Animation zAttack;
 	
 
-	public Weapon weapon;
 	public Animation aniJumping, aniWalling;
 	private MeleeEnemyAI AI;
 	public COMBAT combatState;

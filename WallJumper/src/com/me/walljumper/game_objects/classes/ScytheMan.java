@@ -1,6 +1,5 @@
 package com.me.walljumper.game_objects.classes;
 
-import com.me.walljumper.game_objects.weapons.Scythe;
 
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -8,7 +7,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.me.walljumper.tools.Assets;
 
 public class ScytheMan extends ManipulatableObject {
-	Scythe scythe;
 	public ScytheMan(){
 		
 	}

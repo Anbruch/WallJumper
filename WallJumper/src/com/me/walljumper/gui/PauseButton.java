@@ -29,19 +29,31 @@ public class PauseButton extends AbstractGameObject {
 		if(World.controller.blackHoled)
 			return;
 		
-		image = !WallJumper.paused  ? pause : play;
-		if(WallJumper.paused){
-			WorldRenderer.renderer.pauseMenu();
-			World.controller.cameraHelper.moveTowardsPosition(World.controller.cameraHelper.getTarget().position);
-			World.controller.cameraHelper.setTarget(null);
-			World.controller.renderAll = true;
+		if(!WallJumper.paused){
+			pause();
 		}else{
-			World.controller.renderAll = false;
-			World.controller.cameraHelper.setTarget(InputManager.inputManager.getPlayer());
-			World.controller.cameraHelper.transitionToZoom(Constants.defaultZoom);
-			WorldRenderer.renderer.clearScene();
-			
+			play();
 		}
+	}
+	public void pause(){
+		image = play;
+		WallJumper.paused = true;
+		WorldRenderer.renderer.pauseMenu();
+		World.controller.cameraHelper.moveTowardsPosition(World.controller.cameraHelper.getTarget().position);
+		World.controller.cameraHelper.setTarget(null);
+		World.controller.renderAll = true;
+		
+	}
+	public void play(){
+		
+		WorldRenderer.renderer.unDisplayToWorld();
+		WallJumper.paused = false;
+		image = pause;
+		World.controller.renderAll = false;
+		World.controller.cameraHelper.setTarget(InputManager.inputManager.getPlayer());
+		World.controller.cameraHelper.transitionToZoom(Constants.defaultZoom);
+		WorldRenderer.renderer.clearScene();
+		
 	}
 	@Override
 	public void render(SpriteBatch batch){

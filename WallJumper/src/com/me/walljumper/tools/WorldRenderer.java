@@ -35,6 +35,9 @@ public class WorldRenderer implements Disposable{
 	public Weather weather;
 	public boolean weatherBool;
 	private Array<SceneObject> sceneObjects;
+	private String displayText;
+	private boolean displayingText;
+	private Vector2 textPos;
 
 	
 	private WorldRenderer(){
@@ -135,6 +138,10 @@ public class WorldRenderer implements Disposable{
 			objects.update(0);
 			objects.render(batch);
 		}
+		
+		if(displayingText)
+			WorldRenderer.renderer.writeToWorld(displayText, textPos.x, textPos.y);
+
 	}
 	private void renderTimer() {
 		if(World.controller.started){
@@ -151,6 +158,16 @@ public class WorldRenderer implements Disposable{
 		if(!World.controller.started)
 			writeToWorld("Tap to start!", Constants.bgViewportWidth / 2 - 50, Constants.bgViewportHeight / 2 + 150);
 			
+	}
+	public void displayToWorld(String text, Vector2 textPos){
+		this.textPos = textPos;
+		displayingText = true;
+		displayText = text;
+	}
+	public void unDisplayToWorld(){
+		displayText = null;
+		this.textPos = null;
+		displayingText = false;
 	}
 	public void resize(int width, int height){
 		
@@ -189,12 +206,14 @@ public class WorldRenderer implements Disposable{
 		pauseLayer = null;
 		background_image = null;
 		background_camera = null;
+		unDisplayToWorld();
 		weather.destroy();
 		clearScene();
 	}
 	@Override
 	public void dispose() {
 		batch.dispose();
+		unDisplayToWorld();
 	}
 	public void pauseMenu(){
 		SceneObject.setCamera(guiCamera);
