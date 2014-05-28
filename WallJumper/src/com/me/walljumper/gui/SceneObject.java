@@ -92,7 +92,6 @@ public abstract class SceneObject {
 	
 	public void render(SpriteBatch batch) {
 		
-		
 		batch.draw(cur, position.x, position.y,
 				dimension.x / 2, dimension.y / 2, dimension.x, dimension.y, scaleX, scaleY, rotation);
 		

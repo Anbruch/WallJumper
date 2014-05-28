@@ -92,5 +92,8 @@ public class Image extends SceneObject {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	public TextureRegion getTexture() {
+		return cur;
+	}
 
 }
