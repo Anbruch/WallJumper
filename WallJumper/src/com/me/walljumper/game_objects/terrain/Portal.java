@@ -28,7 +28,7 @@ public class Portal extends AbstractGameObject{
 		image = animation.getKeyFrame(stateTime);
 		scale = death ? 2.5f : 5;
 		dimension.set(image.getRegionWidth() / 100.0f * scale, image.getRegionHeight() / 100.0f * scale);
-		bounds.set(position.x + .2f, position.y + .5f, dimension.x - .7f, dimension.y - 1.75f);
+		bounds.set(position.x + dimension.x * .15f, position.y + dimension.y * .2f, dimension.x - dimension.x * .4f, dimension.y - dimension.y * .6f);
 	}
 	@Override
 	public void interact(AbstractGameObject couple){

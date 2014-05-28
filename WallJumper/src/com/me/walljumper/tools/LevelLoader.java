@@ -197,7 +197,7 @@ public class LevelLoader {
 							
 							if(!finished){
 								WorldRenderer.renderer.pauseButton.pause();
-								World.controller.setSpawnPoint(new Vector2(position.x + 1, position.y), false);
+								World.controller.setSpawnPoint(new Vector2(position.x + dimension.x + .2f, position.y), false);
 
 							}
 							super.interact(couple);
@@ -209,7 +209,6 @@ public class LevelLoader {
 					int lengthX = (int) (newPixelXY.x - pixelX) + 1;
 					int lengthY = (int)(newPixelXY.y - pixelY) + 1;
 					
-					System.out.println(lengthX + " " + lengthY + " phase 4");
 
 					
 					LevelStage.interactables.add(new TutorialBoundary((float)pixelX, (float)baseHeight,  (float) lengthX,  (float) lengthY, "While sliding on the wall, tap to wall-jump away from the wall",
@@ -231,14 +230,13 @@ public class LevelLoader {
 					Vector2 newPixelXY = extendPlatformDownRight(pixelX, pixelY, currentPixel);
 					int lengthX = (int) (newPixelXY.x - pixelX) + 1;
 					int lengthY = (int)(newPixelXY.y - pixelY) + 1;
-					System.out.println(lengthX + " " + lengthY + " phase 4");
 					LevelStage.interactables.add(new TutorialBoundary((float)pixelX, (float)baseHeight,  (float) lengthX,  (float) lengthY, "Watch out for the red blackhole traps",
 							Constants.bgViewportWidth / 7, Constants.bgViewportHeight / 5 * 4){
 						@Override
 						public void interact(AbstractGameObject couple) {
 							if(!finished){
 								WorldRenderer.renderer.pauseButton.pause();
-								World.controller.setSpawnPoint(new Vector2(position.x + dimension.x + 1, position.y), false);
+								World.controller.setSpawnPoint(new Vector2(position.x + dimension.x + .2f, position.y), false);
 
 							}
 							super.interact(couple);

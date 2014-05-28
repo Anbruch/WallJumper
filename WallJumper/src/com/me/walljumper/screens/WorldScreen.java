@@ -17,7 +17,6 @@ import com.me.walljumper.gui.Scene;
 import com.me.walljumper.gui.SceneAssets;
 import com.me.walljumper.gui.SceneObject;
 import com.me.walljumper.screens.screentransitions.ScreenTransitionFade;
-import com.me.walljumper.screens.screentransitions.ScreenTransitionSlice;
 import com.me.walljumper.screens.screentransitions.ScreenTransitionSlide;
 import com.me.walljumper.tools.Assets;
 
@@ -37,7 +36,6 @@ public class WorldScreen extends ScreenHelper {
 	
 	@Override
 	public InputProcessor getInputProcessor() {
-
 		return scene;
 	}
 	@Override
@@ -78,7 +76,6 @@ public class WorldScreen extends ScreenHelper {
 			}
 			
 		};
-		//bg.setToWrite("TAP ME", bg.dimension.x / 2 - 20,  bg.dimension.y / 2, true);
 		scene.add(bg);
 		
 			
@@ -89,8 +86,8 @@ public class WorldScreen extends ScreenHelper {
 				public boolean clickRelease(){
 					//Increment World and reload the world Screen
 					
-					WallJumper.WorldNum = WallJumper.WorldNum < WallJumper.numWorlds - 1 ? WallJumper.WorldNum + 1 : 1;
-					ScreenTransitionFade transition = ScreenTransitionFade.init(.75f);
+					WallJumper.WorldNum = WallJumper.WorldNum < WallJumper.numWorlds ? WallJumper.WorldNum + 1 : 1;
+					ScreenTransitionSlide transition = ScreenTransitionSlide.init(.75f, ScreenTransitionSlide.RIGHT, false, Interpolation.exp5);
 					game.setScreen(new WorldScreen(game), transition);
 					return false;
 				}
@@ -115,7 +112,6 @@ public class WorldScreen extends ScreenHelper {
 		scene.update(delta);
 		scene.render();
 				
-		
 	}
 
 	

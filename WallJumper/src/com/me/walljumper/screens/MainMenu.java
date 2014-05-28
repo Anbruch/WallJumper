@@ -181,7 +181,7 @@ public class MainMenu extends ScreenHelper{
 				//BUILD ANOTHER TWEEN EVER 15 SECONDS
 				Tween.registerAccessor(SceneObject.class, new ActorAccessor());
 				Timeline.createSequence()
-				.delay(1)
+				.delay(5)
 				
 				.push(Tween.set(title, ActorAccessor.ROTATION).target(0))
 				.push(Tween.set(play, ActorAccessor.ROTATION).target(0))
@@ -235,6 +235,7 @@ public class MainMenu extends ScreenHelper{
 		.end()
 		.beginSequence()
 			.push(Tween.to(tutorial, ActorAccessor.SCALE, .2f).target(1, 1))
+			
 		.end()
 
 		.setCallback(myCallBack).setCallbackTriggers(TweenCallback.COMPLETE).start(twnManager);

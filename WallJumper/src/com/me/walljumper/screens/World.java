@@ -62,10 +62,6 @@ public class World  {
 		this.gameScreen = gameScreen;
 	}
 
-	
-	
-
-
 	public void init() {
 	
 		//PlayMusic
