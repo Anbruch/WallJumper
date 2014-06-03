@@ -2,15 +2,15 @@ package com.me.walljumper.screens;
 
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.me.walljumper.Constants;
 import com.me.walljumper.DirectedGame;
 import com.me.walljumper.WallJumper;
-import com.me.walljumper.screens.screentransitions.ScreenTransition;
-import com.me.walljumper.screens.screentransitions.ScreenTransitionSlice;
 import com.me.walljumper.tools.Assets;
 import com.me.walljumper.tools.AudioManager;
 import com.me.walljumper.tools.InputManager;
+import com.me.walljumper.tools.WorldRenderer;
 
 public class TutorialScreen extends ScreenHelper {
 
@@ -41,6 +41,8 @@ public class TutorialScreen extends ScreenHelper {
 		World.controller.show();
 		WallJumper.currentScreen = this;
 		
+		//Explain camera functions
+		WorldRenderer.renderer.displayToWorld("Use the Camera functions to see the level!", new Vector2(Constants.bgViewportWidth / 5, Constants.bgViewportHeight / 1.2f));
 	}
 	
 	@Override
@@ -82,7 +84,7 @@ public class TutorialScreen extends ScreenHelper {
 	}
 	@Override
 	public void backToMainMenu() {
-		System.out.println("oaeustoeu");
+		
 		AudioManager.instance.stopMusic();
 		game.setScreen(new MainMenu(game), null);
 	}

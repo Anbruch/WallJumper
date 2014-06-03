@@ -95,6 +95,7 @@ public class World  {
 			player.position.set(spawnPoint);
 		
 		
+		
 		//Set up camera helper
 		cameraHelper.setTarget(LevelStage.player);
 		cameraHelper.applyTo(WorldRenderer.renderer.camera);
@@ -138,12 +139,11 @@ public class World  {
 	}
 	private void blackHoleMovement(float deltaTime){
 		if(from != null && !from.continueToHole(deltaTime)){
+
 			if(portal.isDeathPortal()){
 				gameScreen.restartLevel();
 				return;
-			}
-			//gameScreen.backToLevelMenu();
-			
+			}			
 			//Play the success screen, watch it out, it may run every from if from != null
 			WorldRenderer.renderer.levelCompleteMenu();
 			from = null;

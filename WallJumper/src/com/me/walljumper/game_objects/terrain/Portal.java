@@ -32,7 +32,7 @@ public class Portal extends AbstractGameObject{
 	}
 	@Override
 	public void interact(AbstractGameObject couple){
-		
+		//Sets the player to move twoards this portal
 		World.controller.moveTowards(LevelStage.player, this, .7f);
 		World.portal = this;
 	}

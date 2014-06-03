@@ -13,7 +13,7 @@ import com.me.walljumper.game_objects.terrain.Portal;
 import com.me.walljumper.game_objects.terrain.traps.SpikeTrap;
 import com.me.walljumper.game_objects.terrain.traps.SpikeTrap.SIDE;
 import com.me.walljumper.screens.World;
-import com.me.walljumper.tutorial.TutorialBoundary;
+import com.me.walljumper.tutorial.Boundary;
 
 public class LevelLoader {
 
@@ -21,7 +21,8 @@ public class LevelLoader {
 
 	public enum BLOCK_TYPE {
 		EMPTY(0, 0, 0), 
-		PLAYER_SPAWNPOINT(255, 255, 255),
+		PLAYER_SPAWNPOINT(255, 255, 255), 
+		PLAYER_CHECKPOINTRIGHT(254, 0, 0),
 		ENEMY_SPAWNPOINT(255, 0, 0), 
 		GOAL(255, 255, 0),
 		PLATFORM_RIGHT_DOWN(0, 0, 255),
@@ -34,7 +35,8 @@ public class LevelLoader {
 		TUTORIAL_PHASE_3(20, 20, 3),
 		TUTORIAL_PHASE_4(20, 20, 4),
 		TUTORIAL_PHASE_5(20, 20, 5),
-		TUTORIAL_GOAL(251, 251, 0);
+		TUTORIAL_GOAL(251, 251, 0),
+		PLAYER_CHECKPOINTLEFT(0, 0, 254);
 		private int color;
 
 		private BLOCK_TYPE(int r, int g, int b) {
@@ -130,7 +132,7 @@ public class LevelLoader {
 					pixmap.drawPixel(pixelX, pixelY, BLOCK_TYPE.PLATFORM.color);
 					// IF PLAYER SPAWNPOINT
 				} else if (BLOCK_TYPE.PLAYER_SPAWNPOINT.sameColor(currentPixel)) {
-					if (isStartOfNewObject(pixelX, pixelY, currentPixel)) {
+					if (itIsStartOfNewObject(pixelX, pixelY, currentPixel)) {
 /*
 						// Spawn player
 						ScytheMan scytheMan = new ScytheMan(pixelX * 1,
@@ -147,7 +149,7 @@ public class LevelLoader {
 					LevelStage.interactables.add(new Portal(pixelX, baseHeight, false));
 					
 				//TRAP
-				}else if(BLOCK_TYPE.SPIKE.sameColor(currentPixel) && isStartOfNewObject(pixelX, pixelY, currentPixel)){
+				}else if(BLOCK_TYPE.SPIKE.sameColor(currentPixel) && itIsStartOfNewObject(pixelX, pixelY, currentPixel)){
 					
 					Vector2 newPixelXY = extendPlatformDownRight(pixelX, pixelY, currentPixel);
 					int lengthX = (int) (newPixelXY.x - pixelX) + 1;
@@ -171,13 +173,13 @@ public class LevelLoader {
 					}else{
 						LevelStage.interactables.add(new Portal(pixelX, baseHeight, true));
 					}
-				}else if(BLOCK_TYPE.TUTORIAL_PHASE_1.sameColor(currentPixel) && isStartOfNewObject(pixelX, pixelY, currentPixel)){
+				}else if(BLOCK_TYPE.TUTORIAL_PHASE_1.sameColor(currentPixel) && itIsStartOfNewObject(pixelX, pixelY, currentPixel)){
 					
 					Vector2 newPixelXY = extendPlatformDownRight(pixelX, pixelY, currentPixel);
 					int lengthX = (int) (newPixelXY.x - pixelX) + 1;
 					int lengthY = (int)(newPixelXY.y - pixelY) + 1;
 					
-					LevelStage.interactables.add(new TutorialBoundary((float)pixelX, (float)baseHeight,  (float) lengthX,  (float) lengthY, "While on the ground, tap to jump",
+					LevelStage.interactables.add(new Boundary((float)pixelX, (float)baseHeight,  (float) lengthX,  (float) lengthY, "While on the ground, tap to jump",
 							Constants.bgViewportWidth / 4.5f, Constants.bgViewportHeight / 5 * 4){
 						@Override
 						public void interact(AbstractGameObject couple) {
@@ -190,13 +192,13 @@ public class LevelLoader {
 							super.interact(couple);
 						}
 					});
-				}else if(BLOCK_TYPE.TUTORIAL_PHASE_2.sameColor(currentPixel) && isStartOfNewObject(pixelX, pixelY, currentPixel)){
+				}else if(BLOCK_TYPE.TUTORIAL_PHASE_2.sameColor(currentPixel) && itIsStartOfNewObject(pixelX, pixelY, currentPixel)){
 					
 					Vector2 newPixelXY = extendPlatformDownRight(pixelX, pixelY, currentPixel);
 					int lengthX = (int) (newPixelXY.x - pixelX) + 1;
 					int lengthY = (int)(newPixelXY.y - pixelY) + 1;
 					
-					LevelStage.interactables.add(new TutorialBoundary((float)pixelX, (float)baseHeight,  (float) lengthX,  (float) lengthY, "While in midair, tap to change direction",
+					LevelStage.interactables.add(new Boundary((float)pixelX, (float)baseHeight,  (float) lengthX,  (float) lengthY, "While in midair, tap to change direction",
 							Constants.bgViewportWidth / 6, Constants.bgViewportHeight / 5 * 4){
 						@Override
 						public void interact(AbstractGameObject couple) {
@@ -211,7 +213,7 @@ public class LevelLoader {
 							super.interact(couple);
 						}
 					});
-				} else if(BLOCK_TYPE.TUTORIAL_PHASE_3.sameColor(currentPixel) && isStartOfNewObject(pixelX, pixelY, currentPixel)){
+				} else if(BLOCK_TYPE.TUTORIAL_PHASE_3.sameColor(currentPixel) && itIsStartOfNewObject(pixelX, pixelY, currentPixel)){
 					
 					Vector2 newPixelXY = extendPlatformDownRight(pixelX, pixelY, currentPixel);
 					int lengthX = (int) (newPixelXY.x - pixelX) + 1;
@@ -219,7 +221,7 @@ public class LevelLoader {
 					
 
 					
-					LevelStage.interactables.add(new TutorialBoundary((float)pixelX, (float)baseHeight,  (float) lengthX,  (float) lengthY, "While sliding on the wall, tap to wall-jump away from the wall",
+					LevelStage.interactables.add(new Boundary((float)pixelX, (float)baseHeight,  (float) lengthX,  (float) lengthY, "While sliding on the wall, tap to wall-jump away from the wall",
 							Constants.bgViewportWidth / 14, Constants.bgViewportHeight / 5 * 4){
 						@Override
 						public void interact(AbstractGameObject couple) {
@@ -233,12 +235,12 @@ public class LevelLoader {
 							super.interact(couple);
 						}
 					});
-				} else if(BLOCK_TYPE.TUTORIAL_PHASE_4.sameColor(currentPixel) && isStartOfNewObject(pixelX, pixelY, currentPixel)){
+				} else if(BLOCK_TYPE.TUTORIAL_PHASE_4.sameColor(currentPixel) && itIsStartOfNewObject(pixelX, pixelY, currentPixel)){
 					
 					Vector2 newPixelXY = extendPlatformDownRight(pixelX, pixelY, currentPixel);
 					int lengthX = (int) (newPixelXY.x - pixelX) + 1;
 					int lengthY = (int)(newPixelXY.y - pixelY) + 1;
-					LevelStage.interactables.add(new TutorialBoundary((float)pixelX, (float)baseHeight,  (float) lengthX,  (float) lengthY, "Watch out for the red blackhole traps",
+					LevelStage.interactables.add(new Boundary((float)pixelX, (float)baseHeight,  (float) lengthX,  (float) lengthY, "Watch out for the red blackhole traps",
 							Constants.bgViewportWidth / 7, Constants.bgViewportHeight / 5 * 4){
 						@Override
 						public void interact(AbstractGameObject couple) {
@@ -250,13 +252,13 @@ public class LevelLoader {
 							super.interact(couple);
 						}
 					});
-				}else if(BLOCK_TYPE.TUTORIAL_PHASE_5.sameColor(currentPixel) && isStartOfNewObject(pixelX, pixelY, currentPixel)){
+				}else if(BLOCK_TYPE.TUTORIAL_PHASE_5.sameColor(currentPixel) && itIsStartOfNewObject(pixelX, pixelY, currentPixel)){
 					
 					Vector2 newPixelXY = extendPlatformDownRight(pixelX, pixelY, currentPixel);
 					int lengthX = (int) (newPixelXY.x - pixelX) + 1;
 					int lengthY = (int)(newPixelXY.y - pixelY) + 1;
 					
-					LevelStage.interactables.add(new TutorialBoundary((float)pixelX, (float)baseHeight,  (float) lengthX,  .05f, "But the black ones are the Goal!",
+					LevelStage.interactables.add(new Boundary((float)pixelX, (float)baseHeight,  (float) lengthX,  .05f, "But the black ones are the Goal!",
 							Constants.bgViewportWidth / 7, Constants.bgViewportHeight / 5 * 4){
 						@Override
 						public void interact(AbstractGameObject couple) {
@@ -267,7 +269,7 @@ public class LevelLoader {
 
 						}
 					});
-				}else if(BLOCK_TYPE.TUTORIAL_GOAL.sameColor(currentPixel) && isStartOfNewObject(pixelX, pixelY, currentPixel)){
+				}else if(BLOCK_TYPE.TUTORIAL_GOAL.sameColor(currentPixel) && itIsStartOfNewObject(pixelX, pixelY, currentPixel)){
 					
 										
 					LevelStage.interactables.add(new Portal(pixelX, baseHeight, false){
@@ -276,7 +278,26 @@ public class LevelLoader {
 							WallJumper.currentScreen.backToMainMenu();
 						}
 					});
+				
 
+				}else if(BLOCK_TYPE.PLAYER_CHECKPOINTRIGHT.sameColor(currentPixel) && itIsStartOfNewObject(pixelX, pixelY,currentPixel)){
+					Vector2 newPixelXY = getDimension(pixelX, pixelY, currentPixel);
+					
+					LevelStage.interactables.add(new Boundary(pixelX, baseHeight, newPixelXY.x, newPixelXY.y, " ", 0, 0){
+						@Override
+						public void interact(AbstractGameObject couple) {
+							World.controller.setSpawnPoint(this.position, false);
+						}
+					});
+				}else if(BLOCK_TYPE.PLAYER_CHECKPOINTLEFT.sameColor(currentPixel) && itIsStartOfNewObject(pixelX, pixelY,currentPixel)){
+					Vector2 newPixelXY = getDimension(pixelX, pixelY, currentPixel);
+					
+					LevelStage.interactables.add(new Boundary(pixelX, baseHeight, newPixelXY.x, newPixelXY.y, " ", 0, 0){
+						@Override
+						public void interact(AbstractGameObject couple) {
+							World.controller.setSpawnPoint(this.position, true);
+						}
+					});
 				}
 				
 					/*else if (BLOCK_TYPE.ENEMY_SPAWNPOINT.sameColor(currentPixel)) {
@@ -300,7 +321,13 @@ public class LevelLoader {
 			}// inner for loop
 		}// outer for loop
 	}// end of method
-
+	private Vector2 getDimension(int pixelX, int pixelY, int currentPixel){
+		//Gets the
+		Vector2 newPixelXY = extendPlatformDownRight(pixelX, pixelY, currentPixel);
+		int lengthX = (int) (newPixelXY.x - pixelX) + 1;
+		int lengthY = (int)(newPixelXY.y - pixelY) + 1;
+		return newPixelXY.set(lengthX, lengthY);
+	}
 	private Vector2 extendPlatformDownRight(int i, int j, int color) {
 		while(nextIsSameColor(i, j + 1, color)){
 			j++;
@@ -328,7 +355,7 @@ public class LevelLoader {
 		}
 		return  false;
 	}
-	private boolean isStartOfNewObject(int i, int j, int color) {
+	private boolean itIsStartOfNewObject(int i, int j, int color) {
 		int lastPixelX = pixmap.getPixel(i - 1, j);
 		int lastPixelY = pixmap.getPixel(i, j - 1);
 

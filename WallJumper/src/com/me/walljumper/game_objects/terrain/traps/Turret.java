@@ -27,6 +27,9 @@ public class Turret extends AbstractGameObject {
 		this.flipX = flipX;
 		this.flipY = flipY;
 	}
+	public void setFireDirection(Vector2 direction){
+		
+	}
 	
 	public void update(float deltaTime){
 		if(onScreen){
