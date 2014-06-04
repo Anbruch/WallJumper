@@ -34,7 +34,7 @@ public abstract class AbstractGameObject{
 	public boolean animationBool;
 	protected boolean flipX;
 	protected boolean flipY;
-	protected boolean onScreen;
+	public boolean onScreen;
 	
 	public AbstractGameObject(){
 		position = new Vector2();

@@ -11,8 +11,8 @@ import com.me.walljumper.screens.World;
 public class CameraHelper {
 
 	private static final String TAG = CameraHelper.class.getName();
-	private final float MAX_ZOOM_IN = .02f;
-	private final float MAX_ZOOM_OUT = 10.0f;
+	private final float MAX_ZOOM_IN = .16f;
+	private final float MAX_ZOOM_OUT = 2.5f;
 	private Vector2 position;
 	public float zoom;
 	private Vector2 targetSpot;
@@ -36,9 +36,9 @@ public class CameraHelper {
 		// Zoom out/in as much as needed
 		float deltaZoom = rate * deltaTime;
 		if (zoom > zoomTarget) {
-			zoom = deltaZoom > zoom - zoomTarget ? zoomTarget : zoom - deltaZoom;
+			setZoom(deltaZoom > zoom - zoomTarget ? zoomTarget : zoom - deltaZoom, false);
 		} else if(zoom < zoomTarget) {
-			zoom = deltaZoom > zoomTarget - zoom ? zoomTarget : zoom + deltaZoom;
+			setZoom(deltaZoom > zoomTarget - zoom ? zoomTarget : zoom + deltaZoom, false);
 		}
 		
 		
@@ -92,14 +92,14 @@ public class CameraHelper {
 	}
 
 	public void addZoom(float amount) {
-		setZoom(zoom + amount);
+		setZoom(zoom + amount, false);
 
 	}
-
-	public void setZoom(float zoom) {
+	
+	public void setZoom(float zoom, boolean setZoomTarget) {
 
 		this.zoom = MathUtils.clamp(zoom, MAX_ZOOM_IN, MAX_ZOOM_OUT);
-		zoomTarget = this.zoom;
+		zoomTarget = setZoomTarget ? this.zoom : zoomTarget;
 
 	}
 

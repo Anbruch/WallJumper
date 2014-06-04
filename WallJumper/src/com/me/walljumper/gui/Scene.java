@@ -57,7 +57,7 @@ public class Scene implements InputProcessor {
 		camera.position.set(0, 0, 0);
 		camera.setToOrtho(false);
 		cameraHelper = new CameraHelper();
-		cameraHelper.setZoom(1);
+		cameraHelper.setZoom(1, true);
 		cameraHelper.setPosition(Constants.sceneCamX, Constants.sceneCamY);
 		SceneObject.setCamera(camera);
 		//Set up camera helper

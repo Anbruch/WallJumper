@@ -41,7 +41,7 @@ public class LevelMenu extends ScreenHelper {
 	public void show() {
 		//LOAD ASSETS FOR UI
 		Array<String> paths = new Array<String>();
-		paths.add("ui/MenuSkin.pack");
+		paths.add("images/ui.pack");
 		SceneAssets.instance.dispose();
 		SceneAssets.instance = new SceneAssets(new AssetManager(), paths);
 		
@@ -79,7 +79,7 @@ public class LevelMenu extends ScreenHelper {
 		//Make each level button
 		for(int i = 0; i < WallJumper.numButtonsPerPage; i++){
 			float buttonWidth = 94 * 1.7f, buttonHeight = 104 * 1.7f;
-			Button button = new Button(true, "levelbutton.down", "levelbutton.up", 
+			Button button = new Button(true, "levelbutton.up", "levelbutton.down", 
 					Constants.levelOffsetX + (i % 6) * (buttonWidth+ Constants.buttonSpacingX), 
 					Constants.bgViewportHeight + Constants.levelOffsetY - (i / 6 + 1) * (buttonHeight + Constants.buttonSpacingY),
 					buttonWidth, buttonHeight){
@@ -98,7 +98,7 @@ public class LevelMenu extends ScreenHelper {
 			
 			//Setup the text  for each button
 			float textOffsetX = button.getNum()	< 10 ? 8 : 15;
-			button.setToWrite("" + button.getNum(), button.dimension.x / 2 - textOffsetX, button.dimension.y / 2 + 10, true);
+			button.setToWrite("" + button.getNum(), button.dimension.x / 2 - textOffsetX, button.dimension.y / 2 + 35, true);
 			scene.add(button);
 		}
 		//Making back button

@@ -4,7 +4,7 @@ import com.me.walljumper.WallJumper;
 import com.me.walljumper.game_objects.AbstractGameObject;
 import com.me.walljumper.game_objects.classes.ManipulatableObject;
 import com.me.walljumper.game_objects.terrain.Platform;
-
+import com.me.walljumper.game_objects.terrain.traps.Projectile;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -119,6 +119,8 @@ public class LevelStage {
 		}
 		for(AbstractGameObject uncollidable: LevelStage.uncollidableObjects){
 			uncollidable.update(deltaTime);
+			if(!uncollidable.onScreen && uncollidable instanceof Projectile)
+				LevelStage.uncollidableObjects.removeValue(uncollidable, true);
 		}
 		
 		

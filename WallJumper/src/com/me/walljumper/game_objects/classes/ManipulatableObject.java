@@ -303,6 +303,8 @@ public class ManipulatableObject extends AbstractGameObject {
 	public void moveY(float deltaTime){
 		//change in y this frame
 		deltay = velocity.y * deltaTime;
+		acceleration.y = Math.abs(velocity.y ) < 1f ? Constants.gravity / 6 : Constants.gravity;
+		
 		
 		//overriden by whatever subclass of manipulatable object
 		ensureCorrectCollisionBounds();
@@ -490,8 +492,8 @@ public class ManipulatableObject extends AbstractGameObject {
 		if(state == STATE.JUMPING && velocity.y < 0){
 			startFallTime += deltaTime;
 			
-			if(startFallTime > 1.5f ){
-				World.controller.spiked = true;
+			if(startFallTime > 1.5f && !World.controller.blackHoled){
+				World.spiked = true;
 				return;
 			}
 			

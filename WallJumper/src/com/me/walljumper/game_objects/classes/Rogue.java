@@ -28,8 +28,8 @@ public class Rogue extends ManipulatableObject {
 		aniWalling = Assets.instance.rogue.aniWalling;
 		
 		position.set(x, y);
-		acceleration.set(0, -25f);
-		moveSpeed = new Vector2(16f, 16f);
+		acceleration.set(0, Constants.gravity);
+		moveSpeed = new Vector2(18f, 18f);
 		state = STATE.GROUNDED;
 		setAnimation(aniNormal);
 		terminalVelocity.set(10, 20);

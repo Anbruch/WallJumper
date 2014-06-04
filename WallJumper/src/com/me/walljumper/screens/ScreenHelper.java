@@ -75,7 +75,8 @@ public abstract class ScreenHelper implements Screen{
 		
 	}
 	public void restartLevel(){
-		
+		System.out.println("ouesnhtaoeunsht");
+
 		World.controller.destroy();
 		World.controller.init();
 	}

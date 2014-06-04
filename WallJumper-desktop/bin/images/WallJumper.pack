@@ -94,30 +94,37 @@ portal
   orig: 125, 125
   offset: 0, 0
   index: 3
+homeButton_down
+  rotate: false
+  xy: 466, 26
+  size: 164, 63
+  orig: 164, 63
+  offset: 0, 0
+  index: -1
+homeButton_up
+  rotate: false
+  xy: 805, 449
+  size: 164, 63
+  orig: 164, 63
+  offset: 0, 0
+  index: -1
+menuButton_down
+  rotate: false
+  xy: 805, 384
+  size: 164, 63
+  orig: 164, 63
+  offset: 0, 0
+  index: -1
+menuButton_up
+  rotate: false
+  xy: 805, 319
+  size: 164, 63
+  orig: 164, 63
+  offset: 0, 0
+  index: -1
 zoomIn_down
   rotate: false
-  xy: 805, 447
-  size: 121, 65
-  orig: 121, 65
-  offset: 0, 0
-  index: -1
-zoomIn_up
-  rotate: false
-  xy: 805, 380
-  size: 121, 65
-  orig: 121, 65
-  offset: 0, 0
-  index: -1
-zoomOut_down
-  rotate: false
-  xy: 805, 313
-  size: 121, 65
-  orig: 121, 65
-  offset: 0, 0
-  index: -1
-zoomOut_up
-  rotate: false
-  xy: 805, 246
+  xy: 805, 252
   size: 121, 65
   orig: 121, 65
   offset: 0, 0
@@ -157,6 +164,13 @@ mRight_down
   orig: 85, 85
   offset: 0, 0
   index: -1
+MagnifyingGlass
+  rotate: false
+  xy: 932, 514
+  size: 70, 71
+  orig: 70, 71
+  offset: 0, 0
+  index: -1
 mRight_up
   rotate: false
   xy: 720, 131
@@ -164,153 +178,167 @@ mRight_up
   orig: 85, 85
   offset: 0, 0
   index: -1
+zoomIn_up
+  rotate: false
+  xy: 807, 185
+  size: 121, 65
+  orig: 121, 65
+  offset: 0, 0
+  index: -1
+zoomOut_down
+  rotate: false
+  xy: 807, 118
+  size: 121, 65
+  orig: 121, 65
+  offset: 0, 0
+  index: -1
+zoomOut_up
+  rotate: false
+  xy: 632, 24
+  size: 121, 65
+  orig: 121, 65
+  offset: 0, 0
+  index: -1
 mUp_down
   rotate: false
-  xy: 932, 500
+  xy: 755, 31
   size: 85, 85
   orig: 85, 85
   offset: 0, 0
   index: -1
 mUp_up
   rotate: false
-  xy: 928, 413
+  xy: 842, 31
   size: 85, 85
   orig: 85, 85
   offset: 0, 0
   index: -1
-MagnifyingGlass
-  rotate: false
-  xy: 928, 340
-  size: 70, 71
-  orig: 70, 71
-  offset: 0, 0
-  index: -1
 PauseButton
   rotate: false
-  xy: 466, 43
+  xy: 928, 271
   size: 41, 46
   orig: 41, 46
   offset: 0, 0
   index: -1
 PlayButton
   rotate: false
-  xy: 928, 292
+  xy: 971, 466
   size: 41, 46
   orig: 41, 46
   offset: 0, 0
   index: -1
 rogue_jumping
   rotate: false
-  xy: 720, 101
+  xy: 971, 436
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 1
 rogue_jumping
   rotate: false
-  xy: 509, 61
+  xy: 971, 406
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 2
 rogue_jumping
   rotate: false
-  xy: 928, 262
+  xy: 971, 376
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 3
 rogue_jumping
   rotate: false
-  xy: 761, 101
+  xy: 971, 346
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 4
 rogue_jumping
   rotate: false
-  xy: 550, 61
+  xy: 971, 316
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 5
 rogue_jumping
   rotate: false
-  xy: 591, 61
+  xy: 971, 286
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 6
+rogue_running
+  rotate: false
+  xy: 720, 99
+  size: 31, 30
+  orig: 31, 30
+  offset: 0, 0
+  index: 2
 rogue_jumping
   rotate: false
-  xy: 632, 61
+  xy: 971, 256
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 7
 rogue_jumping
   rotate: false
-  xy: 673, 61
+  xy: 930, 241
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
   index: 8
 rogue_running
   rotate: false
-  xy: 971, 308
-  size: 31, 30
-  orig: 31, 30
-  offset: 0, 0
-  index: 2
-rogue_running
-  rotate: false
-  xy: 509, 30
+  xy: 930, 210
   size: 32, 29
   orig: 32, 29
   offset: 0, 0
   index: 6
 rogue_running
   rotate: false
-  xy: 543, 30
+  xy: 930, 179
   size: 31, 29
   orig: 31, 29
   offset: 0, 0
   index: 3
 rogue_running
   rotate: false
-  xy: 576, 31
+  xy: 930, 149
   size: 31, 28
   orig: 31, 28
   offset: 0, 0
   index: 1
 rogue_running
   rotate: false
-  xy: 609, 30
+  xy: 930, 118
   size: 30, 29
   orig: 30, 29
   offset: 0, 0
   index: 5
 rogue_running
   rotate: false
-  xy: 641, 32
+  xy: 929, 89
   size: 30, 27
   orig: 30, 27
   offset: 0, 0
   index: 4
-rogue_normal
-  rotate: false
-  xy: 1000, 378
-  size: 13, 33
-  orig: 13, 33
-  offset: 0, 0
-  index: 0
 rogue_walling
   rotate: false
-  xy: 1000, 344
+  xy: 929, 55
   size: 15, 32
   orig: 15, 32
   offset: 0, 0
   index: -1
+rogue_normal
+  rotate: false
+  xy: 1004, 552
+  size: 13, 33
+  orig: 13, 33
+  offset: 0, 0
+  index: 0
 spikeTrap
   rotate: false
   xy: 218, 5
@@ -320,49 +348,49 @@ spikeTrap
   index: -1
 wallJump
   rotate: false
-  xy: 805, 224
+  xy: 929, 33
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 0
 wallJump
   rotate: false
-  xy: 673, 39
+  xy: 946, 67
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 1
 wallJump
   rotate: false
-  xy: 816, 224
+  xy: 1004, 530
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 3
 wallJump
   rotate: false
-  xy: 684, 39
+  xy: 240, 4
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 4
 walljump
   rotate: false
-  xy: 827, 224
+  xy: 251, 4
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 5
 pauseLayer
   rotate: false
-  xy: 928, 251
+  xy: 753, 120
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 snow
   rotate: false
-  xy: 805, 218
+  xy: 1019, 1016
   size: 3, 4
   orig: 3, 4
   offset: 0, 0

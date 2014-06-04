@@ -5,11 +5,53 @@ filter: Nearest,Nearest
 repeat: none
 bg
   rotate: false
-  xy: 1, 85
+  xy: 1, 809
   size: 1920, 1080
   orig: 1920, 1080
   offset: 0, 0
   index: -1
+snowing
+  rotate: false
+  xy: 1, 447
+  size: 640, 360
+  orig: 640, 360
+  offset: 0, 0
+  index: 0
+snowing
+  rotate: false
+  xy: 1, 85
+  size: 640, 360
+  orig: 640, 360
+  offset: 0, 0
+  index: 1
+snowing
+  rotate: false
+  xy: 643, 447
+  size: 640, 360
+  orig: 640, 360
+  offset: 0, 0
+  index: 10
+snowing
+  rotate: false
+  xy: 643, 85
+  size: 640, 360
+  orig: 640, 360
+  offset: 0, 0
+  index: 11
+snowing
+  rotate: false
+  xy: 1285, 447
+  size: 640, 360
+  orig: 640, 360
+  offset: 0, 0
+  index: 12
+snowing
+  rotate: false
+  xy: 1285, 85
+  size: 640, 360
+  orig: 640, 360
+  offset: 0, 0
+  index: 13
 body1
   rotate: false
   xy: 1, 64
@@ -19,7 +61,7 @@ body1
   index: -1
 body2
   rotate: false
-  xy: 1923, 1146
+  xy: 1923, 1870
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
@@ -40,14 +82,14 @@ body4
   index: -1
 body5
   rotate: false
-  xy: 1923, 1125
+  xy: 1923, 1849
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 body6
   rotate: false
-  xy: 1945, 1146
+  xy: 1945, 1870
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
@@ -75,21 +117,21 @@ endbody1
   index: -1
 endbody2
   rotate: false
-  xy: 1923, 1104
+  xy: 1923, 1828
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 endbody3
   rotate: false
-  xy: 1945, 1125
+  xy: 1945, 1849
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 endbody4
   rotate: false
-  xy: 1967, 1146
+  xy: 1967, 1870
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
@@ -124,29 +166,90 @@ endbottombody3
   index: -1
 endbottombody4
   rotate: false
-  xy: 1923, 1083
+  xy: 1923, 1807
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 endbottombody5
   rotate: false
-  xy: 1945, 1104
+  xy: 1945, 1828
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 mid
   rotate: false
-  xy: 1967, 1125
+  xy: 1967, 1849
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
 topcorner
   rotate: false
-  xy: 1989, 1146
+  xy: 1989, 1870
   size: 20, 19
   orig: 20, 19
   offset: 0, 0
   index: -1
+
+World22.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+snowing
+  rotate: false
+  xy: 1, 1087
+  size: 640, 360
+  orig: 640, 360
+  offset: 0, 0
+  index: 2
+snowing
+  rotate: false
+  xy: 1, 725
+  size: 640, 360
+  orig: 640, 360
+  offset: 0, 0
+  index: 3
+snowing
+  rotate: false
+  xy: 643, 1087
+  size: 640, 360
+  orig: 640, 360
+  offset: 0, 0
+  index: 4
+snowing
+  rotate: false
+  xy: 1, 363
+  size: 640, 360
+  orig: 640, 360
+  offset: 0, 0
+  index: 5
+snowing
+  rotate: false
+  xy: 643, 725
+  size: 640, 360
+  orig: 640, 360
+  offset: 0, 0
+  index: 6
+snowing
+  rotate: false
+  xy: 1285, 1087
+  size: 640, 360
+  orig: 640, 360
+  offset: 0, 0
+  index: 7
+snowing
+  rotate: false
+  xy: 1, 1
+  size: 640, 360
+  orig: 640, 360
+  offset: 0, 0
+  index: 8
+snowing
+  rotate: false
+  xy: 643, 363
+  size: 640, 360
+  orig: 640, 360
+  offset: 0, 0
+  index: 9

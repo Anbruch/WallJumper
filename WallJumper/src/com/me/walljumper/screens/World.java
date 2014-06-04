@@ -77,7 +77,7 @@ public class World  {
 		//Init other necessary classes
 		WorldRenderer.renderer.init();
 		cameraHelper = new CameraHelper();// Essentially makes the camera follow
-		cameraHelper.setZoom(Constants.defaultZoom);
+		cameraHelper.setZoom(Constants.defaultZoom, true);
 		InputManager.inputManager.init();
 		levelStage = new LevelStage();
 		
@@ -133,6 +133,7 @@ public class World  {
 			gameScreen.backToLevelMenu();
 		} else if(spiked){
 			gameScreen.restartLevel();
+			System.out.println("uhhuuhh");
 		}else if(nextLevel){
 			gameScreen.nextLevel();
 		}
