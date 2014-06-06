@@ -54,6 +54,7 @@ public class World  {
 	
 	private Vector2 spawnPoint;
 	private boolean faceLeft;
+	public boolean backToHomeMenu;
 	
 	
 
@@ -131,9 +132,10 @@ public class World  {
 	private void checkDeath() {
 		if(backTolevelMenu){
 			gameScreen.backToLevelMenu();
+		}if(backToHomeMenu){
+			gameScreen.backToHomeMenu();
 		} else if(spiked){
 			gameScreen.restartLevel();
-			System.out.println("uhhuuhh");
 		}else if(nextLevel){
 			gameScreen.nextLevel();
 		}

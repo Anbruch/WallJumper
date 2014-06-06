@@ -325,7 +325,7 @@ public class WorldRenderer implements Disposable{
 		Image backgroundWindow = new Image(false, Assets.instance.pause.aniScroll, 0, 0, 400, 400){
 			@Override
 			public void onAnimationComplete() {
-				Button levelMenu = new Button(true, Assets.instance.pause.buttonDown, Assets.instance.pause.buttonUp, 0, 0, 150, 100){
+				Button levelMenu = new Button(true, Assets.instance.pause.menuButton_Down, Assets.instance.pause.menuButton_Up, 0, 0, 164 * .93f, 63 * .93f){
 					@Override
 					public boolean clickRelease() {
 						World.controller.backTolevelMenu = true;
@@ -334,11 +334,24 @@ public class WorldRenderer implements Disposable{
 					}
 				};
 				
-				levelMenu.position.set(this.position.x + 30, this.position.y + 30);
+				levelMenu.position.set(this.position.x - 33, this.position.y - 60);
 				levelMenu.bounds.setPosition(levelMenu.position.x, levelMenu.position.y);
 				getSceneObjects().add(levelMenu);
 				
-				Button nextLevelButton = new Button(true, Assets.instance.pause.buttonUp, Assets.instance.pause.buttonDown, 0, 0, 150, 100){
+				Button homeMenu = new Button(true, Assets.instance.pause.homeButton_Down, Assets.instance.pause.homeButton_Up, 0, 0, 164 * .93f, 63 * .93f){
+					@Override
+					public boolean clickRelease() {
+						World.controller.backToHomeMenu = true;
+						return false;
+						
+					}
+				};
+				
+				homeMenu.position.set(levelMenu.position.x + levelMenu.dimension.x + 3, levelMenu.position.y);
+				homeMenu.bounds.setPosition(homeMenu.position.x, homeMenu.position.y);
+				getSceneObjects().add(homeMenu);
+				
+				Button nextLevelButton = new Button(true, Assets.instance.pause.nextLevelButton_Down, Assets.instance.pause.nextLevelButton_Up, 0, 0, 164 * .93f, 63 * .93f){
 					@Override
 					public boolean clickRelease() {
 						World.controller.nextLevel = true;
@@ -346,7 +359,7 @@ public class WorldRenderer implements Disposable{
 						
 					}
 				};
-				nextLevelButton.position.set(this.position.x + 60 + levelMenu.dimension.x, this.position.y + 30);
+				nextLevelButton.position.set(homeMenu.position.x + homeMenu.dimension.x + 3, homeMenu.position.y);
 				nextLevelButton.bounds.setPosition(nextLevelButton.position.x, nextLevelButton.position.y);
 				getSceneObjects().add(nextLevelButton);
 			}

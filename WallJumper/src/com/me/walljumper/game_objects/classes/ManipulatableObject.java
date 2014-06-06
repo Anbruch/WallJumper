@@ -492,11 +492,13 @@ public class ManipulatableObject extends AbstractGameObject {
 		if(state == STATE.JUMPING && velocity.y < 0){
 			startFallTime += deltaTime;
 			
+			//This makes GameScreen call restartLevel()
 			if(startFallTime > 1.5f && !World.controller.blackHoled){
 				World.spiked = true;
 				return;
 			}
 			
+			//Makes the camera stop following Aeternus
 			if(startFallTime > 1f && World.controller.cameraHelper.hasTarget()){
 				World.controller.cameraHelper.setTarget(null);
 				return;

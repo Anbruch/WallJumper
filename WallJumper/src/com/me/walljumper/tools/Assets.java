@@ -190,6 +190,11 @@ public class Assets implements Disposable, AssetErrorListener {
 		public final AtlasRegion buttonUp, buttonDown;
 		public final Array<AtlasRegion> scroll;
 		public final AtlasRegion zoomOut_Up, zoomOut_Down;
+		public final AtlasRegion menuButton_Up, menuButton_Down;
+		public final AtlasRegion nextLevelButton_Up, nextLevelButton_Down;
+
+		public final AtlasRegion homeButton_Up, homeButton_Down;
+
 		public final AtlasRegion zoomIn_Up, zoomIn_Down;
 		public final AtlasRegion mDown_down, mDown_up,
 				mLeft_down, mLeft_up,
@@ -217,10 +222,19 @@ public class Assets implements Disposable, AssetErrorListener {
 			mPad = atlas.findRegion("mPad");
 			magnifyingGlass = atlas.findRegion("MagnifyingGlass");
 			
+			menuButton_Up = atlas.findRegion("menuButton_up");
+			menuButton_Down = atlas.findRegion("menuButton_down");
+			homeButton_Up = atlas.findRegion("homeButton_up");
+			homeButton_Down = atlas.findRegion("homeButton_down");
+			nextLevelButton_Up = atlas.findRegion("nextlevelbutton_up");
+			nextLevelButton_Down = atlas.findRegion("nextlevelbutton_down");
+			
 			buttonUp = atlas.findRegion("button.up");
 			buttonDown = atlas.findRegion("button.down");
 			pause = atlas.findRegion("PauseButton");
 			play = atlas.findRegion("PlayButton");
+			
+			
 			pauseLayer = atlas.findRegion("pauseLayer");
 			
 			scroll = atlas.findRegions("scroll");

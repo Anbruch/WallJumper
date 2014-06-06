@@ -34,7 +34,7 @@ public class Rogue extends ManipulatableObject {
 		setAnimation(aniNormal);
 		terminalVelocity.set(10, 20);
 		dimension.set(width * scale, height * scale);
-		bounds.set(position.x, position.y, dimension.x, dimension.y);
+		bounds.set(position.x, position.y, dimension.x, dimension.y - .2f);
 	}
 	
 	@Override

@@ -75,17 +75,20 @@ public abstract class ScreenHelper implements Screen{
 		
 	}
 	public void restartLevel(){
-		System.out.println("ouesnhtaoeunsht");
 
 		World.controller.destroy();
 		World.controller.init();
 	}
 	public void backToMainMenu() {
-		System.out.println("eousaoeut");
 		AudioManager.instance.stopMusic();
 		ScreenTransition transition = ScreenTransitionSlice.init(.6f, ScreenTransitionSlice.UP_DOWN, 10,
 				Interpolation.pow2Out);
 		game.setScreen(new MainMenu(game), transition);
+	}
+	public void backToHomeMenu() {
+		ScreenTransition transition = ScreenTransitionSlice.init(.6f, ScreenTransitionSlice.UP_DOWN, 10,
+				Interpolation.pow2Out);
+		game.setScreen(new WorldScreen(game), transition);
 	}
 
 }
