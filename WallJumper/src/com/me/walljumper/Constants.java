@@ -24,7 +24,7 @@ public class Constants {
 	public static final float sceneCamX = bgViewportWidth / 2;
 	public static final float sceneCamY = bgViewportHeight / 2;
 	public static final float cameraPanVal = 200;
-	public static final float gravity = -35;
+	public static final float gravity = -29;
 	
 	
 	//Unprojects coordinates from screen and converts to virtual coordinates

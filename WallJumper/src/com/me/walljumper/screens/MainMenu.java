@@ -6,15 +6,19 @@ import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenCallback;
 import aurelienribon.tweenengine.TweenManager;
 
+import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Json;
 import com.me.walljumper.ActorAccessor;
 import com.me.walljumper.Constants;
 import com.me.walljumper.DirectedGame;
+import com.me.walljumper.Profile;
 import com.me.walljumper.WallJumper;
 import com.me.walljumper.gui.Button;
 import com.me.walljumper.gui.Image;
@@ -22,6 +26,7 @@ import com.me.walljumper.gui.Scene;
 import com.me.walljumper.gui.SceneAssets;
 import com.me.walljumper.gui.SceneObject;
 import com.me.walljumper.screens.screentransitions.ScreenTransitionFade;
+import com.me.walljumper.tools.Assets;
 
 public class MainMenu extends ScreenHelper{
 
@@ -39,7 +44,7 @@ public class MainMenu extends ScreenHelper{
 	public void show() {
 		//LOAD ASSETS FOR UI
 		Array<String> paths = new Array<String>();
-		paths.add("ui/MenuSkin.pack");
+		paths.add("images/ui.pack");
 		SceneAssets.instance = new SceneAssets(new AssetManager(), paths);
 		
 		//Set up scene
@@ -77,8 +82,17 @@ public class MainMenu extends ScreenHelper{
 				(float)(Math.random()) * Constants.bgViewportHeight, 200, 60){
 			@Override
 			public boolean clickRelease(){
+				
+				//Go straight to the Level Menu
+				WallJumper.WorldNum = 1;
+				Array<String> files = new Array<String>();
+				files.add("images/World" + WallJumper.WorldNum + ".pack");
+				Assets.instance.init(new AssetManager(), files, false);
+				
+				
 				ScreenTransitionFade transition = ScreenTransitionFade.init(.4f);
-				game.setScreen(new WorldScreen(game), transition);
+				game.setScreen(new LevelMenu(game), transition);
+				
 				return false;
 			}
 		};
@@ -102,7 +116,6 @@ public class MainMenu extends ScreenHelper{
 		tutorial.setAfterTwn(new Vector2(Constants.bgViewportWidth / 2 - tutorial.dimension.x / 2, Constants.bgViewportHeight / 2 - 175));
 		scene.add(tutorial);
 				
-		
 		
 		buildTween();
 		
@@ -165,12 +178,23 @@ public class MainMenu extends ScreenHelper{
 	}
 	
 	private void buildTween() {
+		
 		twnManager = new TweenManager();
 		
 		//CALLED AFTER TWEEN FINISHES, ClEAN UP CODE
 		TweenCallback myCallBack = new TweenCallback(){
 			@Override
 			 public void onEvent(int type, BaseTween<?> source) {
+				WallJumper.profile = new Profile();
+				WallJumper.profile.setFile("data/profile.json");
+
+				/*if(WallJumper.profile != null && WallJumper.profile.tutorial == 0){
+					Profile.tutorial = 1;
+					
+					ScreenTransitionFade transition = ScreenTransitionFade.init(.75f);
+					game.setScreen(new TutorialScreen(game), transition);
+					return;
+				}*/
 				play.bounds.setPosition(play.afterTwnPos);
 				play.setToWrite("Play", play.dimension.x / 2 - 40, play.dimension.y /2 + 5, true);
 				

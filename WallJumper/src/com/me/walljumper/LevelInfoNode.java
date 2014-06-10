@@ -2,24 +2,24 @@ package com.me.walljumper;
 
 public class LevelInfoNode {
 	private float fastTime;
-	private String score;
+	private String id;
 	
-	public LevelInfoNode(float fastTime, String score){
+	public LevelInfoNode(float fastTime, String id){
 		this.fastTime = fastTime;
-		this.score = score;
+		this.id = id;
 	}
 	public float getTime(){
 		return fastTime;
 	}
-	public String getScore(){
-		return score;
+	public String getID(){
+		return id;
 	}
 	
 	public void setTime(float fastTime){
 		this.fastTime = fastTime;
 	}
-	public void setScore(String score){
-		this.score = score;
+	public void setID(String id){
+		this.id = id;
 	}
 	
 }

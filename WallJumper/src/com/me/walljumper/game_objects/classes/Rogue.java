@@ -29,7 +29,7 @@ public class Rogue extends ManipulatableObject {
 		
 		position.set(x, y);
 		acceleration.set(0, Constants.gravity);
-		moveSpeed = new Vector2(18f, 18f);
+		moveSpeed = new Vector2(18f, 17f);
 		state = STATE.GROUNDED;
 		setAnimation(aniNormal);
 		terminalVelocity.set(10, 20);

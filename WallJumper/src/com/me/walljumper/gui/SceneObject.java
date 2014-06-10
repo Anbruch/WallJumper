@@ -94,8 +94,7 @@ public abstract class SceneObject {
 		
 		batch.draw(cur, position.x, position.y,
 				dimension.x / 2, dimension.y / 2, dimension.x, dimension.y, scaleX, scaleY, rotation);
-		
-		if(usingScene)
+		if(usingScene && Scene.curScene != null)
 			Scene.curScene.writeToWorld(text, this, fontOffsetX, fontOffsetY);
 		else			
 			WorldRenderer.renderer.writeToWorld(text, position.x + fontOffsetX,  position.y + fontOffsetY);

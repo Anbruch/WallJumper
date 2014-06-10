@@ -62,32 +62,26 @@ public class WorldScreen extends ScreenHelper {
 
 	private void rebuildStage() {
 		SceneObject.setCamera(Scene.camera);
-		Image bg = new Image(true, "bg" + WallJumper.WorldNum,
-				50, 100, Constants.bgViewportWidth / 2, Constants.bgViewportHeight / 2){
-			@Override
-			public boolean clickRelease(){
-				this.clickable = false;
-				ScreenTransitionFade transition = ScreenTransitionFade.init(.75f);
-				game.setScreen(new LevelMenu(game), transition);
-				
-				//LOAD ASSETS FOR WORLD SCREEN (int WallJumper.World)-
-				Array<String> files = new Array<String>();
-				files.add("images/World" + WallJumper.WorldNum + ".pack");
-				Assets.instance.init(new AssetManager(), files, false);
-				return false;
-			}
-			
-		};
+		Image bg = new Image(false, "bg" + WallJumper.WorldNum,
+				50, 100, Constants.bgViewportWidth / 2, Constants.bgViewportHeight / 2);
 		scene.add(bg);
 			//This button goes to the Next World
 			Button nxtWrldButton = new Button(true, "NextWorldButton", "NextWorldButton",
 					Constants.bgViewportWidth - 150f, 0, 150, 125){
 				@Override
 				public boolean clickRelease(){
+					ScreenTransitionFade transition = ScreenTransitionFade.init(.75f);
+					game.setScreen(new LevelMenu(game), transition);
+					
+					//LOAD ASSETS FOR WORLD SCREEN (int WallJumper.World)-
+					Array<String> files = new Array<String>();
+					files.add("images/World" + WallJumper.WorldNum + ".pack");
+					Assets.instance.init(new AssetManager(), files, false);
+					
 					//Increment World and reload the world Screen
-					WallJumper.WorldNum = WallJumper.WorldNum < WallJumper.numWorlds ? WallJumper.WorldNum + 1 : 1;
+					/*WallJumper.WorldNum = WallJumper.WorldNum < WallJumper.numWorlds ? WallJumper.WorldNum + 1 : 1;
 					ScreenTransitionSlide transition = ScreenTransitionSlide.init(.75f, ScreenTransitionSlide.RIGHT, false, Interpolation.exp5);
-					game.setScreen(new WorldScreen(game), transition);
+					game.setScreen(new WorldScreen(game), transition);*/
 					return false;
 				}
 			};

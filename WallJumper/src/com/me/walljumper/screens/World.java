@@ -66,8 +66,8 @@ public class World  {
 	public void init() {
 	
 		//PlayMusic
-		//if(!AudioManager.instance.isPlaying())
-		//	AudioManager.instance.playMusic(Assets.instance.music.world0);
+		if(!AudioManager.instance.isPlaying())
+			AudioManager.instance.playMusic(Assets.instance.music.world0);
 		
 		nextLevel = false;
 		backTolevelMenu = false;

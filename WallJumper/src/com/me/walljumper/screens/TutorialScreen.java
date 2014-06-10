@@ -21,6 +21,7 @@ public class TutorialScreen extends ScreenHelper {
 	public void render(float delta) {
 		World.controller.render(delta);
 		
+		
 	}
 
 	@Override
@@ -34,6 +35,7 @@ public class TutorialScreen extends ScreenHelper {
 		Array<String> files = new Array<String>();
 		files.add("images/World" + WallJumper.WorldNum + ".pack");
 		Assets.instance.init(new AssetManager(), files, false);
+		
 		
 		WallJumper.WorldNum = 0;
 		WallJumper.level = 0;

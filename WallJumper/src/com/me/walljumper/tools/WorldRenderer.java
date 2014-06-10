@@ -136,6 +136,7 @@ public class WorldRenderer implements Disposable{
 		//Render menu screen
 		for(SceneObject objects: getSceneObjects()){
 			objects.update(0);
+
 			objects.render(batch);
 		}
 		
@@ -338,7 +339,7 @@ public class WorldRenderer implements Disposable{
 				levelMenu.bounds.setPosition(levelMenu.position.x, levelMenu.position.y);
 				getSceneObjects().add(levelMenu);
 				
-				Button homeMenu = new Button(true, Assets.instance.pause.homeButton_Down, Assets.instance.pause.homeButton_Up, 0, 0, 164 * .93f, 63 * .93f){
+				/*Button homeMenu = new Button(true, Assets.instance.pause.homeButton_Down, Assets.instance.pause.homeButton_Up, 0, 0, 164 * .93f, 63 * .93f){
 					@Override
 					public boolean clickRelease() {
 						World.controller.backToHomeMenu = true;
@@ -350,7 +351,7 @@ public class WorldRenderer implements Disposable{
 				homeMenu.position.set(levelMenu.position.x + levelMenu.dimension.x + 3, levelMenu.position.y);
 				homeMenu.bounds.setPosition(homeMenu.position.x, homeMenu.position.y);
 				getSceneObjects().add(homeMenu);
-				
+				*/
 				Button nextLevelButton = new Button(true, Assets.instance.pause.nextLevelButton_Down, Assets.instance.pause.nextLevelButton_Up, 0, 0, 164 * .93f, 63 * .93f){
 					@Override
 					public boolean clickRelease() {
@@ -359,7 +360,7 @@ public class WorldRenderer implements Disposable{
 						
 					}
 				};
-				nextLevelButton.position.set(homeMenu.position.x + homeMenu.dimension.x + 3, homeMenu.position.y);
+				nextLevelButton.position.set(levelMenu.position.x + levelMenu.dimension.x * 2 + 3, levelMenu.position.y);
 				nextLevelButton.bounds.setPosition(nextLevelButton.position.x, nextLevelButton.position.y);
 				getSceneObjects().add(nextLevelButton);
 			}

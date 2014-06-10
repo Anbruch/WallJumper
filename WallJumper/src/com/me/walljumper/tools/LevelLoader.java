@@ -36,7 +36,8 @@ public class LevelLoader {
 		TUTORIAL_PHASE_4(20, 20, 4),
 		TUTORIAL_PHASE_5(20, 20, 5),
 		TUTORIAL_GOAL(251, 251, 0),
-		PLAYER_CHECKPOINTLEFT(0, 0, 254);
+		PLAYER_CHECKPOINTLEFT(0, 0, 254),
+		PHONE_SECRET(0, 10, 50);
 		private int color;
 
 		private BLOCK_TYPE(int r, int g, int b) {
@@ -173,6 +174,27 @@ public class LevelLoader {
 					}else{
 						LevelStage.interactables.add(new Portal(pixelX, baseHeight, true));
 					}
+				}else if(BLOCK_TYPE.PHONE_SECRET.sameColor(currentPixel) && itIsStartOfNewObject(pixelX, pixelY, currentPixel)){
+					
+					Vector2 newPixelXY = extendPlatformDownRight(pixelX, pixelY, currentPixel);
+					int lengthX = (int) (newPixelXY.x - pixelX) + 1;
+					int lengthY = (int)(newPixelXY.y - pixelY) + 1;
+					
+					LevelStage.interactables.add(new Boundary((float)pixelX, (float)baseHeight,
+							(float) lengthX,  (float) lengthY,"text me (408) 416-1742", 
+							Constants.bgViewportWidth / 4.5f, Constants.bgViewportHeight / 5 * 4){
+						@Override
+						public void interact(AbstractGameObject couple) {
+							if(WallJumper.paused)
+								return;
+							
+							if(!finished){
+								WorldRenderer.renderer.pauseButton.pause();
+								super.interact(couple);
+
+							}
+						}
+					});
 				}else if(BLOCK_TYPE.TUTORIAL_PHASE_1.sameColor(currentPixel) && itIsStartOfNewObject(pixelX, pixelY, currentPixel)){
 					
 					Vector2 newPixelXY = extendPlatformDownRight(pixelX, pixelY, currentPixel);
@@ -275,6 +297,7 @@ public class LevelLoader {
 					LevelStage.interactables.add(new Portal(pixelX, baseHeight, false){
 						@Override
 						public void interact(AbstractGameObject couple) {
+							
 							WallJumper.currentScreen.backToMainMenu();
 						}
 					});
