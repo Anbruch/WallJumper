@@ -326,7 +326,7 @@ public class WorldRenderer implements Disposable{
 		Image backgroundWindow = new Image(false, Assets.instance.pause.aniScroll, 0, 0, 400, 400){
 			@Override
 			public void onAnimationComplete() {
-				Button levelMenu = new Button(true, Assets.instance.pause.menuButton_Down, Assets.instance.pause.menuButton_Up, 0, 0, 164 * .93f, 63 * .93f){
+				Button levelMenu = new Button(true, Assets.instance.pause.menuButton_Down, Assets.instance.pause.menuButton_Up, 0, 0, 164 * 1.10f, 63 * 1.10f){
 					@Override
 					public boolean clickRelease() {
 						World.controller.backTolevelMenu = true;
@@ -339,20 +339,22 @@ public class WorldRenderer implements Disposable{
 				levelMenu.bounds.setPosition(levelMenu.position.x, levelMenu.position.y);
 				getSceneObjects().add(levelMenu);
 				
-				/*Button homeMenu = new Button(true, Assets.instance.pause.homeButton_Down, Assets.instance.pause.homeButton_Up, 0, 0, 164 * .93f, 63 * .93f){
+				Button restartButton = new Button(true, Assets.instance.pause.restartLevelButton, Assets.instance.pause.restartLevelButton, 0, 0, 38 * 1.63f, 37 * 1.63f){
 					@Override
 					public boolean clickRelease() {
-						World.controller.backToHomeMenu = true;
+						World.controller.restart = true;
+						World.controller.setSpawnPoint(null, false);
+						
 						return false;
 						
 					}
 				};
 				
-				homeMenu.position.set(levelMenu.position.x + levelMenu.dimension.x + 3, levelMenu.position.y);
-				homeMenu.bounds.setPosition(homeMenu.position.x, homeMenu.position.y);
-				getSceneObjects().add(homeMenu);
-				*/
-				Button nextLevelButton = new Button(true, Assets.instance.pause.nextLevelButton_Down, Assets.instance.pause.nextLevelButton_Up, 0, 0, 164 * .93f, 63 * .93f){
+				restartButton.position.set(levelMenu.position.x + levelMenu.dimension.x + 15, levelMenu.position.y + 5);
+				restartButton.bounds.setPosition(restartButton.position.x, restartButton.position.y);
+				getSceneObjects().add(restartButton);
+				
+				Button nextLevelButton = new Button(true, Assets.instance.pause.nextLevelButton_Down, Assets.instance.pause.nextLevelButton_Up, 0, 0, 164 * 1.10f, 63 * 1.10f){
 					@Override
 					public boolean clickRelease() {
 						World.controller.nextLevel = true;
@@ -360,7 +362,7 @@ public class WorldRenderer implements Disposable{
 						
 					}
 				};
-				nextLevelButton.position.set(levelMenu.position.x + levelMenu.dimension.x * 2 + 3, levelMenu.position.y);
+				nextLevelButton.position.set(restartButton.position.x + restartButton.dimension.x  + 30, levelMenu.position.y);
 				nextLevelButton.bounds.setPosition(nextLevelButton.position.x, nextLevelButton.position.y);
 				getSceneObjects().add(nextLevelButton);
 			}

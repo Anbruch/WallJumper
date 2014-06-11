@@ -56,7 +56,7 @@ public class SpikeTrap extends AbstractGameObject{
 	}
 	@Override 
 	public void interact(AbstractGameObject couple){
-		World.spiked = true;
+		World.restart = true;
 		
 	}
 	@Override

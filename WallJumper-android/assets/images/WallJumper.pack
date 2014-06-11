@@ -241,20 +241,55 @@ rogue_running
   orig: 30, 27
   offset: 0, 0
   index: 4
+restartLevelButton
+  rotate: false
+  xy: 971, 478
+  size: 38, 37
+  orig: 38, 37
+  offset: 0, 0
+  index: -1
+rogue_jumping
+  rotate: false
+  xy: 971, 448
+  size: 39, 28
+  orig: 39, 28
+  offset: 0, 0
+  index: 1
+rogue_jumping
+  rotate: false
+  xy: 971, 418
+  size: 39, 28
+  orig: 39, 28
+  offset: 0, 0
+  index: 2
+rogue_jumping
+  rotate: false
+  xy: 971, 388
+  size: 39, 28
+  orig: 39, 28
+  offset: 0, 0
+  index: 3
+rogue_jumping
+  rotate: false
+  xy: 971, 358
+  size: 39, 28
+  orig: 39, 28
+  offset: 0, 0
+  index: 4
+rogue_jumping
+  rotate: false
+  xy: 971, 328
+  size: 39, 28
+  orig: 39, 28
+  offset: 0, 0
+  index: 5
 rogue_running
   rotate: false
-  xy: 971, 485
+  xy: 720, 101
   size: 31, 30
   orig: 31, 30
   offset: 0, 0
   index: 2
-rogue_running
-  rotate: false
-  xy: 720, 102
-  size: 32, 29
-  orig: 32, 29
-  offset: 0, 0
-  index: 6
 spikeTrap
   rotate: false
   xy: 720, 200
@@ -262,58 +297,16 @@ spikeTrap
   orig: 20, 19
   offset: 0, 0
   index: -1
-rogue_running
-  rotate: false
-  xy: 971, 454
-  size: 31, 29
-  orig: 31, 29
-  offset: 0, 0
-  index: 3
-rogue_jumping
-  rotate: false
-  xy: 971, 424
-  size: 39, 28
-  orig: 39, 28
-  offset: 0, 0
-  index: 1
-rogue_jumping
-  rotate: false
-  xy: 971, 394
-  size: 39, 28
-  orig: 39, 28
-  offset: 0, 0
-  index: 2
-rogue_jumping
-  rotate: false
-  xy: 971, 364
-  size: 39, 28
-  orig: 39, 28
-  offset: 0, 0
-  index: 3
-rogue_jumping
-  rotate: false
-  xy: 971, 334
-  size: 39, 28
-  orig: 39, 28
-  offset: 0, 0
-  index: 4
 rogue_jumping
   rotate: false
   xy: 877, 16
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
-  index: 5
-rogue_jumping
-  rotate: false
-  xy: 918, 16
-  size: 39, 28
-  orig: 39, 28
-  offset: 0, 0
   index: 6
 rogue_jumping
   rotate: false
-  xy: 971, 304
+  xy: 918, 16
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
@@ -327,7 +320,7 @@ rogue_normal
   index: 0
 rogue_jumping
   rotate: false
-  xy: 971, 274
+  xy: 971, 298
   size: 39, 28
   orig: 39, 28
   offset: 0, 0
@@ -341,18 +334,39 @@ rogue_walling
   index: -1
 rogue_running
   rotate: false
-  xy: 956, 244
-  size: 31, 28
-  orig: 31, 28
+  xy: 956, 256
+  size: 31, 29
+  orig: 31, 29
   offset: 0, 0
-  index: 1
+  index: 3
 rogue_running
   rotate: false
-  xy: 956, 213
+  xy: 956, 225
+  size: 32, 29
+  orig: 32, 29
+  offset: 0, 0
+  index: 6
+pauseLayer
+  rotate: false
+  xy: 971, 287
+  size: 16, 9
+  orig: 16, 9
+  offset: 0, 0
+  index: -1
+rogue_running
+  rotate: false
+  xy: 989, 267
   size: 30, 29
   orig: 30, 29
   offset: 0, 0
   index: 5
+rogue_running
+  rotate: false
+  xy: 990, 237
+  size: 31, 28
+  orig: 31, 28
+  offset: 0, 0
+  index: 1
 wallJump
   rotate: false
   xy: 218, 7
@@ -369,7 +383,7 @@ wallJump
   index: 1
 wallJump
   rotate: false
-  xy: 989, 252
+  xy: 956, 203
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
@@ -383,18 +397,11 @@ wallJump
   index: 4
 walljump
   rotate: false
-  xy: 1004, 512
+  xy: 967, 203
   size: 9, 20
   orig: 9, 20
   offset: 0, 0
   index: 5
-pauseLayer
-  rotate: false
-  xy: 742, 210
-  size: 16, 9
-  orig: 16, 9
-  offset: 0, 0
-  index: -1
 snow
   rotate: false
   xy: 218, 1

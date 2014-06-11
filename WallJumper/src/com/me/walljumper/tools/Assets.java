@@ -166,6 +166,7 @@ public class Assets implements Disposable, AssetErrorListener {
 
 		}
 	}
+	
 
 	public class Portal {
 		public final Array<AtlasRegion> portal;
@@ -192,6 +193,7 @@ public class Assets implements Disposable, AssetErrorListener {
 		public final AtlasRegion zoomOut_Up, zoomOut_Down;
 		public final AtlasRegion menuButton_Up, menuButton_Down;
 		public final AtlasRegion nextLevelButton_Up, nextLevelButton_Down;
+		public final AtlasRegion restartLevelButton;
 
 		public final AtlasRegion homeButton_Up, homeButton_Down;
 
@@ -203,6 +205,7 @@ public class Assets implements Disposable, AssetErrorListener {
 				
 
 		public final Animation aniScroll;
+		public final AtlasRegion levelScroll;
 
 		public UI(TextureAtlas atlas) {
 			goalBackground = atlas.findRegion("button.down");
@@ -210,6 +213,8 @@ public class Assets implements Disposable, AssetErrorListener {
 			zoomOut_Down = atlas.findRegion("zoomOut_down");
 			zoomIn_Up = atlas.findRegion("zoomIn_up");
 			zoomIn_Down = atlas.findRegion("zoomIn_down");
+			levelScroll = atlas.findRegion("levelScroll");
+			
 			
 			mDown_up = atlas.findRegion("mDown_up");
 			mDown_down = atlas.findRegion("mDown_down");
@@ -228,6 +233,7 @@ public class Assets implements Disposable, AssetErrorListener {
 			homeButton_Down = atlas.findRegion("homeButton_down");
 			nextLevelButton_Up = atlas.findRegion("nextlevelbutton_up");
 			nextLevelButton_Down = atlas.findRegion("nextlevelbutton_down");
+			restartLevelButton = atlas.findRegion("restartLevelButton");
 			
 			buttonUp = atlas.findRegion("button.up");
 			buttonDown = atlas.findRegion("button.down");

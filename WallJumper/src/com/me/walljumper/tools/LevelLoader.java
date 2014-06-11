@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.me.walljumper.Constants;
 import com.me.walljumper.WallJumper;
 import com.me.walljumper.game_objects.AbstractGameObject;
+import com.me.walljumper.game_objects.RiftFragment;
 import com.me.walljumper.game_objects.classes.Rogue;
 import com.me.walljumper.game_objects.terrain.Platform;
 import com.me.walljumper.game_objects.terrain.Portal;
@@ -25,6 +26,7 @@ public class LevelLoader {
 		PLAYER_CHECKPOINTRIGHT(254, 0, 0),
 		ENEMY_SPAWNPOINT(255, 0, 0), 
 		GOAL(255, 255, 0),
+		RIFT_FRAGMENT(25, 25, 25),
 		PLATFORM_RIGHT_DOWN(0, 0, 255),
 		PLATFORM_START_RIGHT_DOWN(0, 0, 100),
 		SPIKE(125, 0, 0),
@@ -174,15 +176,30 @@ public class LevelLoader {
 					}else{
 						LevelStage.interactables.add(new Portal(pixelX, baseHeight, true));
 					}
+				//RIFT FRAGMENT
+				}else if(BLOCK_TYPE.RIFT_FRAGMENT.sameColor(currentPixel)){
+					
+					LevelStage.interactables.add(new RiftFragment((float)pixelX, (float)baseHeight,  1, 1){
+						@Override
+						public void interact(AbstractGameObject couple) {
+							LevelStage.interactables.removeValue(this, true);
+							super.interact(couple);
+						}
+					});
+					
+				//MY PHONE NUMBER FOUND ON LEVEL 5
 				}else if(BLOCK_TYPE.PHONE_SECRET.sameColor(currentPixel) && itIsStartOfNewObject(pixelX, pixelY, currentPixel)){
 					
 					Vector2 newPixelXY = extendPlatformDownRight(pixelX, pixelY, currentPixel);
 					int lengthX = (int) (newPixelXY.x - pixelX) + 1;
 					int lengthY = (int)(newPixelXY.y - pixelY) + 1;
 					
+					//add the Secret into the interactables array
 					LevelStage.interactables.add(new Boundary((float)pixelX, (float)baseHeight,
 							(float) lengthX,  (float) lengthY,"text me (408) 416-1742", 
 							Constants.bgViewportWidth / 4.5f, Constants.bgViewportHeight / 5 * 4){
+						
+						//On interact
 						@Override
 						public void interact(AbstractGameObject couple) {
 							if(WallJumper.paused)

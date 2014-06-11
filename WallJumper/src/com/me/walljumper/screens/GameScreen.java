@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Interpolation;
 import com.me.walljumper.DirectedGame;
+import com.me.walljumper.ProfileLoader;
 import com.me.walljumper.WallJumper;
 import com.me.walljumper.screens.screentransitions.ScreenTransition;
 import com.me.walljumper.screens.screentransitions.ScreenTransitionFade;
@@ -40,6 +41,7 @@ public class GameScreen extends ScreenHelper {
 	public void hide() {
 		World.controller.hide();
 		
+		
 	}
 
 	@Override
@@ -74,6 +76,11 @@ public class GameScreen extends ScreenHelper {
 	
 	//Set spawnpoint to null, destroy and init world controller and go to next level
 	public void nextLevel(){
+		if(WallJumper.level > WallJumper.profile.lastLevelCompleted){
+			WallJumper.profile.lastLevelCompleted = WallJumper.level;
+			ProfileLoader.profileLoader.saveProfile();
+
+		}
 		WallJumper.level++;
 		World.controller.setSpawnPoint(null, false);
 		World.controller.destroy();

@@ -19,6 +19,7 @@ import com.me.walljumper.ActorAccessor;
 import com.me.walljumper.Constants;
 import com.me.walljumper.DirectedGame;
 import com.me.walljumper.Profile;
+import com.me.walljumper.ProfileLoader;
 import com.me.walljumper.WallJumper;
 import com.me.walljumper.gui.Button;
 import com.me.walljumper.gui.Image;
@@ -51,6 +52,8 @@ public class MainMenu extends ScreenHelper{
 		scene = new Scene(this, game);
 		Gdx.input.setInputProcessor(scene);
 		WallJumper.currentScreen = this;
+		
+		ProfileLoader.init();
 		rebuildStage();
 		
 	}
@@ -185,16 +188,15 @@ public class MainMenu extends ScreenHelper{
 		TweenCallback myCallBack = new TweenCallback(){
 			@Override
 			 public void onEvent(int type, BaseTween<?> source) {
-				WallJumper.profile = new Profile();
-				WallJumper.profile.setFile("data/profile.json");
-
-				/*if(WallJumper.profile != null && WallJumper.profile.tutorial == 0){
-					Profile.tutorial = 1;
+				//WallJumper.profile = new Profile();
+				//WallJumper.profile.setFile("data/profile.json");
+				if(WallJumper.profile != null && WallJumper.profile.tutorial == 0){
+					WallJumper.profile.tutorial = 1;
 					
 					ScreenTransitionFade transition = ScreenTransitionFade.init(.75f);
 					game.setScreen(new TutorialScreen(game), transition);
 					return;
-				}*/
+				}
 				play.bounds.setPosition(play.afterTwnPos);
 				play.setToWrite("Play", play.dimension.x / 2 - 40, play.dimension.y /2 + 5, true);
 				

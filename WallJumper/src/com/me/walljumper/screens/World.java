@@ -37,7 +37,7 @@ public class World  {
 	public boolean blackHoled;
 	public boolean failedLoad;
 	public static Portal portal;
-	public static boolean spiked;
+	public static boolean restart;
 	public Button button;
 	
 	
@@ -72,7 +72,7 @@ public class World  {
 		nextLevel = false;
 		backTolevelMenu = false;
 		countDown = 0;
-		spiked = false;
+		restart = false;
 		levelTimer = 0;
 		
 		//Init other necessary classes
@@ -134,7 +134,7 @@ public class World  {
 			gameScreen.backToLevelMenu();
 		}if(backToHomeMenu){
 			gameScreen.backToHomeMenu();
-		} else if(spiked){
+		} else if(restart){
 			gameScreen.restartLevel();
 		}else if(nextLevel){
 			gameScreen.nextLevel();

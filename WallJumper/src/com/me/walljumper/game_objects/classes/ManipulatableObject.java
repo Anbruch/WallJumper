@@ -494,7 +494,7 @@ public class ManipulatableObject extends AbstractGameObject {
 			
 			//This makes GameScreen call restartLevel()
 			if(startFallTime > 1.5f && !World.controller.blackHoled){
-				World.spiked = true;
+				World.restart = true;
 				return;
 			}
 			

@@ -1,7 +1,7 @@
 package com.me.walljumper.game_objects.terrain;
 
+import com.me.walljumper.ProfileLoader;
 import com.me.walljumper.game_objects.AbstractGameObject;
-
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.me.walljumper.screens.World;

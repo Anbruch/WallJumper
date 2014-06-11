@@ -3,10 +3,14 @@ package com.me.walljumper;
 public class LevelInfoNode {
 	private float fastTime;
 	private String id;
+	private int fragmentCollected;
 	
 	public LevelInfoNode(float fastTime, String id){
 		this.fastTime = fastTime;
 		this.id = id;
+	}
+	public LevelInfoNode() {
+
 	}
 	public float getTime(){
 		return fastTime;

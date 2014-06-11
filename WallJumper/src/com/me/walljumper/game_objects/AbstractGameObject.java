@@ -35,6 +35,7 @@ public abstract class AbstractGameObject{
 	protected boolean flipX;
 	protected boolean flipY;
 	public boolean onScreen;
+	private float rotationalVelocity;
 	
 	public AbstractGameObject(){
 		position = new Vector2();
@@ -42,6 +43,7 @@ public abstract class AbstractGameObject{
 		origin = new Vector2();
 		scale = 1;
 		rotation = 0;
+		rotationalVelocity = 0;
 		
 		acceleration = new Vector2();
 		velocity = new Vector2();
@@ -84,12 +86,14 @@ public abstract class AbstractGameObject{
 			
 		updateMotionX(deltaTime);
 		updateMotionY(deltaTime);
+		updateRotation(deltaTime);
 		
-		
-		
-		
-		
-		
+	}
+	public void setRotationalVelocity(float rotationalVelocity){
+		this.rotationalVelocity = rotationalVelocity;
+	}
+	private void updateRotation(float deltaTime) {
+		rotation += rotationalVelocity * deltaTime;
 	}
 	public void interact(AbstractGameObject couple){
 		
