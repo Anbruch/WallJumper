@@ -65,6 +65,11 @@ public class Image extends SceneObject {
 
 	@Override
 	public void update(float deltaTime) {
+		if(usingScene){
+
+			super.update(deltaTime);
+			return;
+		}
 		
 		//if animation, increment stateTime and then run any code for 
 		//completion of animation

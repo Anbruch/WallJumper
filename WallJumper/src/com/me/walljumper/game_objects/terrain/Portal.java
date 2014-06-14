@@ -1,6 +1,7 @@
 package com.me.walljumper.game_objects.terrain;
 
 import com.me.walljumper.ProfileLoader;
+import com.me.walljumper.WallJumper;
 import com.me.walljumper.game_objects.AbstractGameObject;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -35,6 +36,19 @@ public class Portal extends AbstractGameObject{
 		//Sets the player to move twoards this portal
 		World.controller.moveTowards(LevelStage.player, this, .7f);
 		World.portal = this;
+		if(!isDeathPortal()){
+			if(WallJumper.profile.World1.get(WallJumper.level - 1).getRiftFrags() == 0 && World.controller.riftFragCollected){
+				WallJumper.profile.World1.get(WallJumper.level - 1).setFragmentCollected(1);
+			}
+			
+			if(WallJumper.level > WallJumper.profile.lastLevelCompleted){
+				WallJumper.profile.lastLevelCompleted = WallJumper.level;
+			}
+			
+			ProfileLoader.profileLoader.saveProfile();
+
+		}
+		
 	}
 
 	

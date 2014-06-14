@@ -45,8 +45,7 @@ public class World  {
 	public AbstractGameObject to;
 	private DirectedGame game;
 	public ScreenHelper gameScreen;
-	public boolean renderAll;
-	
+	public boolean renderAll, riftFragCollected;
 	private TweenManager tween;
 	public boolean nextLevel;
 	public boolean backTolevelMenu;
@@ -71,6 +70,7 @@ public class World  {
 		
 		nextLevel = false;
 		backTolevelMenu = false;
+		riftFragCollected = false;
 		countDown = 0;
 		restart = false;
 		levelTimer = 0;
@@ -289,6 +289,7 @@ public class World  {
 		if(levelStage != null)
 		levelStage.destroy();
 		player = null;
+		riftFragCollected = false;
 		WorldRenderer.renderer.destroy();
 		InputManager.inputManager.controllableObjects.clear();
 

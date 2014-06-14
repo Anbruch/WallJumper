@@ -3,6 +3,7 @@ package com.me.walljumper.gui;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.utils.Array;
@@ -39,6 +40,9 @@ public class SceneAssets implements Disposable, AssetErrorListener {
 	}
 	public class UI {
 		public final ArrayMap<String, AtlasRegion> uiMap;
+		public final Array<AtlasRegion> animationPngs;
+		public final Animation buttonAnimation;
+		
 
 		public UI(TextureAtlas atlas){
 			
@@ -48,6 +52,8 @@ public class SceneAssets implements Disposable, AssetErrorListener {
 				worldScreenAssetFiles.add("bg" + i);
 			}
 			
+			animationPngs = atlas.findRegions("unlock");
+			buttonAnimation = new Animation(1 / 10f, animationPngs, Animation.NORMAL);
 			
 			//Adds individual images
 			//It will look in the folder specified,
@@ -58,6 +64,12 @@ public class SceneAssets implements Disposable, AssetErrorListener {
 			worldScreenAssetFiles.add("startscreen");
 			worldScreenAssetFiles.add("levelbutton.down");
 			worldScreenAssetFiles.add("levelbutton.up");
+			worldScreenAssetFiles.add("levelButton_locked");
+			worldScreenAssetFiles.add("nextWorld_up");
+			worldScreenAssetFiles.add("nextWorld_down");
+			worldScreenAssetFiles.add("riftFrag");
+
+
 			worldScreenAssetFiles.add("title");
 			worldScreenAssetFiles.add("NextWorldButton");
 			worldScreenAssetFiles.add("homeButton");

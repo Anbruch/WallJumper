@@ -51,10 +51,7 @@ public class Button extends SceneObject {
 		return false;
 	}
 
-	@Override
-	public void update(float deltaTime) {
-		
-	}
+
 
 	
 	

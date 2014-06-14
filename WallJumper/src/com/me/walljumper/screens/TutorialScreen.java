@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.me.walljumper.Constants;
 import com.me.walljumper.DirectedGame;
+import com.me.walljumper.ProfileLoader;
 import com.me.walljumper.WallJumper;
 import com.me.walljumper.tools.Assets;
 import com.me.walljumper.tools.AudioManager;
@@ -86,7 +87,7 @@ public class TutorialScreen extends ScreenHelper {
 	}
 	@Override
 	public void backToMainMenu() {
-		
+		ProfileLoader.profileLoader.saveProfile();
 		AudioManager.instance.stopMusic();
 		game.setScreen(new MainMenu(game), null);
 	}

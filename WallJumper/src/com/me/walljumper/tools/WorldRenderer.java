@@ -135,9 +135,9 @@ public class WorldRenderer implements Disposable{
 	private void otherRenders() {
 		//Render menu screen
 		for(SceneObject objects: getSceneObjects()){
-			objects.update(0);
-
-			objects.render(batch);
+				objects.update(0);
+				objects.render(batch);
+			
 		}
 		
 		if(displayingText)
@@ -331,7 +331,6 @@ public class WorldRenderer implements Disposable{
 					public boolean clickRelease() {
 						World.controller.backTolevelMenu = true;
 						return false;
-						
 					}
 				};
 				
@@ -368,6 +367,7 @@ public class WorldRenderer implements Disposable{
 			}
 		};
 		backgroundWindow.setScale(1.8f);
+		backgroundWindow.usingScene = false;
 		backgroundWindow.position.set(Constants.bgViewportWidth / 2 - backgroundWindow.dimension.x / 2, Constants.bgViewportHeight / 5);
 		getSceneObjects().add(backgroundWindow);
 		

@@ -12,6 +12,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
@@ -27,6 +28,7 @@ import com.me.walljumper.gui.Scene;
 import com.me.walljumper.gui.SceneAssets;
 import com.me.walljumper.gui.SceneObject;
 import com.me.walljumper.screens.screentransitions.ScreenTransitionFade;
+import com.me.walljumper.screens.screentransitions.ScreenTransitionSlice;
 import com.me.walljumper.tools.Assets;
 
 public class MainMenu extends ScreenHelper{
@@ -43,6 +45,18 @@ public class MainMenu extends ScreenHelper{
 
 	@Override
 	public void show() {
+		ProfileLoader.init();
+
+		//WallJumper.profile = new Profile();
+		//WallJumper.profile.setFile("data/profile.json");
+		if(WallJumper.profile != null && WallJumper.profile.tutorial == 0){
+			WallJumper.profile.tutorial = 1;
+			
+			ScreenTransitionFade transition = ScreenTransitionFade.init(.5f);
+			game.setScreen(new TutorialScreen(game), null);
+			return;
+		}
+		
 		//LOAD ASSETS FOR UI
 		Array<String> paths = new Array<String>();
 		paths.add("images/ui.pack");
@@ -53,14 +67,13 @@ public class MainMenu extends ScreenHelper{
 		Gdx.input.setInputProcessor(scene);
 		WallJumper.currentScreen = this;
 		
-		ProfileLoader.init();
 		rebuildStage();
 		
 	}
 	private void rebuildStage(){
 		SceneObject.setCamera(Scene.camera);
 		//Background image
-		bg = new Image(true, "bg" + (int)(Math.random() * WallJumper.numWorlds + 1), 
+		bg = new Image(true, "bg1", 
 				-60, 0, Constants.bgViewportWidth + 120, Constants.bgViewportHeight);
 		scene.add(bg);
 		
@@ -119,7 +132,6 @@ public class MainMenu extends ScreenHelper{
 		tutorial.setAfterTwn(new Vector2(Constants.bgViewportWidth / 2 - tutorial.dimension.x / 2, Constants.bgViewportHeight / 2 - 175));
 		scene.add(tutorial);
 				
-		
 		buildTween();
 		
 		
@@ -163,7 +175,7 @@ public class MainMenu extends ScreenHelper{
 	
 	@Override
 	public void render(float delta) {
-		
+
 		//Have to do this
 		Gdx.gl.glClearColor(255, 255, 255, 0); // Default background color
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -188,15 +200,7 @@ public class MainMenu extends ScreenHelper{
 		TweenCallback myCallBack = new TweenCallback(){
 			@Override
 			 public void onEvent(int type, BaseTween<?> source) {
-				//WallJumper.profile = new Profile();
-				//WallJumper.profile.setFile("data/profile.json");
-				if(WallJumper.profile != null && WallJumper.profile.tutorial == 0){
-					WallJumper.profile.tutorial = 1;
-					
-					ScreenTransitionFade transition = ScreenTransitionFade.init(.75f);
-					game.setScreen(new TutorialScreen(game), transition);
-					return;
-				}
+				
 				play.bounds.setPosition(play.afterTwnPos);
 				play.setToWrite("Play", play.dimension.x / 2 - 40, play.dimension.y /2 + 5, true);
 				
@@ -270,4 +274,4 @@ public class MainMenu extends ScreenHelper{
 
 }
 
-	
+		

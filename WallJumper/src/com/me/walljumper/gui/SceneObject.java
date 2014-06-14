@@ -21,16 +21,20 @@ public abstract class SceneObject {
 	protected boolean clickable;
 	public float rotation;
 	private boolean flipY;
-	private boolean usingScene;
-	
+	public boolean usingScene;
+	private Animation animation;
 	private Sprite sprite;
-	
+	Vector2 currentFrameDimension;
 	private String text;
 	private float fontOffsetX, fontOffsetY;
 	public float alpha, scaleX, scaleY;
+	private boolean animating;
+	private float stateTime;
+	private boolean looping;
 
 	
 	public SceneObject(){
+		stateTime = 0;
 		
 	}
 	public static void setCamera(OrthographicCamera camera){
@@ -39,9 +43,11 @@ public abstract class SceneObject {
 	
 	public SceneObject(boolean clickable, float x, float y, float width, float height){
 		this.clickable = clickable;
+		currentFrameDimension = new Vector2();
 		position = new Vector2(x, y);
 		rotation = 0;
 		text = "";
+		stateTime = 0;
 		scaleX = 1; scaleY = 1;
 		usingScene = true;
 
@@ -55,6 +61,7 @@ public abstract class SceneObject {
 	public SceneObject(boolean clickable, String image, float x, float y, float width, float height){
 		this.clickable = clickable;
 		position = new Vector2(x, y);
+		currentFrameDimension = new Vector2();
 		fontOffsetX = 0; fontOffsetY = 0;
 		rotation = 0;
 		usingScene = true;
@@ -87,13 +94,26 @@ public abstract class SceneObject {
 	}
 	public abstract boolean clickedDown();
 	public abstract boolean clickRelease();
-	public abstract void update(float deltaTime);
+	public  void update(float deltaTime){
+		//
+		if(animating){
+			stateTime += deltaTime;
+			if(animation.isAnimationFinished(stateTime)){
+				onAnimationComplete();
+			}
+		}
+	}
 	
 	
 	public void render(SpriteBatch batch) {
+		//Render Animation
+		if(animating){
+			renderAnimation(batch);
+		}else
+			batch.draw(cur, position.x, position.y,
+				dimension.x / 2, dimension.y / 2, dimension.x, dimension.y, scaleX, scaleY, rotation);		
 		
-		batch.draw(cur, position.x, position.y,
-				dimension.x / 2, dimension.y / 2, dimension.x, dimension.y, scaleX, scaleY, rotation);
+		//Write to screen
 		if(usingScene && Scene.curScene != null)
 			Scene.curScene.writeToWorld(text, this, fontOffsetX, fontOffsetY);
 		else			
@@ -101,13 +121,34 @@ public abstract class SceneObject {
 		
 		
 	}
+	
+	private void renderAnimation(SpriteBatch batch) {
+		cur = animation.getKeyFrame(stateTime, looping);
+		/*currentFrameDimension.set(cur.getRegionWidth(),
+				cur.getRegionHeight())*/;
+		batch.draw(cur, position.x, position.y,
+				dimension.x / 2, dimension.y / 2, dimension.x, dimension.y, scaleX, scaleY, rotation);
+		
+	}
+	public void setAnimation(Animation animation){
+		if(animation.getPlayMode() == Animation.NORMAL){
+			looping = false;
+		}else
+			looping = true;
+		this.animation = animation;
+		animating = true;
+		stateTime = 0;
+	}
+	public void onAnimationComplete() {
+		
+	}
 	public boolean touchDown(int screenX, int screenY, int pointer, int button){
 		try{
 		Vector2 x = Constants.screenToCoords(SceneObject.currentCamera, new Vector3(screenX, screenY, 0));
 		
-		
 			if(bounds.contains(x) && this.clickable){
 				cur = down != null ? down : cur;
+				animating = false;
 				clickedDown();
 				
 				return true;
@@ -133,9 +174,11 @@ public abstract class SceneObject {
 	public void touchDragged(int screenX, int screenY, int pointer) {
 		//While dragging it will check for collisions
 		Vector2 x = Constants.screenToCoords(SceneObject.currentCamera, new Vector3(screenX, screenY, 0));
-		if(clickable && (down != null && up != null))
+		if(clickable && (down != null && up != null)){
+	
 			cur = bounds.contains(x) ? down : up;
-		
+			animating = false;
+		}
 		
 	}
 	

@@ -12,6 +12,12 @@ public class LevelInfoNode {
 	public LevelInfoNode() {
 
 	}
+	public void setFragmentCollected(int fragmentCollected){
+		this.fragmentCollected = fragmentCollected;
+	}
+	public int getRiftFrags(){
+		return this.fragmentCollected;
+	}
 	public float getTime(){
 		return fastTime;
 	}

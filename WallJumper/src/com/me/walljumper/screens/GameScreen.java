@@ -76,11 +76,7 @@ public class GameScreen extends ScreenHelper {
 	
 	//Set spawnpoint to null, destroy and init world controller and go to next level
 	public void nextLevel(){
-		if(WallJumper.level > WallJumper.profile.lastLevelCompleted){
-			WallJumper.profile.lastLevelCompleted = WallJumper.level;
-			ProfileLoader.profileLoader.saveProfile();
-
-		}
+		
 		WallJumper.level++;
 		World.controller.setSpawnPoint(null, false);
 		World.controller.destroy();

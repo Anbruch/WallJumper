@@ -26,6 +26,7 @@ public class Constants {
 	public static final float cameraPanVal = 200;
 	public static final float gravity = -29;
 	public static final int maxRiftFragments = 18;
+	public static int lastSeenLevelInMenu = -1;
 	
 	
 	//Unprojects coordinates from screen and converts to virtual coordinates

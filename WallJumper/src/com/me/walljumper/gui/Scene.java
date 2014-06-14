@@ -69,6 +69,9 @@ public class Scene implements InputProcessor {
 	public void add(SceneObject child){
 		children.add(child);
 	}
+	public Array<SceneObject> getArray(){
+		return children;
+	}
 	
 	//Draws font at bottom left corner of the object + the offsets
 	public void writeToWorld(String str, SceneObject obj, float xOffset, float yOffset){

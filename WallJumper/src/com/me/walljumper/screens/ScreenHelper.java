@@ -6,6 +6,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.math.Interpolation;
 import com.me.walljumper.DirectedGame;
+import com.me.walljumper.ProfileLoader;
 import com.me.walljumper.WallJumper;
 import com.me.walljumper.screens.screentransitions.ScreenTransition;
 import com.me.walljumper.screens.screentransitions.ScreenTransitionSlice;
@@ -66,6 +67,8 @@ public abstract class ScreenHelper implements Screen{
 
 	public abstract InputProcessor getInputProcessor();
 	public void backToLevelMenu(){
+		
+		ProfileLoader.profileLoader.saveProfile();
 		AudioManager.instance.stopMusic();
 		ScreenTransition transition = ScreenTransitionSlice.init(.6f, ScreenTransitionSlice.UP_DOWN, 10,
 				Interpolation.pow2Out);

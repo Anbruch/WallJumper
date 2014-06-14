@@ -182,6 +182,7 @@ public class LevelLoader {
 					LevelStage.interactables.add(new RiftFragment((float)pixelX, (float)baseHeight,  1, 1){
 						@Override
 						public void interact(AbstractGameObject couple) {
+							World.controller.riftFragCollected = true;
 							LevelStage.interactables.removeValue(this, true);
 							super.interact(couple);
 						}
