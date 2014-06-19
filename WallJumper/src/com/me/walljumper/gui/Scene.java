@@ -10,7 +10,7 @@ import com.badlogic.gdx.utils.Array;
 import com.me.walljumper.Constants;
 import com.me.walljumper.DirectedGame;
 import com.me.walljumper.screens.GameScreen;
-import com.me.walljumper.screens.ScreenHelper;
+import com.me.walljumper.screens.AbstractScreen;
 import com.me.walljumper.screens.screentransitions.ScreenTransitionFade;
 import com.me.walljumper.tools.CameraHelper;
 
@@ -23,7 +23,7 @@ public class Scene implements InputProcessor {
 	public static OrthographicCamera camera;
 	public CameraHelper cameraHelper;
 	public static Button clickedButton;
-	private ScreenHelper screenHelper;
+	private AbstractScreen screenHelper;
 	private DirectedGame game;
 	
 	
@@ -42,7 +42,7 @@ public class Scene implements InputProcessor {
 	 * }
 	 */
 	
-	public Scene(ScreenHelper screenHelper, DirectedGame game){
+	public Scene(AbstractScreen screenHelper, DirectedGame game){
 		curScene = this;
 		children = new Array<SceneObject>();
 		batch = new SpriteBatch();

@@ -31,7 +31,7 @@ import com.me.walljumper.screens.screentransitions.ScreenTransitionFade;
 import com.me.walljumper.screens.screentransitions.ScreenTransitionSlice;
 import com.me.walljumper.tools.Assets;
 
-public class MainMenu extends ScreenHelper{
+public class MainMenu extends AbstractScreen{
 
 	Image title, bg, platform;
 	Button play, tutorial, options;

@@ -13,7 +13,7 @@ import com.me.walljumper.screens.screentransitions.ScreenTransitionSlice;
 import com.me.walljumper.tools.AudioManager;
 import com.me.walljumper.tools.InputManager;
 
-public class GameScreen extends ScreenHelper {
+public class GameScreen extends AbstractScreen {
 	
 	public GameScreen(DirectedGame game) {
 		super(game);
@@ -71,7 +71,11 @@ public class GameScreen extends ScreenHelper {
 	}
 	
 	//CHANGE LEVEL METHODS
-	
+	public void nextScreen(){
+		ScreenTransition transition = ScreenTransitionSlice.init(.6f, ScreenTransitionSlice.UP_DOWN, 10,
+				Interpolation.pow2Out);
+		game.setScreen(new StoryScreen(game), transition);
+	}
 	
 	
 	//Set spawnpoint to null, destroy and init world controller and go to next level
@@ -80,10 +84,11 @@ public class GameScreen extends ScreenHelper {
 		WallJumper.level++;
 		World.controller.setSpawnPoint(null, false);
 		World.controller.destroy();
-		World.controller.init();
+//		World.controller.init();
+		nextScreen();
 	}
 	
-	public void changeScreen(ScreenHelper screen) {
+	public void changeScreen(AbstractScreen screen) {
 		((Game) Gdx.app.getApplicationListener()).setScreen(screen);
 	}
 

@@ -15,7 +15,7 @@ public class WallJumpParticle extends Particle{
 		init(x, y, width, height, flipX);
 	}
 	public void init(float x, float y, float width, float height, boolean flipX){
-		aniNormal = Assets.instance.wallJumpParticle.wallJumpParticle;
+		aniNormal = Assets.instance.particle.wallJumpParticle;
 		setAnimation(aniNormal);
 		currentFrameDimension = new Vector2();
 		position = new Vector2(x, y);
@@ -29,7 +29,7 @@ public class WallJumpParticle extends Particle{
 		terminalVelocity = new Vector2(1, 1);
 		bounds = new Rectangle(x, y, width, height);
 	}
-	@Override 
+	/*@Override 
 	public void update(float deltaTime){
 		super.update(deltaTime);
 		if(animation.isAnimationFinished(stateTime)){
@@ -40,7 +40,7 @@ public class WallJumpParticle extends Particle{
 			}
 			LevelStage.uncollidableObjects.removeIndex(index);
 		}
-	}
+	}*/
 	
 	@Override
 	public void render(SpriteBatch batch) {

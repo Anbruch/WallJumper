@@ -95,7 +95,6 @@ public abstract class SceneObject {
 	public abstract boolean clickedDown();
 	public abstract boolean clickRelease();
 	public  void update(float deltaTime){
-		//
 		if(animating){
 			stateTime += deltaTime;
 			if(animation.isAnimationFinished(stateTime)){

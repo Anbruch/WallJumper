@@ -45,6 +45,7 @@ public class Image extends SceneObject {
 		}else
 			looping = true;
 		this.animation = animation;
+		
 		stateTime = 0;
 		
 	}

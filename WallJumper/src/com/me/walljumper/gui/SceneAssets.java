@@ -43,6 +43,9 @@ public class SceneAssets implements Disposable, AssetErrorListener {
 		public final Array<AtlasRegion> animationPngs;
 		public final Animation buttonAnimation;
 		
+		public final Array<AtlasRegion> riftFragFiles;
+		public final Animation riftFragment;
+		
 
 		public UI(TextureAtlas atlas){
 			
@@ -54,6 +57,8 @@ public class SceneAssets implements Disposable, AssetErrorListener {
 			
 			animationPngs = atlas.findRegions("unlock");
 			buttonAnimation = new Animation(1 / 10f, animationPngs, Animation.NORMAL);
+			riftFragFiles = atlas.findRegions("riftFrag");
+			riftFragment = new Animation(1 / 10f, riftFragFiles, Animation.LOOP);
 			
 			//Adds individual images
 			//It will look in the folder specified,
@@ -67,7 +72,6 @@ public class SceneAssets implements Disposable, AssetErrorListener {
 			worldScreenAssetFiles.add("levelButton_locked");
 			worldScreenAssetFiles.add("nextWorld_up");
 			worldScreenAssetFiles.add("nextWorld_down");
-			worldScreenAssetFiles.add("riftFrag");
 
 
 			worldScreenAssetFiles.add("title");
@@ -85,6 +89,7 @@ public class SceneAssets implements Disposable, AssetErrorListener {
 			}catch(NullPointerException e){
 				e.printStackTrace();
 			}
+			
 			
 		}//End METHOD
 	}//END CLASS

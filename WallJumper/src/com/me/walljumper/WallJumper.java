@@ -5,7 +5,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import com.me.walljumper.screens.GameScreen;
 import com.me.walljumper.screens.MainMenu;
-import com.me.walljumper.screens.ScreenHelper;
+import com.me.walljumper.screens.AbstractScreen;
 import com.me.walljumper.screens.TutorialScreen;
 import com.me.walljumper.screens.World;
 import com.me.walljumper.screens.screentransitions.ScreenTransitionFade;
@@ -15,7 +15,7 @@ public class WallJumper extends DirectedGame {
 	public static final int numWorlds = 2;
 	public static final int numButtonsPerPage = 18;
 	public static boolean paused;//Game being paused handled in main
-	public static ScreenHelper currentScreen;
+	public static AbstractScreen currentScreen;
 	public static int WorldNum = 0, level = 0, completedLevels;
 	public static Profile profile;
 	

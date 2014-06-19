@@ -29,7 +29,7 @@ import com.me.walljumper.screens.screentransitions.ScreenTransition;
 import com.me.walljumper.screens.screentransitions.ScreenTransitionFade;
 import com.me.walljumper.tools.Assets;
 
-public class LevelMenu extends ScreenHelper {
+public class LevelMenu extends AbstractScreen {
 	
 	
 	private Image bg;
@@ -97,7 +97,7 @@ public class LevelMenu extends ScreenHelper {
 					WallJumper.level = this.getNum();
 					SceneAssets.instance.dispose();
 					ScreenTransitionFade transition = ScreenTransitionFade.init(.75f);
-					game.setScreen(new GameScreen(game), transition);
+					game.setScreen(new StoryScreen(game), transition);
 					return false;
 				}
 			};
@@ -112,10 +112,13 @@ public class LevelMenu extends ScreenHelper {
 			//Setup the text  for each button
 			float textOffsetX = button.getNum()	< 10 ? 8 : 15;
 			button.setToWrite("" + button.getNum(), button.dimension.x / 2 - textOffsetX, button.dimension.y / 2 + 35, true);
-			Image numRiftFrags = new Image(false, "riftFrag", button.position.x + button.dimension.x / 4, 
-					button.position.y + button.dimension.y / 4, 30, 30);
-			numRiftFrags.setToWrite("x" + WallJumper.profile.World1.get(i).getRiftFrags(),  20, 0, true);
-			scene.add(numRiftFrags);
+			
+			if(WallJumper.profile.World1.get(i).getRiftFrags() > 0){
+				Button numRiftFrags = new Button(false, "levelbutton.up", "levelbutton.down", button.position.x + button.dimension.x / 4, 
+						button.position.y + button.dimension.y / 4, 135 * .3f, 104 * .3f);
+				numRiftFrags.setAnimation(SceneAssets.instance.ui.riftFragment);
+				scene.add(numRiftFrags);
+			}
 		}
 		Constants.lastSeenLevelInMenu = WallJumper.profile.lastLevelCompleted;
 		

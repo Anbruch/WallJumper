@@ -44,7 +44,7 @@ public class World  {
 	private ManipulatableObject from;
 	public AbstractGameObject to;
 	private DirectedGame game;
-	public ScreenHelper gameScreen;
+	public AbstractScreen gameScreen;
 	public boolean renderAll, riftFragCollected;
 	private TweenManager tween;
 	public boolean nextLevel;
@@ -57,7 +57,7 @@ public class World  {
 	
 	
 
-	public World(DirectedGame game, ScreenHelper gameScreen) {
+	public World(DirectedGame game, AbstractScreen gameScreen) {
 		this.game = game;
 		this.gameScreen = gameScreen;
 	}
@@ -166,7 +166,7 @@ public class World  {
 			delta = delta < .25f ? delta : .25f;
 
 			if(!blackHoled)
-			levelTimer += delta;
+				levelTimer += delta;
 
 			update(delta);
 
@@ -206,13 +206,12 @@ public class World  {
 	private boolean startLevel(){
 		if(!started){
 			levelTimer = 0;
-			started = true;
 			WorldRenderer.renderer.pauseButton.play();
 			if(faceLeft)
 				LevelStage.player.moveLeft();
 			else
 				LevelStage.player.moveRight();
-
+			started = true;			
 			
 			return false;
 		}

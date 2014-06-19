@@ -13,7 +13,7 @@ import com.me.walljumper.tools.AudioManager;
 import com.me.walljumper.tools.InputManager;
 import com.me.walljumper.tools.WorldRenderer;
 
-public class TutorialScreen extends ScreenHelper {
+public class TutorialScreen extends AbstractScreen {
 
 	public TutorialScreen(DirectedGame game) {
 		super(game);

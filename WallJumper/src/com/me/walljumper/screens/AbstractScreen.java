@@ -12,10 +12,10 @@ import com.me.walljumper.screens.screentransitions.ScreenTransition;
 import com.me.walljumper.screens.screentransitions.ScreenTransitionSlice;
 import com.me.walljumper.tools.AudioManager;
 
-public abstract class ScreenHelper implements Screen{
+public abstract class AbstractScreen implements Screen{
 	protected DirectedGame game;
 	
-	public ScreenHelper(DirectedGame game){
+	public AbstractScreen(DirectedGame game){
 		this.game = game;
 	}
 	@Override
@@ -60,7 +60,7 @@ public abstract class ScreenHelper implements Screen{
 	public boolean handleKeyInput(int keycode) {
 		return false;
 	}
-	public void changeScreen(ScreenHelper screen) {
+	public void changeScreen(AbstractScreen screen) {
 		((DirectedGame) Gdx.app.getApplicationListener()).setScreen(screen);
 
 	}

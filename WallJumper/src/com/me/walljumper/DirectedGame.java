@@ -5,13 +5,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
-import com.me.walljumper.screens.ScreenHelper;
+import com.me.walljumper.screens.AbstractScreen;
 import com.me.walljumper.screens.World;
 import com.me.walljumper.screens.screentransitions.ScreenTransition;
 
 public class DirectedGame implements ApplicationListener {
 	private boolean init;
-	private ScreenHelper curScreen, nextScreen;
+	private AbstractScreen curScreen, nextScreen;
 	private FrameBuffer currFbo, nextFbo;
 	private SpriteBatch batch;
 	private float t;
@@ -21,10 +21,10 @@ public class DirectedGame implements ApplicationListener {
 		
 	}
 	
-	public void setScreen(ScreenHelper screen){
+	public void setScreen(AbstractScreen screen){
 		setScreen(screen, null);
 	}
-	public void setScreen(ScreenHelper screen, ScreenTransition screenTransition){
+	public void setScreen(AbstractScreen screen, ScreenTransition screenTransition){
 		int w = Gdx.graphics.getWidth(), h = Gdx.graphics.getHeight();
 		if(!init){
 			currFbo = new FrameBuffer(Format.RGB888, w, h, false);

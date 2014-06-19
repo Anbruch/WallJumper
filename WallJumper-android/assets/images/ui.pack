@@ -5,203 +5,294 @@ filter: Nearest,Nearest
 repeat: none
 bg1
   rotate: false
-  xy: 1, 944
+  xy: 1, 954
   size: 1920, 1080
   orig: 1920, 1080
   offset: 0, 0
   index: -1
 nextWorld_down
   rotate: false
-  xy: 1923, 1304
+  xy: 1923, 1314
   size: 100, 720
   orig: 100, 720
   offset: 0, 0
   index: -1
 nextWorld_up
   rotate: false
-  xy: 1923, 582
+  xy: 1923, 592
   size: 100, 720
   orig: 100, 720
   offset: 0, 0
   index: -1
 startscreen
   rotate: false
-  xy: 1, 222
+  xy: 1, 232
   size: 1280, 720
   orig: 1280, 720
   offset: 0, 0
   index: -1
 title
   rotate: false
-  xy: 1283, 309
+  xy: 1283, 319
   size: 666, 271
   orig: 666, 271
   offset: 0, 0
   index: -1
 levelbutton.down
   rotate: false
-  xy: 1951, 476
+  xy: 1951, 486
   size: 94, 104
   orig: 94, 104
   offset: 0, 0
   index: -1
 levelbutton.up
   rotate: false
-  xy: 1951, 370
+  xy: 1951, 380
   size: 94, 104
   orig: 94, 104
   offset: 0, 0
   index: -1
 levelButton_locked
   rotate: false
-  xy: 1951, 264
+  xy: 1951, 274
   size: 94, 104
   orig: 94, 104
   offset: 0, 0
   index: -1
 button.down
   rotate: false
-  xy: 1283, 168
+  xy: 1283, 178
   size: 246, 94
   orig: 246, 94
   offset: 0, 0
   index: -1
 homeButton
   rotate: false
-  xy: 1283, 270
+  xy: 1283, 280
   size: 38, 37
   orig: 38, 37
   offset: 0, 0
   index: -1
-riftFrag
-  rotate: false
-  xy: 1323, 273
-  size: 34, 34
-  orig: 34, 34
-  offset: 0, 0
-  index: -1
 button.up
   rotate: false
-  xy: 1531, 213
+  xy: 1531, 223
   size: 246, 94
   orig: 246, 94
   offset: 0, 0
   index: -1
+riftFrag
+  rotate: false
+  xy: 1779, 213
+  size: 135, 104
+  orig: 135, 104
+  offset: 0, 0
+  index: 0
 unlock
   rotate: false
-  xy: 1779, 203
+  xy: 1916, 168
   size: 94, 104
   orig: 94, 104
   offset: 0, 0
   index: 0
-NextWorldButton
+riftFrag
   rotate: false
-  xy: 1875, 207
-  size: 45, 100
-  orig: 45, 100
-  offset: 0, 0
-  index: -1
-unlock
-  rotate: false
-  xy: 1922, 158
-  size: 94, 104
-  orig: 94, 104
+  xy: 1531, 117
+  size: 135, 104
+  orig: 135, 104
   offset: 0, 0
   index: 1
 unlock
   rotate: false
-  xy: 1531, 107
+  xy: 1668, 117
+  size: 94, 104
+  orig: 94, 104
+  offset: 0, 0
+  index: 1
+riftFrag
+  rotate: false
+  xy: 1764, 107
+  size: 135, 104
+  orig: 135, 104
+  offset: 0, 0
+  index: 10
+riftFrag
+  rotate: false
+  xy: 1901, 62
+  size: 135, 104
+  orig: 135, 104
+  offset: 0, 0
+  index: 11
+riftFrag
+  rotate: false
+  xy: 1, 1
+  size: 135, 104
+  orig: 135, 104
+  offset: 0, 0
+  index: 12
+riftFrag
+  rotate: false
+  xy: 1, 126
+  size: 135, 104
+  orig: 135, 104
+  offset: 0, 0
+  index: 13
+riftFrag
+  rotate: false
+  xy: 138, 11
+  size: 135, 104
+  orig: 135, 104
+  offset: 0, 0
+  index: 2
+riftFrag
+  rotate: false
+  xy: 138, 126
+  size: 135, 104
+  orig: 135, 104
+  offset: 0, 0
+  index: 3
+riftFrag
+  rotate: false
+  xy: 275, 11
+  size: 135, 104
+  orig: 135, 104
+  offset: 0, 0
+  index: 4
+riftFrag
+  rotate: false
+  xy: 275, 126
+  size: 135, 104
+  orig: 135, 104
+  offset: 0, 0
+  index: 5
+riftFrag
+  rotate: false
+  xy: 412, 11
+  size: 135, 104
+  orig: 135, 104
+  offset: 0, 0
+  index: 6
+riftFrag
+  rotate: false
+  xy: 412, 126
+  size: 135, 104
+  orig: 135, 104
+  offset: 0, 0
+  index: 7
+riftFrag
+  rotate: false
+  xy: 549, 11
+  size: 135, 104
+  orig: 135, 104
+  offset: 0, 0
+  index: 8
+riftFrag
+  rotate: false
+  xy: 549, 126
+  size: 135, 104
+  orig: 135, 104
+  offset: 0, 0
+  index: 9
+unlock
+  rotate: false
+  xy: 686, 11
   size: 94, 104
   orig: 94, 104
   offset: 0, 0
   index: 10
 unlock
   rotate: false
-  xy: 1627, 107
+  xy: 686, 126
   size: 94, 104
   orig: 94, 104
   offset: 0, 0
   index: 11
 unlock
   rotate: false
-  xy: 1723, 97
+  xy: 782, 126
   size: 94, 104
   orig: 94, 104
   offset: 0, 0
   index: 12
 unlock
   rotate: false
-  xy: 1819, 97
+  xy: 878, 126
   size: 94, 104
   orig: 94, 104
   offset: 0, 0
   index: 13
 unlock
   rotate: false
-  xy: 1915, 52
+  xy: 974, 126
   size: 94, 104
   orig: 94, 104
   offset: 0, 0
   index: 14
 unlock
   rotate: false
-  xy: 1, 1
+  xy: 1070, 126
   size: 94, 104
   orig: 94, 104
   offset: 0, 0
   index: 15
 unlock
   rotate: false
-  xy: 1, 116
+  xy: 1166, 126
   size: 94, 104
   orig: 94, 104
   offset: 0, 0
   index: 2
 unlock
   rotate: false
-  xy: 97, 1
+  xy: 1262, 72
   size: 94, 104
   orig: 94, 104
   offset: 0, 0
   index: 3
 unlock
   rotate: false
-  xy: 97, 116
+  xy: 1358, 72
   size: 94, 104
   orig: 94, 104
   offset: 0, 0
   index: 4
+NextWorldButton
+  rotate: false
+  xy: 1454, 76
+  size: 45, 100
+  orig: 45, 100
+  offset: 0, 0
+  index: -1
 unlock
   rotate: false
-  xy: 193, 1
+  xy: 1501, 11
   size: 94, 104
   orig: 94, 104
   offset: 0, 0
   index: 5
 unlock
   rotate: false
-  xy: 193, 116
+  xy: 1597, 11
   size: 94, 104
   orig: 94, 104
   offset: 0, 0
   index: 6
 unlock
   rotate: false
-  xy: 289, 1
+  xy: 1693, 1
   size: 94, 104
   orig: 94, 104
   offset: 0, 0
   index: 7
 unlock
   rotate: false
-  xy: 289, 116
+  xy: 1789, 1
   size: 94, 104
   orig: 94, 104
   offset: 0, 0
   index: 8
 unlock
   rotate: false
-  xy: 385, 1
+  xy: 782, 20
   size: 94, 104
   orig: 94, 104
   offset: 0, 0

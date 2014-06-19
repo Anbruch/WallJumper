@@ -21,11 +21,12 @@ public class Assets implements Disposable, AssetErrorListener {
 	public Background nightSky;
 	public Rogue rogue;
 	public Portal portal;
-	public WallJumpParticle wallJumpParticle;
+	public Particle particle;
 	public UI pause;
 	public Title title;
 	public Trap trap;
 	public Rain rain;
+	public Collectibles collectibles;
 	public AssetMusic music;
 
 	private Assets() {
@@ -53,7 +54,7 @@ public class Assets implements Disposable, AssetErrorListener {
 		pause = new UI(atlas);
 		title = new Title(atlas);
 		trap = new Trap(atlas);
-		wallJumpParticle = new WallJumpParticle(atlas);
+		particle = new Particle(atlas);
 		rain = new Rain(atlas);
 		music = new AssetMusic(assetManager);
 	}
@@ -88,9 +89,10 @@ public class Assets implements Disposable, AssetErrorListener {
 		pause = new UI(atlasMap.get(0));
 		title = new Title(atlasMap.get(0));
 		trap = new Trap(atlasMap.get(0));
-		wallJumpParticle = new WallJumpParticle(atlasMap.get(0));
+		particle = new Particle(atlasMap.get(0));
 		rain = new Rain(atlasMap.get(0));
 		music = new AssetMusic(assetManager);
+		collectibles = new Collectibles(atlasMap.get(0));
 		
 	}
 	public void loadMusic(String file){
@@ -140,7 +142,15 @@ public class Assets implements Disposable, AssetErrorListener {
 		}
 	}
 
-
+	public class Collectibles{
+		public final Array<AtlasRegion> riftFragFiles;
+		public final Animation riftFrags;
+		public Collectibles(TextureAtlas atlas){
+			riftFragFiles = atlas.findRegions("riftFrag");
+			
+			riftFrags = new Animation(1 / 10f, riftFragFiles, Animation.LOOP);
+		}
+	}
 	public class Platform {
 		public final ArrayMap<String, AtlasRegion> platMap;
 
@@ -248,14 +258,20 @@ public class Assets implements Disposable, AssetErrorListener {
 		}
 	}
 
-	public class WallJumpParticle {
+	public class Particle {
 		public final Array<AtlasRegion> wallJump;
 		public final Animation wallJumpParticle;
+		
+		public final Array<AtlasRegion> landParticles;
+		public final Animation landAnimation;
 
-		public WallJumpParticle(TextureAtlas atlas) {
+		public Particle(TextureAtlas atlas) {
 			wallJump = atlas.findRegions("wallJump");
 			wallJumpParticle = new Animation(1 / 15f, wallJump,
 					Animation.NORMAL);
+			
+			landParticles = atlas.findRegions("landDust");
+			landAnimation = new Animation(1 / 15f, landParticles, Animation.NORMAL);
 		}
 	}
 
@@ -306,12 +322,14 @@ public class Assets implements Disposable, AssetErrorListener {
 
 	public class Rogue {
 		public final Array<AtlasRegion> rogueNormal;
+		public final Array<AtlasRegion> rogue_Landing;
 		public final Array<AtlasRegion> rogueRunning;
 		public final Array<AtlasRegion> rogueJumping;
 		public final Array<AtlasRegion> rogueWalling;
 
 		public final Animation aniRunning;
 		public final Animation aniNormal;
+		public final Animation aniLanding;
 		public final Animation aniJumping;
 		public final Animation aniWalling;
 
@@ -323,7 +341,9 @@ public class Assets implements Disposable, AssetErrorListener {
 			rogueWalling = atlas.findRegions("rogue_walling");
 
 			rogueNormal = atlas.findRegions("rogue_normal");
-
+			rogue_Landing = atlas.findRegions("rogue_landing");
+			
+			aniLanding = new Animation(1 / 2f, rogue_Landing, Animation.NORMAL);
 			aniRunning = new Animation(1 / 10.0f, rogueRunning, Animation.LOOP);
 			aniNormal = new Animation(1 / 10.0f, rogueNormal, Animation.NORMAL);
 			aniJumping = new Animation(1 / 10.0f, rogueJumping, Animation.LOOP);

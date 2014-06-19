@@ -73,6 +73,7 @@ public abstract class AbstractGameObject{
 		acceleration = new Vector2();
 		velocity = new Vector2();
 		terminalVelocity = new Vector2(1, 1);
+		currentFrameDimension = new Vector2();
 		bounds = new Rectangle(x, y, width, height);
 		this.flipX = flipX;
 		this.flipY = flipY;
@@ -81,7 +82,9 @@ public abstract class AbstractGameObject{
 		
 		stateTime += deltaTime;
 		stateTime = stateTime > 0 ? stateTime : 0;
-		
+		if(animation != null && animation.isAnimationFinished(stateTime)){
+			animationComplete();
+		}
 		onScreen = World.controller.cameraHelper.onScreen(this) ? true : false;
 			
 		updateMotionX(deltaTime);
@@ -105,6 +108,10 @@ public abstract class AbstractGameObject{
 			looping = true;
 		this.animation = animation;
 		stateTime = 0;
+		
+	}
+	public void animationComplete(){
+		
 		
 	}
 	public void setImage(TextureRegion image){

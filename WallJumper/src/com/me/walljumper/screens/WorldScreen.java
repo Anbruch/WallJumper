@@ -21,7 +21,7 @@ import com.me.walljumper.screens.screentransitions.ScreenTransitionSlide;
 import com.me.walljumper.tools.Assets;
 
 
-public class WorldScreen extends ScreenHelper {
+public class WorldScreen extends AbstractScreen {
 
 	public WorldScreen(DirectedGame game) {
 		super(game);

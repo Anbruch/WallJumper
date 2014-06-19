@@ -13,6 +13,8 @@ import com.me.walljumper.tools.LevelStage;
 
 public class Rogue extends ManipulatableObject {
 	
+
+
 	public Rogue(){
 		
 	}
@@ -26,10 +28,11 @@ public class Rogue extends ManipulatableObject {
 		aniNormal = Assets.instance.rogue.aniNormal;
 		aniJumping = Assets.instance.rogue.aniJumping;
 		aniWalling = Assets.instance.rogue.aniWalling;
+		aniLanding = Assets.instance.particle.landAnimation;
 		
 		position.set(x, y);
 		acceleration.set(0, Constants.gravity);
-		moveSpeed = new Vector2(18f, 17f);
+		moveSpeed = new Vector2(18f, 18f);
 		state = STATE.GROUNDED;
 		setAnimation(aniNormal);
 		terminalVelocity.set(10, 20);
