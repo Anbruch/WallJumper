@@ -70,7 +70,7 @@ public class TutorialScreen extends AbstractScreen {
 		World.controller.dispose();
 	}
 	
-	public boolean handleTouchInput(int screenX, int screenY, int pointer, int button){
+	public boolean handleTouchInputDown(int screenX, int screenY, int pointer, int button){
 		return World.controller.handleTouchInput(screenX, screenY, pointer, button);
 		
 	}

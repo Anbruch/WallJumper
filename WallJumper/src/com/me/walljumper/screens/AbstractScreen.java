@@ -53,7 +53,7 @@ public abstract class AbstractScreen implements Screen{
 		
 	}
 	
-	public boolean handleTouchInput(int screenX, int screenY, int pointer, int button){
+	public boolean handleTouchInputDown(int screenX, int screenY, int pointer, int button){
 		return false;
 	}
 
@@ -92,6 +92,10 @@ public abstract class AbstractScreen implements Screen{
 		ScreenTransition transition = ScreenTransitionSlice.init(.6f, ScreenTransitionSlice.UP_DOWN, 10,
 				Interpolation.pow2Out);
 		game.setScreen(new WorldScreen(game), transition);
+	}
+	public void handleTouchInputUp(int screenX, int screenY, int pointer,
+			int button) {
+		
 	}
 
 }

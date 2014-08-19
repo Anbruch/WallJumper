@@ -5,11 +5,13 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.me.walljumper.Constants;
+import com.me.walljumper.WallJumper;
 import com.me.walljumper.game_objects.AbstractGameObject;
 import com.me.walljumper.game_objects.LandDust;
 import com.me.walljumper.game_objects.particles.WallJumpParticle;
 import com.me.walljumper.screens.World;
 import com.me.walljumper.tools.LevelStage;
+import com.me.walljumper.tools.WorldRenderer;
 
 public class ManipulatableObject extends AbstractGameObject {
 
@@ -455,6 +457,7 @@ public class ManipulatableObject extends AbstractGameObject {
 			if (bounds.overlaps(platform.bounds)) {
 				if (deltaX != 0) {
 					collidingPlatformX = platform;
+					
 					deltax = 0;
 				}
 				if (deltaY != 0) {

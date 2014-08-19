@@ -40,7 +40,6 @@ public class World  {
 	public static boolean restart;
 	public Button button;
 	
-	
 	private ManipulatableObject from;
 	public AbstractGameObject to;
 	private DirectedGame game;

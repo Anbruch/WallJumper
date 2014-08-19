@@ -161,7 +161,7 @@ public class MainMenu extends AbstractScreen{
 		
 	}
 	
-	public boolean handleTouchInput(int screenX, int screenY, int pointer, int button){
+	public boolean handleTouchInputDown(int screenX, int screenY, int pointer, int button){
 
 		return false;
 	}

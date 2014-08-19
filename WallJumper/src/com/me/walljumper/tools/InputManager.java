@@ -74,7 +74,7 @@ public class InputManager extends InputAdapter {
 		
 		
 		//Pass input to currentScreen
-		WallJumper.currentScreen.handleTouchInput(screenX, screenY, pointer, button);
+		WallJumper.currentScreen.handleTouchInputDown(screenX, screenY, pointer, button);
 		return false;
 	}
 	
@@ -84,6 +84,9 @@ public class InputManager extends InputAdapter {
 		for(SceneObject objects : WorldRenderer.renderer.getSceneObjects()){
 			objects.touchUp(screenX, screenY, pointer, button);
 		}
+		//Pass input to currentScreen
+		//WallJumper.currentScreen.handleTouchInput(screenX, screenY, pointer, button);
+		
 		return false;
 	}
 
